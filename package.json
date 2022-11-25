@@ -6,17 +6,37 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "postinstall": "chakra-cli tokens ./theme/index.ts"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.4.1",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@fontsource/dawning-of-a-new-day": "^4.5.10",
+    "@fontsource/nanum-myeongjo": "^4.5.9",
+    "@portabletext/react": "^2.0.0",
+    "@sanity/ui": "^1.0.0",
     "@types/node": "18.11.9",
     "@types/react": "18.0.25",
     "@types/react-dom": "18.0.9",
     "eslint": "8.28.0",
     "eslint-config-next": "13.0.4",
+    "framer-motion": "^7.6.12",
     "next": "13.0.4",
+    "next-sanity": "^3.0.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "rss-parser": "^3.12.0",
+    "sanity": "3.0.0-rc.2",
+    "styled-components": "^5.3.6",
     "typescript": "4.9.3"
+  },
+  "devDependencies": {
+    "@chakra-ui/cli": "^2.1.8",
+    "@sanity/eslint-config-studio": "^2.0.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-simple-import-sort": "^8.0.0"
   }
 }
