@@ -1,5 +1,6 @@
 import { Container, Flex, FlexProps } from '@chakra-ui/react'
 import { FC } from 'react'
+
 import Navbar from './Navbar'
 
 const Layout: FC<FlexProps> = ({ children, ...rest }) => {
