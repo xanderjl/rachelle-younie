@@ -13,15 +13,13 @@ const App = ({ Component, pageProps }: AppProps) => {
   const router = useRouter()
   const isEditor = router.asPath.includes('/editor')
 
-  return (
+  return isEditor ? (
+    <Component {...pageProps} />
+  ) : (
     <ChakraProvider theme={theme}>
-      {isEditor ? (
+      <Layout>
         <Component {...pageProps} />
-      ) : (
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      )}
+      </Layout>
     </ChakraProvider>
   )
 }
