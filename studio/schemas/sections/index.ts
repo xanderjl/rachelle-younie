@@ -1,0 +1,1 @@
+export { sectionContent } from './sectionContent'

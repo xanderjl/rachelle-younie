@@ -1,8 +1,10 @@
 import { SchemaTypeDefinition } from 'sanity'
+import { AiOutlineFile } from 'react-icons/ai'
 
 export const page: SchemaTypeDefinition = {
   name: 'page',
   title: 'Pages',
+  icon: AiOutlineFile,
   type: 'document',
   fields: [
     {
@@ -18,6 +20,11 @@ export const page: SchemaTypeDefinition = {
         source: 'title'
       },
       validation: rule => rule.required()
+    },
+    {
+      name: 'sections',
+      title: 'Sections',
+      type: 'sectionSelector'
     }
   ]
 }
