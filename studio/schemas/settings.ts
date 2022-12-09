@@ -6,6 +6,13 @@ export const settings: SchemaTypeDefinition = {
   type: 'document',
   fields: [
     {
+      name: 'siteTitle',
+      title: 'Site Title',
+      type: 'string',
+      description:
+        "This is the base title that shows up in a browser tab. (eg: setting the title to 'Rachelle Younie' and then navigationg to https://www.rachelleyounie.com/about would look like: Rachelle Younie | About)"
+    },
+    {
       name: 'metaDescription',
       title: 'Meta Description',
       description:

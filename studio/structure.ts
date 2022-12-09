@@ -1,6 +1,6 @@
-import { StructureResolver } from 'sanity/desk'
 import { AiOutlineLink } from 'react-icons/ai'
 import { IoIosSettings } from 'react-icons/io'
+import { StructureResolver } from 'sanity/desk'
 
 const singletons = ['settings', 'navigation', 'podcastEpisodes']
 

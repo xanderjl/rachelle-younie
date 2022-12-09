@@ -7,9 +7,9 @@ export const sectionSelector: SchemaTypeDefinition = {
   fields: [
     {
       name: 'sections',
-      title: 'sections',
+      title: 'Sections',
       type: 'array',
-      of: [{ type: 'sectionContent' }]
+      of: [{ type: 'sectionContent' }, { type: 'sectionWriting' }]
     }
   ]
 }

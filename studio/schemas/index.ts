@@ -1,15 +1,22 @@
-import { page } from './page'
-import { settings } from './settings'
-import { sectionContent } from './sections'
-import { sectionSelector } from './sectionSelector'
+import { episode } from './episode'
 import { navigation } from './navigation'
+import { page } from './page'
 import { podcastEpisodes } from './podcastEpisodes'
+import { publication } from './publication'
+import { sectionContent, sectionWriting } from './sections'
+import { sectionSelector } from './sectionSelector'
+import { settings } from './settings'
+import { writing } from './writing'
 
 export const schemaTypes = [
+  episode,
   navigation,
   page,
   podcastEpisodes,
+  publication,
   settings,
   sectionContent,
-  sectionSelector
+  sectionWriting,
+  sectionSelector,
+  writing
 ]
