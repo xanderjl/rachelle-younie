@@ -25,28 +25,28 @@ export const episode: SchemaTypeDefinition = {
       title: 'Creator',
       type: 'string'
     },
-    // {
-    //   name: 'enclosure',
-    //   title: 'Enclosure',
-    //   type: 'object',
-    //   fields: [
-    //     {
-    //       name: 'url',
-    //       title: 'URL',
-    //       type: 'url'
-    //     },
-    //     {
-    //       name: 'length',
-    //       title: 'Length',
-    //       type: 'string'
-    //     },
-    //     {
-    //       name: 'type',
-    //       title: 'Type',
-    //       type: 'string'
-    //     }
-    //   ]
-    // },
+    {
+      name: 'enclosure',
+      title: 'Enclosure',
+      type: 'object',
+      fields: [
+        {
+          name: 'url',
+          title: 'URL',
+          type: 'url'
+        },
+        {
+          name: 'length',
+          title: 'Length',
+          type: 'string'
+        },
+        {
+          name: 'type',
+          title: 'Type',
+          type: 'string'
+        }
+      ]
+    },
     {
       name: 'guid',
       title: 'GUID',

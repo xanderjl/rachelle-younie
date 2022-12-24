@@ -1,5 +1,5 @@
 import { Heading, Text } from '@chakra-ui/react'
-import { NextPage } from 'next'
+import { GetStaticPaths, NextPage } from 'next'
 
 const Home: NextPage = () => {
   return (
@@ -20,5 +20,7 @@ const Home: NextPage = () => {
     </>
   )
 }
+
+export const getStaticPaths: GetStaticPaths = async ctx => {}
 
 export default Home

@@ -4,24 +4,63 @@ import '@fontsource/nanum-myeongjo/700.css'
 import '@fontsource/nanum-myeongjo/800.css'
 
 import { ChakraProvider } from '@chakra-ui/react'
+import {
+  dehydrate,
+  QueryClient,
+  QueryClientProvider
+} from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import Layout from 'components/Layout'
-import type { AppProps } from 'next/app'
+import { getInitialData } from 'hooks/useInitialData'
+import type { AppContext, AppProps } from 'next/app'
+import App from 'next/app'
 import { useRouter } from 'next/router'
+import { useState } from 'react'
 import { theme } from 'theme'
 
-const App = ({ Component, pageProps }: AppProps) => {
+const isDev = process.env.NODE_ENV === 'development'
+
+type CustomAppProps = AppProps
+
+const CustomApp = ({ Component, pageProps }: CustomAppProps) => {
   const router = useRouter()
   const isEditor = router.asPath.includes('/editor')
+  const [client] = useState(() => new QueryClient())
 
-  return isEditor ? (
-    <Component {...pageProps} />
-  ) : (
-    <ChakraProvider theme={theme}>
-      <Layout>
+  return (
+    <QueryClientProvider client={client}>
+      {isDev && <ReactQueryDevtools initialIsOpen={false} />}
+      {isEditor ? (
         <Component {...pageProps} />
-      </Layout>
-    </ChakraProvider>
+      ) : (
+        <ChakraProvider theme={theme}>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </ChakraProvider>
+      )}
+    </QueryClientProvider>
   )
 }
 
-export default App
+CustomApp.getIniitalProps = async (context: AppContext) => {
+  const ctx = await App.getInitialProps(context)
+  const client = new QueryClient({
+    defaultOptions: {
+      queries: {
+        refetchOnMount: false,
+        refetchOnReconnect: false,
+        refetchOnWindowFocus: false
+      }
+    }
+  })
+  await client.prefetchQuery({
+    queryKey: ['initial-data'],
+    queryFn: getInitialData
+  })
+  const dehydratedState = dehydrate(client)
+
+  return { ...ctx, dehydratedState }
+}
+
+export default CustomApp

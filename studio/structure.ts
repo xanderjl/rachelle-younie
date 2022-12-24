@@ -1,8 +1,9 @@
 import { AiOutlineLink } from 'react-icons/ai'
+import { FaMicrophoneAlt } from 'react-icons/fa'
 import { IoIosSettings } from 'react-icons/io'
 import { StructureResolver } from 'sanity/desk'
 
-const singletons = ['settings', 'navigation', 'podcastEpisodes']
+const singletons = ['settings', 'navigation', 'podcastEpisodes', 'landingPage']
 
 export const structure: StructureResolver = S =>
   S.list()
@@ -18,7 +19,7 @@ export const structure: StructureResolver = S =>
         .child(S.document().schemaType('navigation').documentId('navigation')),
       S.listItem()
         .title('Podcast Episodes')
-        .icon(AiOutlineLink)
+        .icon(FaMicrophoneAlt)
         .child(
           S.document()
             .schemaType('podcastEpisodes')

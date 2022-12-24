@@ -1,11 +1,9 @@
-import { AiOutlineFile } from 'react-icons/ai'
 import { SchemaTypeDefinition } from 'sanity'
 
-export const page: SchemaTypeDefinition = {
-  name: 'page',
-  title: 'Pages',
-  icon: AiOutlineFile,
-  type: 'document',
+export const customNavItem: SchemaTypeDefinition = {
+  name: 'customNavItem',
+  title: 'Custom Nav Item',
+  type: 'object',
   fields: [
     {
       name: 'title',
@@ -18,14 +16,10 @@ export const page: SchemaTypeDefinition = {
       title: 'Slug',
       type: 'slug',
       options: {
-        source: 'title'
+        // @ts-ignore typescript doesn't know title field exists
+        source: (_, ctx) => ctx.parent.title
       },
       validation: rule => rule.required()
-    },
-    {
-      name: 'sections',
-      title: 'Sections',
-      type: 'sectionSelector'
     }
   ]
 }

@@ -13,6 +13,12 @@ export const settings: SchemaTypeDefinition = {
         "This is the base title that shows up in a browser tab. (eg: setting the title to 'Rachelle Younie' and then navigationg to https://www.rachelleyounie.com/about would look like: Rachelle Younie | About)"
     },
     {
+      name: 'favicon',
+      title: 'Favicon',
+      type: 'image',
+      description: "The lil' icon in the browser tab for your site."
+    },
+    {
       name: 'metaDescription',
       title: 'Meta Description',
       description:

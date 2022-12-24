@@ -1,3 +1,6 @@
+import { SchemaTypeDefinition } from 'sanity'
+
+import { customNavItem } from './customNavItem'
 import { episode } from './episode'
 import { navigation } from './navigation'
 import { page } from './page'
@@ -8,7 +11,8 @@ import { sectionSelector } from './sectionSelector'
 import { settings } from './settings'
 import { writing } from './writing'
 
-export const schemaTypes = [
+export const schemaTypes: SchemaTypeDefinition[] = [
+  customNavItem,
   episode,
   navigation,
   page,
