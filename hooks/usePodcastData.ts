@@ -30,11 +30,7 @@ export interface Podcast {
 
 export const groqQuery = groq`*[_type == "podcastEpisodes"][0]`
 
-export const getPodcastData = async () => {
-  const data = await client.fetch<Podcast>(groqQuery)
-
-  return data
-}
+export const getPodcastData = async () => await client.fetch<Podcast>(groqQuery)
 
 export const usePodcastData = () =>
   useQuery({ queryKey: ['podcast-data'], queryFn: getPodcastData })

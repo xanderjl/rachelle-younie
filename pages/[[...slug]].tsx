@@ -1,7 +1,9 @@
 import { Heading, Text } from '@chakra-ui/react'
+import { QueryClient } from '@tanstack/react-query'
+import { getPages } from 'hooks/useGetPages'
 import { GetStaticPaths, NextPage } from 'next'
 
-const Home: NextPage = () => {
+const Page: NextPage = () => {
   return (
     <>
       <Heading>
@@ -21,6 +23,21 @@ const Home: NextPage = () => {
   )
 }
 
-export const getStaticPaths: GetStaticPaths = async ctx => {}
+export const getStaticPaths: GetStaticPaths = async ctx => {
+  const client = new QueryClient()
+  const slugs = await client.prefetchQuery({
+    queryKey: ['pages'],
+    queryFn: getPages
+  })
 
-export default Home
+  const paths = slugs.map(({ slug }) => {
+    return { params: { slug } }
+  })
+
+  return {
+    paths: { params },
+    fallback: false
+  }
+}
+
+export default Page

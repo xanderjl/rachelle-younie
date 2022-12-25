@@ -9,7 +9,11 @@ export const sectionSelector: SchemaTypeDefinition = {
       name: 'sections',
       title: 'Sections',
       type: 'array',
-      of: [{ type: 'sectionContent' }, { type: 'sectionWriting' }]
+      of: [
+        { type: 'sectionContent' },
+        { type: 'sectionWriting' },
+        { type: 'sectionPodcastEpisodes' }
+      ]
     }
   ]
 }

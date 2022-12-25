@@ -6,13 +6,14 @@ import '@fontsource/nanum-myeongjo/800.css'
 import { ChakraProvider } from '@chakra-ui/react'
 import {
   dehydrate,
+  DehydratedState,
   QueryClient,
   QueryClientProvider
 } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import Layout from 'components/Layout'
 import { getInitialData } from 'hooks/useInitialData'
-import type { AppContext, AppProps } from 'next/app'
+import type { AppContext, AppInitialProps, AppProps } from 'next/app'
 import App from 'next/app'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
@@ -20,7 +21,13 @@ import { theme } from 'theme'
 
 const isDev = process.env.NODE_ENV === 'development'
 
-type CustomAppProps = AppProps
+interface CustomProps {
+  dehydratedState: DehydratedState
+}
+
+type CustomAppProps = AppProps & CustomProps
+
+type CustomInitialProps = CustomProps & AppInitialProps
 
 const CustomApp = ({ Component, pageProps }: CustomAppProps) => {
   const router = useRouter()
@@ -43,8 +50,10 @@ const CustomApp = ({ Component, pageProps }: CustomAppProps) => {
   )
 }
 
-CustomApp.getIniitalProps = async (context: AppContext) => {
-  const ctx = await App.getInitialProps(context)
+CustomApp.getIniitalProps = async (
+  context: AppContext
+): Promise<CustomInitialProps> => {
+  const initalProps = await App.getInitialProps(context)
   const client = new QueryClient({
     defaultOptions: {
       queries: {
@@ -60,7 +69,7 @@ CustomApp.getIniitalProps = async (context: AppContext) => {
   })
   const dehydratedState = dehydrate(client)
 
-  return { ...ctx, dehydratedState }
+  return { ...initalProps, dehydratedState }
 }
 
 export default CustomApp

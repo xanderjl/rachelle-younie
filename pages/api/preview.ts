@@ -1,6 +1,6 @@
 import { NextApiHandler } from 'next'
 
-const preview: NextApiHandler = (req, res) => {
+const preview: NextApiHandler = (_, res) => {
   res.setPreviewData({})
   res.writeHead(307, { Location: '/' })
   res.end()

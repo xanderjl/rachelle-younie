@@ -22,12 +22,7 @@ export const groqQuery = groq`
 }
 `
 
-export const getNavItems = async () => {
-  const data = await client.fetch<Navigation>(groqQuery)
-
-  return data
-}
-
+export const getNavItems = async () => await client.fetch<Navigation>(groqQuery)
 export const useNavigation = () =>
   useQuery({
     queryKey: ['navigation'],

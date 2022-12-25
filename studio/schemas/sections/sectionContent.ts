@@ -1,5 +1,5 @@
-import { SchemaTypeDefinition } from 'sanity'
 import { BsPencilSquare } from 'react-icons/bs'
+import { SchemaTypeDefinition } from 'sanity'
 
 export const sectionContent: SchemaTypeDefinition = {
   name: 'sectionContent',

@@ -2488,14 +2488,6 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.6.tgz#cee20bd55e68a1720bdab363ecf0c821ded4cd45"
   integrity sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw==
 
-"@portabletext/react@2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@portabletext/react/-/react-2.0.0.tgz#188dc7bbd3d02693ceefbeb9115e44ccdf4c3554"
-  integrity sha512-8AaTfRdRAzWxs2ADbMXV32/LTOJaRDp/m89hax/NTbC8F+OBOgHLBl+M7zSJDVIS1k+fuorFCLcOoq+PuAGJvQ==
-  dependencies:
-    "@portabletext/toolkit" "^2.0.0"
-    "@portabletext/types" "^2.0.0"
-
 "@portabletext/react@^1.0.6":
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/@portabletext/react/-/react-1.0.6.tgz#508ede0b165a3705db6907a94ff67c791d9ab432"
@@ -2503,6 +2495,14 @@
   dependencies:
     "@portabletext/toolkit" "^1.0.5"
     "@portabletext/types" "^1.0.3"
+
+"@portabletext/react@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@portabletext/react/-/react-2.0.0.tgz#188dc7bbd3d02693ceefbeb9115e44ccdf4c3554"
+  integrity sha512-8AaTfRdRAzWxs2ADbMXV32/LTOJaRDp/m89hax/NTbC8F+OBOgHLBl+M7zSJDVIS1k+fuorFCLcOoq+PuAGJvQ==
+  dependencies:
+    "@portabletext/toolkit" "^2.0.0"
+    "@portabletext/types" "^2.0.0"
 
 "@portabletext/toolkit@^1.0.5":
   version "1.0.6"

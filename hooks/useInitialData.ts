@@ -30,11 +30,8 @@ export const groqQuery = groq`
 }[0]
 `
 
-export const getInitialData = async () => {
-  const data = await client.fetch<InitialData>(groqQuery)
-
-  return data
-}
+export const getInitialData = async () =>
+  await client.fetch<InitialData>(groqQuery)
 
 export const useInitialData = () =>
   useQuery({ queryKey: ['initial-data'], queryFn: getInitialData })
