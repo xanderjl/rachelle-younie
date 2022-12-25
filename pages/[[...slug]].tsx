@@ -25,10 +25,12 @@ const Page: NextPage = () => {
 
 export const getStaticPaths: GetStaticPaths = async ctx => {
   const client = new QueryClient()
-  const slugs = await client.prefetchQuery({
+  await client.prefetchQuery({
     queryKey: ['pages'],
     queryFn: getPages
   })
+
+  const slugs = client.getQueryCache()
 
   const paths = slugs.map(({ slug }) => {
     return { params: { slug } }
