@@ -26,5 +26,7 @@ export const getNavItems = async () => await client.fetch<Navigation>(groqQuery)
 export const useNavigation = () =>
   useQuery({
     queryKey: ['navigation'],
-    queryFn: getNavItems
+    queryFn: getNavItems,
+    staleTime: Infinity,
+    cacheTime: Infinity
   })

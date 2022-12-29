@@ -1,6 +1,7 @@
 import { PortableTextProps } from '@portabletext/react'
 import { useQuery } from '@tanstack/react-query'
 import { groq } from 'next-sanity'
+import { PortableTextBlock } from 'sanity'
 import { client } from 'studio/sanity.client'
 
 export interface Publication {
@@ -29,17 +30,20 @@ export interface PodcastEpisode {
   title?: string
 }
 
-export interface SectionContent {
+export interface BaseSection {
   _key: string
-  content: PortableTextProps
+  _type: 'sectionContent' | 'sectionWriting' | 'sectionPodcastEpisodes'
 }
 
-export interface SectionWriting {
-  _key: string
+export interface SectionContent extends BaseSection {
+  content: PortableTextBlock
+}
+
+export interface SectionWriting extends BaseSection {
   publications?: Publication[]
 }
 
-export interface SectionPodcastEpisodes {
+export interface SectionPodcastEpisodes extends BaseSection {
   episodes?: PodcastEpisode[]
 }
 
@@ -58,6 +62,7 @@ export const groqQuery = groq`
   title,
   "slug": slug.current,
   "sections": sections.sections[]{
+    _type,
     _type == "sectionContent" => {
       _key,
       content
@@ -95,4 +100,9 @@ export const getPage = async (slug: string) =>
   await client.fetch<Page>(groqQuery, { slug })
 
 export const useGetPage = (slug: string) =>
-  useQuery({ queryKey: ['page', slug], queryFn: () => getPage(slug) })
+  useQuery({
+    queryKey: ['page', slug],
+    queryFn: () => getPage(slug),
+    staleTime: Infinity,
+    cacheTime: Infinity
+  })

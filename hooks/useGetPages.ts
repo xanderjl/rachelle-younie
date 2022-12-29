@@ -12,7 +12,7 @@ export const groqQuery = groq`
 }
 `
 
-export const getPages = async () => await client.fetch<Page>(groqQuery)
+export const getPages = async () => await client.fetch<Page[]>(groqQuery)
 
 export const useGetPages = () =>
   useQuery({ queryKey: ['pages'], queryFn: getPages })

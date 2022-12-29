@@ -34,4 +34,9 @@ export const getInitialData = async () =>
   await client.fetch<InitialData>(groqQuery)
 
 export const useInitialData = () =>
-  useQuery({ queryKey: ['initial-data'], queryFn: getInitialData })
+  useQuery({
+    queryKey: ['initial-data'],
+    queryFn: getInitialData,
+    staleTime: Infinity,
+    cacheTime: Infinity
+  })

@@ -65,7 +65,9 @@ CustomApp.getIniitalProps = async (
   })
   await client.prefetchQuery({
     queryKey: ['initial-data'],
-    queryFn: getInitialData
+    queryFn: getInitialData,
+    staleTime: Infinity,
+    cacheTime: Infinity
   })
   const dehydratedState = dehydrate(client)
 
