@@ -23,6 +23,13 @@ export const page: SchemaTypeDefinition = {
       validation: rule => rule.required()
     },
     {
+      name: 'metaDescription',
+      title: 'Meta Description',
+      type: 'text',
+      description:
+        "This field is what pops up in search engine cards. It's mostly important for SEO, but isn't strictly required. If this field isn't filled out, the meta description in your site settings tab will take over as the default."
+    },
+    {
       name: 'sections',
       title: 'Sections',
       type: 'sectionSelector'

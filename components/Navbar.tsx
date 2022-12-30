@@ -1,4 +1,5 @@
 import {
+  Container,
   Flex,
   FlexProps,
   Link,
@@ -14,8 +15,17 @@ const Navbar: FC<FlexProps> = props => {
   const { navigation } = data || {}
 
   return (
-    <Flex as='nav' justify='space-around' fontSize='xl' {...props}>
-      Navbar
+    <Container
+      as='nav'
+      display='flex'
+      justifyContent='space-between'
+      maxW='container.lg'
+      fontSize='xl'
+      {...props}
+    >
+      <Link as={NLink} href='/'>
+        Rachelle Younie
+      </Link>
       <UnorderedList display='flex' gap={4} listStyleType='none'>
         {navigation?.map(({ slug, title }, i) => (
           <ListItem key={i}>
@@ -25,7 +35,7 @@ const Navbar: FC<FlexProps> = props => {
           </ListItem>
         ))}
       </UnorderedList>
-    </Flex>
+    </Container>
   )
 }
 

@@ -20,7 +20,9 @@ const Layout: FC<FlexProps> = ({ children, ...rest }) => {
       </Head>
       <Flex minH='100vh' w='100%' direction='column' {...rest}>
         <Navbar />
-        <Container maxW='container.lg'>{children}</Container>
+        <Container as='main' maxW='container.lg'>
+          {children}
+        </Container>
       </Flex>
     </>
   )

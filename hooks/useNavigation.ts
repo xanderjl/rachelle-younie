@@ -10,15 +10,9 @@ export interface Route {
 export type Navigation = Route[]
 
 export const groqQuery = groq`
-*[_type == "navigation" && !(_id in path("drafts.**"))][0].pages[]{
-  _type == "customNavItem" => {
-    title,
-    "slug": slug.current
-  },
-  _type == "reference" => @->{
-    title,
-    "slug": slug.current
-  }
+*[_type == "navigation" && !(_id in path("drafts.**"))][0].pages[]->{
+  title,
+  "slug": slug.current
 }
 `
 

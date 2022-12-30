@@ -1,4 +1,3 @@
-import { PortableTextProps } from '@portabletext/react'
 import { useQuery } from '@tanstack/react-query'
 import { groq } from 'next-sanity'
 import { PortableTextBlock } from 'sanity'
@@ -53,6 +52,7 @@ export interface Page {
   _id: string
   title: string
   slug: string
+  metaDescription?: string
   sections?: Section[]
 }
 
@@ -60,6 +60,7 @@ export const groqQuery = groq`
 *[_type == "page" && $slug == slug.current]{
   _id,
   title,
+  metaDescription,
   "slug": slug.current,
   "sections": sections.sections[]{
     _type,
@@ -82,15 +83,16 @@ export const groqQuery = groq`
       }
     },
     _type == "sectionPodcastEpisodes" => {
-        "episodes": episodes->.episodes[]{
-          _key,
-          content,
-          creator,
-          enclosure,
-          guid,
-          isoDate,
-          title
-        }
+      _key,
+      "episodes": episodes->.episodes[]{
+        _key,
+        content,
+        creator,
+        enclosure,
+        guid,
+        isoDate,
+        title
+      }
     }
   }
 }[0]

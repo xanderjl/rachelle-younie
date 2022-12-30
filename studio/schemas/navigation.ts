@@ -9,13 +9,7 @@ export const navigation: SchemaTypeDefinition = {
     {
       name: 'pages',
       type: 'array',
-      of: [
-        {
-          type: 'reference',
-          to: [{ type: 'page', icon: AiOutlineLink }]
-        },
-        { type: 'customNavItem' }
-      ]
+      of: [{ type: 'reference', to: [{ type: 'page', icon: AiOutlineLink }] }]
     }
   ],
   preview: {
