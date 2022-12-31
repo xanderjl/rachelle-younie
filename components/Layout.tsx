@@ -4,6 +4,7 @@ import Head from 'next/head'
 import { FC } from 'react'
 import { urlFor } from 'utils/urlFor'
 
+import { Footer } from './Footer'
 import Navbar from './Navbar'
 
 const Layout: FC<FlexProps> = ({ children, ...rest }) => {
@@ -20,9 +21,10 @@ const Layout: FC<FlexProps> = ({ children, ...rest }) => {
       </Head>
       <Flex minH='100vh' w='100%' direction='column' {...rest}>
         <Navbar />
-        <Container as='main' maxW='container.lg'>
+        <Container as='main' flex={1} maxW='container.lg'>
           {children}
         </Container>
+        <Footer />
       </Flex>
     </>
   )

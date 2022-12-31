@@ -15,21 +15,40 @@ import {
   NextPage
 } from 'next'
 import Head from 'next/head'
+import { PreviewSuspense } from 'next-sanity/preview'
+import { lazy } from 'react'
+
+const PreviewPage = lazy(() =>
+  import('components/PreviewPage').then(mod => ({ default: mod.PreviewPage }))
+)
+
+interface StaticProps {
+  slug: string | string[] | undefined
+  dehydratedState?: DehydratedState
+  preview: boolean
+}
 
 const Page: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
-  slug
+  slug,
+  preview
 }) => {
   const { data: initialData } = useInitialData()
-  const { siteTitle } = initialData || {}
   const { data } = useQuery(['page', slug], () => getPage(slug as string))
+  const { siteTitle } = initialData || {}
   const { title, sections } = data || {}
+
+  if (preview) {
+    return (
+      <PreviewSuspense fallback='Loading...'>
+        <PreviewPage slug={slug} />
+      </PreviewSuspense>
+    )
+  }
 
   return (
     <>
       <Head>
-        <title>
-          {siteTitle} | {title}
-        </title>
+        <title>{`${siteTitle}${title ? ` | ${title}` : ''}`}</title>
       </Head>
       <SectionRenderer sections={sections} />
     </>
@@ -46,12 +65,16 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 
-export const getStaticProps: GetStaticProps<{
-  slug: string | string[] | undefined
-  dehydratedState: DehydratedState
-}> = async ({ params }) => {
+export const getStaticProps: GetStaticProps<StaticProps> = async ({
+  params,
+  preview = false
+}) => {
   const { slug } = params || {}
   const queryClient = new QueryClient()
+
+  if (preview) {
+    return { props: { slug, preview } }
+  }
 
   await queryClient.prefetchQuery({
     queryKey: ['page', slug],
@@ -60,7 +83,7 @@ export const getStaticProps: GetStaticProps<{
     cacheTime: Infinity
   })
 
-  return { props: { slug, dehydratedState: dehydrate(queryClient) } }
+  return { props: { slug, dehydratedState: dehydrate(queryClient), preview } }
 }
 
 export default Page

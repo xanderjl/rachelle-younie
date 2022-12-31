@@ -50,7 +50,7 @@ const CustomApp = ({ Component, pageProps }: CustomAppProps) => {
   )
 }
 
-CustomApp.getIniitalProps = async (
+CustomApp.getInitialProps = async (
   context: AppContext
 ): Promise<CustomInitialProps> => {
   const initalProps = await App.getInitialProps(context)
