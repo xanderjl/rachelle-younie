@@ -55,7 +55,7 @@ export const getLandingPageData = async () =>
 
 export const useGetLandingPage = () =>
   useQuery({
-    queryKey: ['landingPage'],
+    queryKey: ['landing-page'],
     queryFn: getLandingPageData,
     staleTime: Infinity,
     cacheTime: Infinity

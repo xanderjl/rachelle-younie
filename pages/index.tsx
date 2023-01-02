@@ -25,7 +25,7 @@ const Home: NextPage = () => {
 
 export const getStaticProps: GetStaticProps = async () => {
   const queryClient = new QueryClient()
-  await queryClient.prefetchQuery(['landingPage'], getLandingPageData)
+  await queryClient.prefetchQuery(['landing-page'], getLandingPageData)
 
   return {
     props: {
