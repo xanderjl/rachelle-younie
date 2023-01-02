@@ -7,6 +7,7 @@ import { ChakraProvider } from '@chakra-ui/react'
 import {
   dehydrate,
   DehydratedState,
+  Hydrate,
   QueryClient,
   QueryClientProvider
 } from '@tanstack/react-query'
@@ -36,16 +37,18 @@ const CustomApp = ({ Component, pageProps }: CustomAppProps) => {
 
   return (
     <QueryClientProvider client={client}>
-      {isDev && <ReactQueryDevtools initialIsOpen={false} />}
-      {isEditor ? (
-        <Component {...pageProps} />
-      ) : (
-        <ChakraProvider theme={theme}>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </ChakraProvider>
-      )}
+      <Hydrate state={pageProps.dehydratedState}>
+        {isDev && <ReactQueryDevtools initialIsOpen={false} />}
+        {isEditor ? (
+          <Component {...pageProps} />
+        ) : (
+          <ChakraProvider theme={theme}>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </ChakraProvider>
+        )}
+      </Hydrate>
     </QueryClientProvider>
   )
 }
