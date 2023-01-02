@@ -4,7 +4,7 @@ export const styles: Styles = {
   global: {
     body: {
       bg: 'cream.500',
-      color: 'burntOrange.700'
+      color: 'burntOrange.800'
     },
     a: {
       color: 'olive.300',
