@@ -48,9 +48,9 @@ const Page: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   return (
     <>
       <Head>
-        <title>{`${siteTitle ? siteTitle : ''}${
-          title ? ` | ${title}` : ''
-        }`}</title>
+        {siteTitle && (
+          <title>{`${siteTitle}${title ? ` | ${title}` : ''}`}</title>
+        )}
       </Head>
       <SectionRenderer sections={sections} />
     </>

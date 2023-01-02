@@ -13,9 +13,9 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>{`${siteTitle ? siteTitle : ''}${
-          title ? ` | ${title}` : ''
-        }`}</title>
+        {siteTitle && (
+          <title>{`${siteTitle}${title ? ` | ${title}` : ''}`}</title>
+        )}
         {metaDescription && (
           <meta name='description' content={metaDescription} />
         )}
