@@ -3,6 +3,7 @@ import { Section } from 'hooks/useGetPage'
 import { FC } from 'react'
 
 import { ContentSection } from './sections/ContentSection'
+import { PodcastEpisodesSection } from './sections/PodcastEpisodesSection'
 
 export interface SectionRendererProps extends FlexProps {
   sections?: Section[]
@@ -27,7 +28,7 @@ export const SectionRenderer: FC<SectionRendererProps> = ({
       }
       if ('episodes' in section) {
         const { episodes } = section
-        return <pre key={_key}>{JSON.stringify(episodes, null, 2)}</pre>
+        return <PodcastEpisodesSection key={_key} episodes={episodes} />
       }
     })}
   </Flex>
