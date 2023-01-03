@@ -11,7 +11,7 @@ import {
 } from '@chakra-ui/react'
 import { PodcastEpisode } from 'hooks/data/usePodcastData'
 import { useAudio } from 'hooks/useAudio'
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { AiOutlineStepBackward, AiOutlineStepForward } from 'react-icons/ai'
 import { BsFillPauseFill, BsFillPlayFill } from 'react-icons/bs'
 import { TbWaveSawTool } from 'react-icons/tb'
@@ -24,6 +24,7 @@ export interface PlayerProps extends FlexProps {
 export const Player: FC<PlayerProps> = ({ data, ...rest }) => {
   const { url } = data || {}
 
+  const [isHovered, setHovered] = useState<boolean>(false)
   const [audioElement, audioProps] = useAudio(url as string)
   const {
     currentTime,
@@ -64,21 +65,26 @@ export const Player: FC<PlayerProps> = ({ data, ...rest }) => {
           onClick={() => currentTime && setTime(currentTime + 30)}
         />
       </Flex>
-      <Flex flex={1} direction='column'>
+      <Flex flex={1} direction='column' justifyContent='center' gap={2}>
         <Slider
           aria-label='media-player'
+          py={2}
           max={duration}
           colorScheme='burntOrange'
           defaultValue={0}
           value={currentTime}
           onChange={e => setTime(e)}
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
         >
           <SliderTrack bg='burntOrange.50'>
             <SliderFilledTrack />
           </SliderTrack>
-          <SliderThumb boxSize={6}>
-            <Box as={TbWaveSawTool} color='burnOrange.400' />
-          </SliderThumb>
+          {isHovered && (
+            <SliderThumb boxSize={4}>
+              <Box as={TbWaveSawTool} color='burnOrange.400' />
+            </SliderThumb>
+          )}
         </Slider>
         <Flex justifyContent='space-between' fontSize='sm'>
           <Text>
