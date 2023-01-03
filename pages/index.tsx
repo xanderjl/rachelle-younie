@@ -1,7 +1,10 @@
 import { dehydrate, QueryClient } from '@tanstack/react-query'
 import { SectionRenderer } from 'components/SectionRenderer'
-import { getLandingPageData, useGetLandingPage } from 'hooks/useGetLandingPage'
-import { useInitialData } from 'hooks/useInitialData'
+import {
+  getLandingPageData,
+  useGetLandingPage
+} from 'hooks/data/useGetLandingPage'
+import { useInitialData } from 'hooks/data/useInitialData'
 import { GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
 

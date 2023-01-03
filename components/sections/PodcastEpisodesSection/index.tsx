@@ -1,5 +1,5 @@
-import { Box, Flex, FlexProps } from '@chakra-ui/react'
-import { SectionPodcastEpisodes } from 'hooks/useGetPage'
+import { Flex, FlexProps } from '@chakra-ui/react'
+import { SectionPodcastEpisodes } from 'hooks/data/useGetPage'
 import { FC } from 'react'
 
 import PodcastCard from './PodcastCard'

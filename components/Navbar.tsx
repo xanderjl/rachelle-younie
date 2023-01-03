@@ -1,16 +1,15 @@
 import {
   Container,
-  Flex,
-  FlexProps,
+  ContainerProps,
   Link,
   ListItem,
   UnorderedList
 } from '@chakra-ui/react'
-import { useInitialData } from 'hooks/useInitialData'
+import { useInitialData } from 'hooks/data/useInitialData'
 import NLink from 'next/link'
 import { FC } from 'react'
 
-const Navbar: FC<FlexProps> = props => {
+const Navbar: FC<ContainerProps> = props => {
   const { data } = useInitialData()
   const { navigation } = data || {}
 

@@ -5,9 +5,9 @@ import {
   useQuery
 } from '@tanstack/react-query'
 import { SectionRenderer } from 'components/SectionRenderer'
-import { getPage } from 'hooks/useGetPage'
-import { getPages } from 'hooks/useGetPages'
-import { useInitialData } from 'hooks/useInitialData'
+import { getPage } from 'hooks/data/useGetPage'
+import { getPages } from 'hooks/data/useGetPages'
+import { useInitialData } from 'hooks/data/useInitialData'
 import {
   GetStaticPaths,
   GetStaticProps,

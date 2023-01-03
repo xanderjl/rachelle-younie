@@ -1,5 +1,5 @@
 import { Container, Flex, FlexProps } from '@chakra-ui/react'
-import { useInitialData } from 'hooks/useInitialData'
+import { useInitialData } from 'hooks/data/useInitialData'
 import Head from 'next/head'
 import { FC } from 'react'
 import { urlFor } from 'utils/urlFor'

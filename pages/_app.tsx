@@ -13,7 +13,7 @@ import {
 } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import Layout from 'components/Layout'
-import { getInitialData } from 'hooks/useInitialData'
+import { getInitialData } from 'hooks/data/useInitialData'
 import type { AppContext, AppInitialProps, AppProps } from 'next/app'
 import App from 'next/app'
 import { useRouter } from 'next/router'

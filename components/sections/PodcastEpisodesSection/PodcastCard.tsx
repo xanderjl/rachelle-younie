@@ -1,5 +1,5 @@
 import { Box, Flex, FlexProps, Heading } from '@chakra-ui/react'
-import { PodcastEpisode } from 'hooks/useGetPage'
+import { PodcastEpisode } from 'hooks/data/useGetPage'
 import React, { FC } from 'react'
 
 import { Player } from './Player'
@@ -17,8 +17,8 @@ const PodcastCard: FC<PodcastCardProps> = ({ episode, ...rest }) => {
       p={6}
       gap={4}
       borderWidth={1}
-      borderColor='burntOrange.800'
-      borderRadius='xl'
+      borderColor='burntOrange.500'
+      borderRadius='md'
       {...rest}
     >
       <Heading>{title}</Heading>
