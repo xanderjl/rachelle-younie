@@ -14,7 +14,7 @@ export const SectionRenderer: FC<SectionRendererProps> = ({
   sections,
   ...rest
 }) => (
-  <Flex py={12} direction='column' gap={6} {...rest}>
+  <Flex alignItems='stretch' py={12} direction='column' gap={6} {...rest}>
     {sections?.map(section => {
       const { _key } = section
 

@@ -11,7 +11,7 @@ interface ContentSectionProps {
 
 export const ContentSection: FC<ContentSectionProps> = ({ value }) => {
   return (
-    <Box py={3}>
+    <Box flex={1} py={3}>
       <PortableText value={value} components={components} />
     </Box>
   )
