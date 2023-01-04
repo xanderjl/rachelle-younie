@@ -12,8 +12,8 @@ import {
 import { PodcastEpisode } from 'hooks/data/usePodcastData'
 import { useAudio } from 'hooks/useAudio'
 import { FC, useState } from 'react'
-import { AiOutlineStepBackward, AiOutlineStepForward } from 'react-icons/ai'
 import { BsFillPauseFill, BsFillPlayFill } from 'react-icons/bs'
+import { MdForward30, MdReplay30 } from 'react-icons/md'
 import { TbWaveSawTool } from 'react-icons/tb'
 import { formatTime } from 'utils/formatTime'
 
@@ -32,6 +32,7 @@ export const Player: FC<PlayerProps> = ({ data, ...rest }) => {
     duration,
     isPlaying,
     isSeeking,
+    isLoading,
     togglePlaybackStatus
   } = audioProps
 
@@ -41,11 +42,11 @@ export const Player: FC<PlayerProps> = ({ data, ...rest }) => {
       <Flex justifyContent='space-between' alignItems='center' gap={2}>
         <Button
           aria-label='skip back'
-          as={AiOutlineStepBackward}
+          as={MdReplay30}
           boxSize={8}
           variant='unstyled'
           color='burntOrange.500'
-          onClick={() => currentTime && setTime(currentTime - 15)}
+          onClick={() => currentTime && setTime(currentTime - 30)}
         />
         <Button
           aria-label='play/pause'
@@ -58,7 +59,7 @@ export const Player: FC<PlayerProps> = ({ data, ...rest }) => {
         />
         <Button
           aria-label='skip forward'
-          as={AiOutlineStepForward}
+          as={MdForward30}
           boxSize={8}
           variant='unstyled'
           color='burntOrange.500'
@@ -86,13 +87,22 @@ export const Player: FC<PlayerProps> = ({ data, ...rest }) => {
             </SliderThumb>
           )}
         </Slider>
-        <Flex justifyContent='space-between' fontSize='sm'>
-          <Text>
-            {isSeeking
-              ? 'buffering...'
-              : currentTime && formatTime(currentTime)}
-          </Text>
-          <Text>{duration && formatTime(duration)}</Text>
+        <Flex gap={0.5} fontSize='sm'>
+          {isLoading ? (
+            'Loading...'
+          ) : (
+            <>
+              <Text>
+                {isSeeking
+                  ? 'buffering...'
+                  : currentTime
+                  ? formatTime(currentTime)
+                  : '00:00'}
+              </Text>
+              <Text>/</Text>
+              <Text>{duration && formatTime(duration)}</Text>
+            </>
+          )}
         </Flex>
       </Flex>
     </Flex>

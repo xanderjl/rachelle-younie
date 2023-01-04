@@ -18,7 +18,7 @@ type UseAudio = [
 export const useAudio = (url: string): UseAudio => {
   const audioRef = useRef<HTMLAudioElement | null>(null)
 
-  const [currentTime, setCurrentTime] = useState<number | undefined>(undefined)
+  const [currentTime, setCurrentTime] = useState<number | undefined>(0)
   const [duration, setDuration] = useState<number | undefined>(undefined)
   const [isPlaying, setPlaying] = useState<boolean>(false)
   const [isLoading, setLoading] = useState<boolean>(true)
