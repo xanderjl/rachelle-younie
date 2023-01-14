@@ -1,5 +1,10 @@
 import { ThemeComponents } from '@chakra-ui/react'
 
 export const components: ThemeComponents = {
-  Button: {}
+  Button: {},
+  Heading: {
+    baseStyle: {
+      fontWeight: 200
+    }
+  }
 }

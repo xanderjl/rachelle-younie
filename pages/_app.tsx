@@ -1,4 +1,4 @@
-import '@fontsource/dawning-of-a-new-day/400.css'
+import '@fontsource/raleway'
 import '@fontsource/nanum-myeongjo/400.css'
 import '@fontsource/nanum-myeongjo/700.css'
 import '@fontsource/nanum-myeongjo/800.css'
