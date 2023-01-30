@@ -4,9 +4,10 @@ import '@fontsource/nanum-myeongjo/700.css'
 import '@fontsource/nanum-myeongjo/800.css'
 
 import { ChakraProvider } from '@chakra-ui/react'
+import type {
+  DehydratedState} from '@tanstack/react-query';
 import {
   dehydrate,
-  DehydratedState,
   Hydrate,
   QueryClient,
   QueryClientProvider

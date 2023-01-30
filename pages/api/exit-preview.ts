@@ -1,4 +1,4 @@
-import { NextApiHandler } from 'next'
+import type { NextApiHandler } from 'next'
 
 const exit: NextApiHandler = (_, res) => {
   res.clearPreviewData()

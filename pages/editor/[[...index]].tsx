@@ -1,4 +1,4 @@
-import { NextPage } from 'next'
+import type { NextPage } from 'next'
 import Head from 'next/head'
 import { NextStudio } from 'next-sanity/studio'
 import { NextStudioHead } from 'next-sanity/studio/head'

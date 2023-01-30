@@ -5,7 +5,7 @@ import {
   useGetLandingPage
 } from 'hooks/data/useGetLandingPage'
 import { useInitialData } from 'hooks/data/useInitialData'
-import { GetStaticProps, NextPage } from 'next'
+import type { GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
 
 const Home: NextPage = () => {

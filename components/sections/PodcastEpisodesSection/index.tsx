@@ -1,6 +1,7 @@
-import { Flex, FlexProps } from '@chakra-ui/react'
-import { SectionPodcastEpisodes } from 'hooks/data/useGetPage'
-import { FC } from 'react'
+import type { FlexProps } from '@chakra-ui/react'
+import { Flex } from '@chakra-ui/react'
+import type { SectionPodcastEpisodes } from 'hooks/data/useGetPage'
+import type { FC } from 'react'
 
 import PodcastCard from './PodcastCard'
 

@@ -1,13 +1,14 @@
+import type {
+  ContainerProps} from '@chakra-ui/react';
 import {
   Container,
-  ContainerProps,
   Link,
   ListItem,
   UnorderedList
 } from '@chakra-ui/react'
 import { useInitialData } from 'hooks/data/useInitialData'
 import NLink from 'next/link'
-import { FC } from 'react'
+import type { FC } from 'react'
 
 const Navbar: FC<ContainerProps> = props => {
   const { data } = useInitialData()

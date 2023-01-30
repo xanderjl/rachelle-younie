@@ -1,9 +1,14 @@
 import { Box } from '@chakra-ui/react'
 import { PortableText } from '@portabletext/react'
-import { FC } from 'react'
-import { PortableTextBlock } from 'sanity'
+import type { FC } from 'react'
+import type { PortableTextBlock } from 'sanity'
 
 import { components } from './Components'
+
+
+
+
+
 
 interface ContentSectionProps {
   value: PortableTextBlock

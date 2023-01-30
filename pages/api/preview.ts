@@ -1,4 +1,4 @@
-import { NextApiHandler } from 'next'
+import type { NextApiHandler } from 'next'
 
 const preview: NextApiHandler = (_, res) => {
   res.setPreviewData({})

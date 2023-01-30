@@ -6,7 +6,7 @@ import {
   Text,
   UnorderedList
 } from '@chakra-ui/react'
-import { PortableTextComponents } from '@portabletext/react'
+import type { PortableTextComponents } from '@portabletext/react'
 import NLink from 'next/link'
 
 export const components: PortableTextComponents = {

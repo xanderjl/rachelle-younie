@@ -1,5 +1,6 @@
-import { SectionWriting } from 'hooks/data/useGetPage'
-import { FC } from 'react'
+import type { SectionWriting } from 'hooks/data/useGetPage'
+import type { FC } from 'react'
+
 export interface WritingSectionProps {
   publications: SectionWriting['publications']
 }

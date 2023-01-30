@@ -1,10 +1,15 @@
 import { groqQuery as pageQuery } from 'hooks/data/useGetPage'
 import { groqQuery as initialQuery } from 'hooks/data/useInitialData'
 import Head from 'next/head'
-import { FC } from 'react'
+import type { FC } from 'react'
 import { usePreview } from 'studio/sanity.preview'
 
 import { SectionRenderer } from './SectionRenderer'
+
+
+
+
+
 
 export interface PreviewPageProps {
   slug?: string | string[]

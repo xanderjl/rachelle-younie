@@ -1,6 +1,7 @@
+import type {
+  DehydratedState} from '@tanstack/react-query';
 import {
   dehydrate,
-  DehydratedState,
   QueryClient,
   useQuery
 } from '@tanstack/react-query'
@@ -8,7 +9,7 @@ import { SectionRenderer } from 'components/SectionRenderer'
 import { getPage } from 'hooks/data/useGetPage'
 import { getPages } from 'hooks/data/useGetPages'
 import { useInitialData } from 'hooks/data/useInitialData'
-import {
+import type {
   GetStaticPaths,
   GetStaticProps,
   InferGetStaticPropsType,

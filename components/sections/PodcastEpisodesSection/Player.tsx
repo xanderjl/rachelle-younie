@@ -1,17 +1,19 @@
+import type {
+  FlexProps} from '@chakra-ui/react';
 import {
   Box,
   Button,
   Flex,
-  FlexProps,
   Slider,
   SliderFilledTrack,
   SliderThumb,
   SliderTrack,
   Text
 } from '@chakra-ui/react'
-import { PodcastEpisode } from 'hooks/data/usePodcastData'
+import type { PodcastEpisode } from 'hooks/data/usePodcastData'
 import { useAudio } from 'hooks/useAudio'
-import { FC, useState } from 'react'
+import type { FC} from 'react';
+import { useState } from 'react'
 import { BsFillPauseFill, BsFillPlayFill } from 'react-icons/bs'
 import { MdForward30, MdReplay30 } from 'react-icons/md'
 import { TbWaveSawTool } from 'react-icons/tb'
