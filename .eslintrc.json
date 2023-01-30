@@ -3,10 +3,12 @@
     "next/core-web-vitals",
     "@sanity/eslint-config-studio"
   ],
+  "parser": "@typescript-eslint/parser",
   "plugins": [
     "prettier",
     "simple-import-sort",
-    "import"
+    "import",
+    "@typescript-eslint"
   ],
   "rules": {
     "simple-import-sort/imports": "error",
