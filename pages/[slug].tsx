@@ -1,10 +1,5 @@
-import type {
-  DehydratedState} from '@tanstack/react-query';
-import {
-  dehydrate,
-  QueryClient,
-  useQuery
-} from '@tanstack/react-query'
+import type { DehydratedState } from '@tanstack/react-query'
+import { dehydrate, QueryClient, useQuery } from '@tanstack/react-query'
 import { SectionRenderer } from 'components/SectionRenderer'
 import { getPage } from 'hooks/data/useGetPage'
 import { getPages } from 'hooks/data/useGetPages'
@@ -26,7 +21,7 @@ const PreviewPage = lazy(() =>
 interface StaticProps {
   slug: string | string[] | undefined
   dehydratedState?: DehydratedState
-  preview: boolean
+  preview: Boolean
 }
 
 const Page: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
@@ -38,15 +33,11 @@ const Page: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   const { siteTitle } = initialData || {}
   const { title, sections } = data || {}
 
-  if (preview) {
-    return (
-      <PreviewSuspense fallback='Loading...'>
-        <PreviewPage slug={slug} />
-      </PreviewSuspense>
-    )
-  }
-
-  return (
+  return preview ? (
+    <PreviewSuspense fallback='Loading...'>
+      <PreviewPage slug={slug} />
+    </PreviewSuspense>
+  ) : (
     <>
       <Head>
         {siteTitle && (
