@@ -1,3 +1,4 @@
+import type { DehydratedState } from '@tanstack/react-query'
 import { dehydrate, QueryClient } from '@tanstack/react-query'
 import { SectionRenderer } from 'components/SectionRenderer'
 import {
@@ -5,15 +6,35 @@ import {
   useGetLandingPage
 } from 'hooks/data/useGetLandingPage'
 import { useInitialData } from 'hooks/data/useInitialData'
-import type { GetStaticProps, NextPage } from 'next'
+import type { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next'
 import Head from 'next/head'
+import { PreviewSuspense } from 'next-sanity/preview'
+import { lazy } from 'react'
 
-const Home: NextPage = () => {
+const PreviewLandingPage = lazy(() =>
+  import('components/previews/PreviewLandingPage').then(mod => ({
+    default: mod.PreviewLandingPage
+  }))
+)
+
+export interface StaticProps {
+  dehydratedState?: DehydratedState
+  preview: Boolean
+}
+
+const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
+  preview
+}) => {
   const { data } = useGetLandingPage()
   const { data: initialData } = useInitialData()
   const { title, metaDescription, sections } = data || {}
   const { siteTitle } = initialData || {}
-  return (
+
+  return preview ? (
+    <PreviewSuspense fallback='Loading...'>
+      <PreviewLandingPage />
+    </PreviewSuspense>
+  ) : (
     <>
       <Head>
         {siteTitle && (
@@ -28,13 +49,20 @@ const Home: NextPage = () => {
   )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps<StaticProps> = async ({
+  preview = false
+}) => {
   const queryClient = new QueryClient()
   await queryClient.prefetchQuery(['landing-page'], getLandingPageData)
 
+  if (preview) {
+    return { props: { preview } }
+  }
+
   return {
     props: {
-      dehydratedData: dehydrate(queryClient)
+      dehydratedData: dehydrate(queryClient),
+      preview
     }
   }
 }

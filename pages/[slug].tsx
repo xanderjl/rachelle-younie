@@ -15,7 +15,9 @@ import { PreviewSuspense } from 'next-sanity/preview'
 import { lazy } from 'react'
 
 const PreviewPage = lazy(() =>
-  import('components/PreviewPage').then(mod => ({ default: mod.PreviewPage }))
+  import('components/previews/PreviewPage').then(mod => ({
+    default: mod.PreviewPage
+  }))
 )
 
 interface StaticProps {
