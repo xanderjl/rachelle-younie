@@ -1,7 +1,8 @@
 import type { DefaultDocumentNodeResolver } from 'sanity/desk'
 import Iframe from 'sanity-plugin-iframe-pane'
 
-const baseUrl = process.env.NEXT_PUBLIC_URL
+const baseUrl =
+  process.env.NEXT_PUBLIC_URL ?? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
 
 export const defaultDocumentNode: DefaultDocumentNodeResolver = (
   S,
