@@ -1,10 +1,7 @@
 import type { DefaultDocumentNodeResolver } from 'sanity/desk'
 import Iframe from 'sanity-plugin-iframe-pane'
 
-const baseUrl =
-  process.env.NODE_ENV === 'development'
-    ? 'http://localhost:3000'
-    : `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+const baseUrl = process.env.NEXT_PUBLIC_URL
 
 export const defaultDocumentNode: DefaultDocumentNodeResolver = (
   S,
