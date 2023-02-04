@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { groq } from 'next-sanity'
-import { PortableTextBlock } from 'sanity'
+import type { PortableTextBlock } from 'sanity'
 import { client } from 'studio/sanity.client'
 
 export interface Publication {

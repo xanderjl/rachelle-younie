@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { groq } from 'next-sanity'
-import { ImageAsset } from 'sanity'
+import type { ImageAsset } from 'sanity'
 import { client } from 'studio/sanity.client'
 
 export interface PodcastEpisode {

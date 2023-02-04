@@ -1,4 +1,5 @@
-import { MutableRefObject, useEffect, useRef, useState } from 'react'
+import type { MutableRefObject } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 type UseAudio = [
   JSX.Element,
