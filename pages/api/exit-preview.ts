@@ -1,8 +1,10 @@
 import type { NextApiHandler } from 'next'
 
-const exit: NextApiHandler = (_, res) => {
+const exit: NextApiHandler = (req, res) => {
+  const { query } = req
+
   res.clearPreviewData()
-  res.writeHead(307, { Location: '/' })
+  res.writeHead(307, { Location: query?.slug ? `/${query.slug}` : '/' })
   res.end()
 }
 

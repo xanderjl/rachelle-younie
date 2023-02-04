@@ -25,7 +25,7 @@ export const PreviewPage: FC<PreviewPageProps> = ({ slug }) => {
       </Head>
       <Button
         as={Link}
-        href='/api/exit-preview'
+        href={`/api/exit-preview?slug=${slug}`}
         pos='absolute'
         bottom={3}
         right={3}
