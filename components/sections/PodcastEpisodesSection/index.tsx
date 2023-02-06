@@ -3,6 +3,7 @@ import { Button, Flex } from '@chakra-ui/react'
 import type { SectionPodcastEpisodes } from 'hooks/data/useGetPage'
 import type { FC } from 'react'
 import { useState } from 'react'
+import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
 import { paginateArray } from 'utils/paginateArray'
 
 import PodcastCard from './PodcastCard'
@@ -20,7 +21,7 @@ export const PodcastEpisodesSection: FC<PodcastEpisodesSectionProps> = ({
 
   if (episodes) {
     const { array: slicedEpisodes, numPages } = paginateArray(
-      episodes!,
+      episodes,
       currentPage,
       pageSize
     )
@@ -30,11 +31,15 @@ export const PodcastEpisodesSection: FC<PodcastEpisodesSectionProps> = ({
         {slicedEpisodes?.map(episode => (
           <PodcastCard key={episode._key} episode={episode} />
         ))}
-        <Flex gap={6} justify='space-between'>
-          <Button onClick={() => setCurrentPage(currentPage - 1)}>Back</Button>
-          <Button onClick={() => setCurrentPage(currentPage + 1)}>
-            Forward
-          </Button>
+        <Flex flex={1} maxW='70ch' justify='space-between' gap={6}>
+          <Button
+            as={IoIosArrowBack}
+            onClick={() => setCurrentPage(currentPage - 1)}
+          />
+          <Button
+            as={IoIosArrowForward}
+            onClick={() => setCurrentPage(currentPage + 1)}
+          />
         </Flex>
       </Flex>
     )
