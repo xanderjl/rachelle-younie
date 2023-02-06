@@ -1,9 +1,13 @@
 import { AiFillHome, AiOutlineLink } from 'react-icons/ai'
 import { FaMicrophoneAlt } from 'react-icons/fa'
 import { IoIosSettings } from 'react-icons/io'
-import { StructureResolver } from 'sanity/desk'
+import type { StructureResolver } from 'sanity/desk'
+import Iframe from 'sanity-plugin-iframe-pane'
 
 const singletons = ['settings', 'navigation', 'podcastEpisodes', 'landingPage']
+
+const baseUrl =
+  process.env.NEXT_PUBLIC_URL ?? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
 
 export const structure: StructureResolver = S =>
   S.list()
@@ -28,7 +32,23 @@ export const structure: StructureResolver = S =>
       S.listItem()
         .title('Home Page')
         .icon(AiFillHome)
-        .child(S.document().schemaType('page').documentId('homePage')),
+        .child(
+          S.document()
+            .schemaType('page')
+            .documentId('homePage')
+            .views([
+              S.view.form(),
+              S.view
+                .component(Iframe)
+                .options({
+                  url: (doc: any) =>
+                    doc?.slug?.current
+                      ? `${baseUrl}/api/preview?slug=${doc.slug.current}`
+                      : `${baseUrl}/api/preview`
+                })
+                .title('Preview')
+            ])
+        ),
       ...S.documentTypeListItems().filter(
         listItem => !singletons.includes(listItem.getId()!)
       )

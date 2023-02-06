@@ -3,12 +3,7 @@ import { PortableText } from '@portabletext/react'
 import type { FC } from 'react'
 import type { PortableTextBlock } from 'sanity'
 
-import { components } from './Components'
-
-
-
-
-
+import { components } from './components'
 
 interface ContentSectionProps {
   value: PortableTextBlock
