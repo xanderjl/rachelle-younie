@@ -1,5 +1,5 @@
 import { BsPencilSquare } from 'react-icons/bs'
-import { SchemaTypeDefinition } from 'sanity'
+import type { SchemaTypeDefinition } from 'sanity'
 
 export const sectionContent: SchemaTypeDefinition = {
   name: 'sectionContent',
@@ -8,8 +8,7 @@ export const sectionContent: SchemaTypeDefinition = {
   fields: [
     {
       name: 'content',
-      type: 'array',
-      of: [{ type: 'block' }]
+      type: 'contentBlock'
     }
   ],
   preview: {

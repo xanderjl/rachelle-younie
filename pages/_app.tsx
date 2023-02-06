@@ -4,8 +4,7 @@ import '@fontsource/nanum-myeongjo/700.css'
 import '@fontsource/nanum-myeongjo/800.css'
 
 import { ChakraProvider } from '@chakra-ui/react'
-import type {
-  DehydratedState} from '@tanstack/react-query';
+import type { DehydratedState } from '@tanstack/react-query'
 import {
   dehydrate,
   Hydrate,
@@ -41,7 +40,9 @@ const CustomApp = ({ Component, pageProps }: CustomAppProps) => {
       <Hydrate state={pageProps.dehydratedState}>
         {isDev && <ReactQueryDevtools initialIsOpen={false} />}
         {isEditor ? (
-          <Component {...pageProps} />
+          <ChakraProvider theme={theme}>
+            <Component {...pageProps} />
+          </ChakraProvider>
         ) : (
           <ChakraProvider theme={theme}>
             <Layout>
