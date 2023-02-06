@@ -2,7 +2,9 @@ export type PaginateArray = <T>(
   arr: T[],
   currentPage: number,
   pageSize: number
-) => {
+) => PaginateReturnProps<T>
+
+export interface PaginateReturnProps<T> {
   array: T[]
   currentPage: number
   numPages: number
