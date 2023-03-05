@@ -1,5 +1,11 @@
 {
+  "parserOptions": {
+    "sourceType": "module"
+  },
   "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
     "next/core-web-vitals",
     "@sanity/eslint-config-studio"
   ],
@@ -16,11 +22,11 @@
     "import/first": "error",
     "import/newline-after-import": "error",
     "import/no-duplicates": "error",
+    "@typescript-eslint/consistent-type-imports": "error",
     "import/consistent-type-specifier-style": [
       "error",
       "prefer-top-level"
     ],
-    "@typescript-eslint/consistent-type-imports": "error",
     "react/prop-types": "off"
   }
 }

@@ -1,5 +1,5 @@
 import Parser from 'rss-parser'
-import { SchemaTypeDefinition } from 'sanity'
+import type { SchemaTypeDefinition } from 'sanity'
 
 const parser = new Parser()
 const rssUrl = process.env.NEXT_PUBLIC_RSS_URL

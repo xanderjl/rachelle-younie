@@ -1,5 +1,5 @@
 import { FaMicrophoneAlt } from 'react-icons/fa'
-import { SchemaTypeDefinition } from 'sanity'
+import type { SchemaTypeDefinition } from 'sanity'
 
 export const sectionPodcastEpisodes: SchemaTypeDefinition = {
   name: 'sectionPodcastEpisodes',

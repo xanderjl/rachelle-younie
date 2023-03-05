@@ -7,7 +7,6 @@ import { episode } from './episode'
 import { navigation } from './navigation'
 import { page } from './page'
 import { podcastEpisodes } from './podcastEpisodes'
-import { publication } from './publication'
 import {
   sectionContent,
   sectionPodcastEpisodes,
@@ -25,7 +24,6 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   navigation,
   page,
   podcastEpisodes,
-  publication,
   settings,
   sectionContent,
   sectionPodcastEpisodes,

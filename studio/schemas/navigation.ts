@@ -1,5 +1,5 @@
 import { AiOutlineLink } from 'react-icons/ai'
-import { SchemaTypeDefinition } from 'sanity'
+import type { SchemaTypeDefinition } from 'sanity'
 
 export const navigation: SchemaTypeDefinition = {
   name: 'navigation',

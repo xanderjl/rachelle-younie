@@ -1,4 +1,4 @@
-import { SchemaTypeDefinition } from 'sanity'
+import type { SchemaTypeDefinition } from 'sanity'
 
 export const customNavItem: SchemaTypeDefinition = {
   name: 'customNavItem',
@@ -16,6 +16,7 @@ export const customNavItem: SchemaTypeDefinition = {
       title: 'Slug',
       type: 'slug',
       options: {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore typescript doesn't know title field exists
         source: (_, ctx) => ctx.parent.title
       },

@@ -19,7 +19,7 @@ const PreviewLandingPage = lazy(() =>
 
 export interface StaticProps {
   dehydratedState?: DehydratedState
-  preview: Boolean
+  preview: boolean
 }
 
 const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({

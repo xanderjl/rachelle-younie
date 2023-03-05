@@ -23,7 +23,7 @@ const PreviewPage = lazy(() =>
 interface StaticProps {
   slug: string | string[] | undefined
   dehydratedState?: DehydratedState
-  preview: Boolean
+  preview: boolean
 }
 
 const Page: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({

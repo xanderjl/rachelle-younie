@@ -1,5 +1,5 @@
 import { AiOutlineFile } from 'react-icons/ai'
-import { SchemaTypeDefinition } from 'sanity'
+import type { SchemaTypeDefinition } from 'sanity'
 
 export const page: SchemaTypeDefinition = {
   name: 'page',

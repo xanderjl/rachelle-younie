@@ -1,5 +1,5 @@
 import { BsPencilSquare } from 'react-icons/bs'
-import { SchemaTypeDefinition } from 'sanity'
+import type { SchemaTypeDefinition } from 'sanity'
 
 export const writing: SchemaTypeDefinition = {
   name: 'writing',
@@ -16,7 +16,8 @@ export const writing: SchemaTypeDefinition = {
     {
       name: 'publication',
       title: 'Publication',
-      type: 'publication'
+      type: 'string',
+      validation: rule => rule.required()
     },
     {
       name: 'description',

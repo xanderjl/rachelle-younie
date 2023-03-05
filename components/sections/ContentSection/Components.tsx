@@ -66,8 +66,11 @@ export const components: PortableTextComponents = {
         {children}
       </Heading>
     ),
-    p: ({ children }) => <Text as='p'>{children}</Text>,
-    span: ({ children }) => <Text as='span'>{children}</Text>
+    normal: ({ children }) => (
+      <Text as='p' mb={4}>
+        {children}
+      </Text>
+    )
   },
   list: {
     bullet: ({ children }) => <UnorderedList>{children}</UnorderedList>,
@@ -93,8 +96,10 @@ export const components: PortableTextComponents = {
       switch (aspectRatio) {
         case '1:1':
           ratio = 1
+          break
         case '4:3':
           ratio = 4 / 3
+          break
         default:
           ratio = 16 / 9
       }
