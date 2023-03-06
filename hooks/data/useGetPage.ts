@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { groq } from 'next-sanity'
-import type { PortableTextBlock } from 'sanity'
+import type { ImageAsset, PortableTextBlock } from 'sanity'
 import { client } from 'studio/sanity.client'
 
 export interface Publication {
@@ -29,9 +29,20 @@ export interface PodcastEpisode {
   title?: string
 }
 
+export interface Hero {
+  title: string
+  subtitle?: string
+  backgroundImage?: ImageAsset
+  size: 'sm' | 'md' | 'lg'
+}
+
 export interface BaseSection {
   _key: string
-  _type: 'sectionContent' | 'sectionWriting' | 'sectionPodcastEpisodes'
+  _type:
+    | 'sectionContent'
+    | 'sectionHero'
+    | 'sectionPodcastEpisodes'
+    | 'sectionWriting'
 }
 
 export interface SectionContent extends BaseSection {
@@ -46,7 +57,13 @@ export interface SectionPodcastEpisodes extends BaseSection {
   episodes?: PodcastEpisode[]
 }
 
-export type Section = SectionContent | SectionWriting | SectionPodcastEpisodes
+export type SectionHero = BaseSection & Hero
+
+export type Section =
+  | SectionContent
+  | SectionWriting
+  | SectionPodcastEpisodes
+  | SectionHero
 
 export interface Page {
   _id: string
@@ -68,20 +85,6 @@ export const groqQuery = groq`
       _key,
       content
     },
-    _type == "sectionWriting" => {
-      _key,
-      publications[]->{
-        _id,
-        description,
-        link,
-        file,
-        publication{
-          title,
-          url
-        },
-        title
-      }
-    },
     _type == "sectionPodcastEpisodes" => {
       _key,
       "episodes": episodes->.episodes[]{
@@ -93,6 +96,24 @@ export const groqQuery = groq`
         isoDate,
         title
       }
+    },
+    _type == "sectionWriting" => {
+      _key,
+      publications[]->{
+        _id,
+        description,
+        link,
+        file,
+        publication,
+        title
+      }
+    },
+    _type == "sectionHero" => {
+      _key,
+      title,
+      subtitle,
+      backgroundImage,
+      size
     }
   }
 }[0]

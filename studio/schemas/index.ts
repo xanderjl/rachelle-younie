@@ -9,6 +9,7 @@ import { page } from './page'
 import { podcastEpisodes } from './podcastEpisodes'
 import {
   sectionContent,
+  sectionHero,
   sectionPodcastEpisodes,
   sectionWriting
 } from './sections'
@@ -26,6 +27,7 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   podcastEpisodes,
   settings,
   sectionContent,
+  sectionHero,
   sectionPodcastEpisodes,
   sectionWriting,
   sectionSelector,

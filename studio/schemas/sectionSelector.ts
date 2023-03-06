@@ -11,8 +11,9 @@ export const sectionSelector: SchemaTypeDefinition = {
       type: 'array',
       of: [
         { type: 'sectionContent' },
-        { type: 'sectionWriting' },
-        { type: 'sectionPodcastEpisodes' }
+        { type: 'sectionHero' },
+        { type: 'sectionPodcastEpisodes' },
+        { type: 'sectionWriting' }
       ]
     }
   ]

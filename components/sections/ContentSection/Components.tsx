@@ -91,18 +91,12 @@ export const components: PortableTextComponents = {
     },
     embed: ({ value }: PortableTextTypeComponentProps<Embed>) => {
       const { url, aspectRatio } = value || {}
-      let ratio
-
-      switch (aspectRatio) {
-        case '1:1':
-          ratio = 1
-          break
-        case '4:3':
-          ratio = 4 / 3
-          break
-        default:
-          ratio = 16 / 9
+      const ratioLookup = {
+        '1:1': 1,
+        '4:3': 4 / 3,
+        '16:9': 16 / 9
       }
+      const ratio = ratioLookup[aspectRatio]
 
       return (
         <AspectRatio ratio={ratio}>
