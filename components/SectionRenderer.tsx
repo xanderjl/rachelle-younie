@@ -1,6 +1,12 @@
 import type { FlexProps } from '@chakra-ui/react'
 import { Flex } from '@chakra-ui/react'
-import type { Section } from 'hooks/data/useGetPage'
+import type {
+  Section,
+  SectionContent,
+  SectionHero,
+  SectionPodcastEpisodes,
+  SectionWriting
+} from 'hooks/data/useGetPage'
 import type { FC } from 'react'
 
 import { ContentSection } from './sections/ContentSection'
@@ -18,16 +24,17 @@ export const SectionRenderer: FC<SectionRendererProps> = ({
 }) => (
   <Flex alignItems='stretch' py={12} direction='column' gap={6} {...rest}>
     {sections?.map(section => {
-      const { _key } = section
+      const { _key, _type } = section
 
-      if ('content' in section) {
-        const { content } = section
+      if (_type === 'sectionContent') {
+        const { content } = section as SectionContent
 
         return <ContentSection key={_key} value={content} />
       }
 
-      if ('backgroundImage' in section) {
-        const { backgroundImage, size, subtitle, title } = section
+      if (_type === 'sectionHero') {
+        const { backgroundImage, size, subtitle, title } =
+          section as SectionHero
 
         return (
           <HeroSection
@@ -40,14 +47,14 @@ export const SectionRenderer: FC<SectionRendererProps> = ({
         )
       }
 
-      if ('episodes' in section) {
-        const { episodes } = section
+      if (_type === 'sectionPodcastEpisodes') {
+        const { episodes } = section as SectionPodcastEpisodes
 
         return <PodcastEpisodesSection key={_key} episodes={episodes} />
       }
 
-      if ('publications' in section) {
-        const { publications } = section
+      if (_type === 'sectionWriting') {
+        const { publications } = section as SectionWriting
 
         return <WritingSection key={_key} publications={publications} />
       }

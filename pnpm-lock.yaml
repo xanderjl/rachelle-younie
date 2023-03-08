@@ -6,8 +6,8 @@ specifiers:
   '@chakra-ui/react': 2.5.1
   '@emotion/react': 11.10.6
   '@emotion/styled': 11.10.6
+  '@fontsource/la-belle-aurore': ^4.5.11
   '@fontsource/nanum-myeongjo': 4.5.9
-  '@fontsource/raleway': ^4.5.11
   '@portabletext/react': ^2.0.2
   '@sanity/eslint-config-studio': 2.0.1
   '@sanity/image-url': ^1.0.1
@@ -25,6 +25,7 @@ specifiers:
   eslint-plugin-import: ^2.27.5
   eslint-plugin-prettier: 4.2.1
   eslint-plugin-simple-import-sort: 10.0.0
+  eslint-plugin-unused-imports: ^2.0.0
   framer-motion: 10.0.1
   next: 13.2.3
   next-sanity: 4.1.5
@@ -42,8 +43,8 @@ dependencies:
   '@chakra-ui/react': 2.5.1_llidv3byuxn3l2nsibklt32qgu
   '@emotion/react': 11.10.6_pmekkgnqduwlme35zpnqhenc34
   '@emotion/styled': 11.10.6_oouaibmszuch5k64ms7uxp2aia
+  '@fontsource/la-belle-aurore': 4.5.11
   '@fontsource/nanum-myeongjo': 4.5.9
-  '@fontsource/raleway': 4.5.12
   '@portabletext/react': 2.0.2_react@18.2.0
   '@sanity/image-url': 1.0.2
   '@sanity/vision': 3.5.1_26idtpd4nozja4fdthxj3urb5y
@@ -75,6 +76,7 @@ devDependencies:
   eslint-plugin-import: 2.27.5_ajyizmi44oc3hrc35l6ndh7p4e
   eslint-plugin-prettier: 4.2.1_rlq4czn2p5niyau36qwtjimf2y
   eslint-plugin-simple-import-sort: 10.0.0_eslint@8.35.0
+  eslint-plugin-unused-imports: 2.0.0_hlu2tevvfejtijvruutuci6rky
   prettier: 2.8.4
   typescript: 4.9.5
 
@@ -3112,12 +3114,12 @@ packages:
       react-dom: 18.2.0_react@18.2.0
     dev: false
 
-  /@fontsource/nanum-myeongjo/4.5.9:
-    resolution: {integrity: sha512-+1sC61wwj0IKvyUL1RS36eOj4tdkwdP/FZgS1z66Ews8HxaHRR4TvZcrIRwLh6S0nJ4IENLBPdbCleO5U+Yupw==}
+  /@fontsource/la-belle-aurore/4.5.11:
+    resolution: {integrity: sha512-tKg/Ia+p9E+Qx56aFQQROiO8bp1AtQBgZQ4uGIsJBLdkPYt2viLOn3NbrcfkCZT9v0N9NV7X3h9V91fiGHxT2A==}
     dev: false
 
-  /@fontsource/raleway/4.5.12:
-    resolution: {integrity: sha512-uKs13d6NFWU4vf5LSDHK/cbaAw+UXkzz03fKjyvkKq8Nop+CeB6o8STEDkZD9/uOo3v3sgm59Wyw8uGWvxoCiA==}
+  /@fontsource/nanum-myeongjo/4.5.9:
+    resolution: {integrity: sha512-+1sC61wwj0IKvyUL1RS36eOj4tdkwdP/FZgS1z66Ews8HxaHRR4TvZcrIRwLh6S0nJ4IENLBPdbCleO5U+Yupw==}
     dev: false
 
   /@humanwhocodes/config-array/0.11.8:
@@ -5900,6 +5902,26 @@ packages:
       eslint: '>=5.0.0'
     dependencies:
       eslint: 8.35.0
+    dev: true
+
+  /eslint-plugin-unused-imports/2.0.0_hlu2tevvfejtijvruutuci6rky:
+    resolution: {integrity: sha512-3APeS/tQlTrFa167ThtP0Zm0vctjr4M44HMpeg1P4bK6wItarumq0Ma82xorMKdFsWpphQBlRPzw/pxiVELX1A==}
+    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    peerDependencies:
+      '@typescript-eslint/eslint-plugin': ^5.0.0
+      eslint: ^8.0.0
+    peerDependenciesMeta:
+      '@typescript-eslint/eslint-plugin':
+        optional: true
+    dependencies:
+      '@typescript-eslint/eslint-plugin': 5.54.0_6mj2wypvdnknez7kws2nfdgupi
+      eslint: 8.35.0
+      eslint-rule-composer: 0.3.0
+    dev: true
+
+  /eslint-rule-composer/0.3.0:
+    resolution: {integrity: sha512-bt+Sh8CtDmn2OajxvNO+BX7Wn4CIWMpTRm3MaiKPCQcnnlm0CS2mhui6QaoeQugs+3Kj2ESKEEGJUdVafwhiCg==}
+    engines: {node: '>=4.0.0'}
     dev: true
 
   /eslint-scope/5.1.1:

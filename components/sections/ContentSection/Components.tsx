@@ -47,22 +47,22 @@ export const components: PortableTextComponents = {
   },
   block: {
     h1: ({ children }) => (
-      <Heading as='h1' size='3xl' mb={5}>
+      <Heading as='h1' size='2xl' mb={5}>
         {children}
       </Heading>
     ),
     h2: ({ children }) => (
-      <Heading as='h2' size='2xl' mb={4}>
+      <Heading as='h2' size='xl' mb={4}>
         {children}
       </Heading>
     ),
     h3: ({ children }) => (
-      <Heading as='h3' size='xl' mb={3}>
+      <Heading as='h3' size='lg' mb={3}>
         {children}
       </Heading>
     ),
     h4: ({ children }) => (
-      <Heading as='h4' size='lg' mb={2}>
+      <Heading as='h4' size='md' mb={2}>
         {children}
       </Heading>
     ),
