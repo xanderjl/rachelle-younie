@@ -1,26 +1,18 @@
-import type {
-  ContainerProps} from '@chakra-ui/react';
-import {
-  Container,
-  Link,
-  ListItem,
-  UnorderedList
-} from '@chakra-ui/react'
+import type { BoxProps } from '@chakra-ui/react'
+import { Box, Link, ListItem, UnorderedList } from '@chakra-ui/react'
 import { useInitialData } from 'hooks/data/useInitialData'
 import NLink from 'next/link'
 import type { FC } from 'react'
 
-const Navbar: FC<ContainerProps> = props => {
+export const Desktop: FC<BoxProps> = props => {
   const { data } = useInitialData()
   const { navigation } = data || {}
 
   return (
-    <Container
-      as='nav'
-      display='flex'
+    <Box
+      display={{ base: 'none', md: 'flex' }}
       justifyContent='space-between'
-      maxW='container.lg'
-      fontSize='xl'
+      py={4}
       {...props}
     >
       <Link as={NLink} href='/'>
@@ -35,8 +27,6 @@ const Navbar: FC<ContainerProps> = props => {
           </ListItem>
         ))}
       </UnorderedList>
-    </Container>
+    </Box>
   )
 }
-
-export default Navbar
