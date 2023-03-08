@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { groq } from 'next-sanity'
-import type { ImageAsset, PortableTextBlock } from 'sanity'
+import type { Image, PortableTextBlock } from 'sanity'
 import { client } from 'studio/sanity.client'
 
 export interface Publication {
@@ -32,7 +32,7 @@ export interface PodcastEpisode {
 export interface Hero {
   title: string
   subtitle?: string
-  backgroundImage?: ImageAsset
+  backgroundImage?: Image
   size: 'sm' | 'md' | 'lg'
 }
 

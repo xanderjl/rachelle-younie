@@ -16,9 +16,9 @@ export const HeroSection: FC<HeroSectionProps> = ({
 }) => {
   const bgImg = backgroundImage ? urlFor(backgroundImage).url() : ''
   const minH = {
-    sm: '300px',
-    md: '400px',
-    lg: '500px'
+    sm: { base: '300px' },
+    md: { base: '400px' },
+    lg: { base: '300px', md: '500px' }
   }
 
   return (
@@ -26,6 +26,7 @@ export const HeroSection: FC<HeroSectionProps> = ({
       flexDir='column'
       gap={2}
       py={8}
+      px={4}
       color='white'
       backgroundImage={bgImg}
       backgroundRepeat='no-repeat'
@@ -33,8 +34,14 @@ export const HeroSection: FC<HeroSectionProps> = ({
       minH={minH[size]}
       {...rest}
     >
-      <Heading as='h1'>{title}</Heading>
-      {subtitle && <Heading as='h2'>{subtitle}</Heading>}
+      <Heading as='h1' size='2xl'>
+        {title}
+      </Heading>
+      {subtitle && (
+        <Heading as='h2' size='xl'>
+          {subtitle}
+        </Heading>
+      )}
     </Flex>
   )
 }

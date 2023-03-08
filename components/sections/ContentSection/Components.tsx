@@ -14,11 +14,11 @@ import type {
   PortableTextTypeComponentProps
 } from '@portabletext/react'
 import NLink from 'next/link'
-import type { ImageAsset } from 'sanity'
+import type { Image as SanityImage } from 'sanity'
 import { urlFor } from 'utils/urlFor'
 
 export interface DescriptiveImage {
-  image?: ImageAsset
+  image?: SanityImage
   altText?: string
 }
 

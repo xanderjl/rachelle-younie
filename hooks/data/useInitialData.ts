@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { groq } from 'next-sanity'
-import type { ImageAsset } from 'sanity'
+import type { Image } from 'sanity'
 import { client } from 'studio/sanity.client'
 
 import type { Navigation } from './useNavigation'
@@ -8,7 +8,7 @@ import type { Navigation } from './useNavigation'
 export interface InitialData {
   siteTitle?: string
   metaDescription?: string
-  favicon?: ImageAsset
+  favicon?: Image
   navigation?: Navigation
 }
 
