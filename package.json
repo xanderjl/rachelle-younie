@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
-    "postinstall": "chakra-cli tokens ./theme/index.ts"
+    "postinstall": "pnpm chakra-cli tokens ./theme/index.ts"
   },
   "dependencies": {
     "@chakra-ui/react": "2.5.1",
