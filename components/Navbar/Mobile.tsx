@@ -14,16 +14,25 @@ import {
 } from '@chakra-ui/react'
 import { useInitialData } from 'hooks/data/useInitialData'
 import NLink from 'next/link'
-import type { FC } from 'react'
+import { useRouter } from 'next/router'
+import type { FC, SyntheticEvent } from 'react'
 import { useRef } from 'react'
 import { FiMenu } from 'react-icons/fi'
 
 export const Mobile: FC<BoxProps> = props => {
   const { data } = useInitialData()
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const { push } = useRouter()
   const ref = useRef<HTMLButtonElement>(null)
 
   const { navigation } = data || {}
+
+  const handleClick = (e: SyntheticEvent, slug: string) => {
+    e.preventDefault()
+
+    onClose()
+    push(slug)
+  }
 
   return (
     <Box
@@ -57,7 +66,11 @@ export const Mobile: FC<BoxProps> = props => {
             >
               {navigation?.map(({ slug, title }, i) => (
                 <ListItem key={i}>
-                  <Link as={NLink} href={slug}>
+                  <Link
+                    as={NLink}
+                    href={slug}
+                    onClick={e => handleClick(e, slug)}
+                  >
                     {title}
                   </Link>
                 </ListItem>
