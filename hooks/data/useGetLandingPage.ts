@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import { groq } from 'next-sanity'
 import { client } from 'studio/sanity.client'
 
-import { Section } from './useGetPage'
+import type { Section } from './useGetPage'
 
 export interface LandingPage {
   title: string
@@ -20,20 +20,6 @@ export const groqQuery = groq`
       _key,
       content
     },
-    _type == "sectionWriting" => {
-      _key,
-      publications[]->{
-        _id,
-        description,
-        link,
-        file,
-        publication{
-          title,
-          url
-        },
-        title
-      }
-    },
     _type == "sectionPodcastEpisodes" => {
       _key,
       "episodes": episodes->.episodes[]{
@@ -45,6 +31,24 @@ export const groqQuery = groq`
         isoDate,
         title
       }
+    },
+    _type == "sectionWriting" => {
+      _key,
+      publications[]->{
+        _id,
+        description,
+        link,
+        file,
+        publication,
+        title
+      }
+    },
+    _type == "sectionHero" => {
+      _key,
+      title,
+      subtitle,
+      backgroundImage,
+      size
     }
   }
 }[0]

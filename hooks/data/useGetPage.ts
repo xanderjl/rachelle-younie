@@ -8,11 +8,8 @@ export interface Publication {
   description?: string
   link?: string
   file?: string
-  publication?: {
-    title?: string
-    url?: string
-  }
-  title?: string
+  publication: string
+  title: string
 }
 
 export interface PodcastEpisode {
