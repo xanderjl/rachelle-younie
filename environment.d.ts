@@ -3,6 +3,7 @@ declare namespace NodeJS {
     NODE_ENV: 'development' | 'production' | 'test'
     VERCEL_ENV: 'production' | 'preview' | 'development'
     VERCEL_URL: string
+    NEXT_SANITY_API_TOKEN: string
     NEXT_PUBLIC_RSS_URL: string
     NEXT_PUBLIC_VERCEL_URL: string
     NEXT_PUBLIC_SANITY_PROJECT_ID: string

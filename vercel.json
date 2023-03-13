@@ -1,0 +1,8 @@
+{
+  "crons": [
+    {
+      "path": "/api/fetch-podcast-episodes",
+      "schedule": "5 13 * * 1"
+    }
+  ]
+}

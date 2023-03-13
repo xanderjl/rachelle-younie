@@ -8,7 +8,7 @@ export const podcastEpisodes: SchemaTypeDefinition = {
   name: 'podcastEpisodes',
   title: 'Podcast Episodes',
   type: 'document',
-  // readOnly: true,
+  readOnly: true,
   initialValue: async () => {
     const feed = await parser.parseURL(rssUrl)
 
