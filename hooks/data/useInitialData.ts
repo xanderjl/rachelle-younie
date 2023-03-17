@@ -31,7 +31,15 @@ export const groqQuery = groq`
 `
 
 export const getInitialData = async () =>
-  await client.fetch<InitialData>(groqQuery)
+  await client.fetch<InitialData>(groqQuery).then(data => {
+    return {
+      ...data,
+      navigation: [
+        ...(data.navigation || []),
+        { title: 'contact', slug: 'contact' }
+      ]
+    }
+  })
 
 export const useInitialData = () =>
   useQuery({
