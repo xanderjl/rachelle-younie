@@ -6,8 +6,8 @@ specifiers:
   '@chakra-ui/react': 2.5.1
   '@emotion/react': 11.10.6
   '@emotion/styled': 11.10.6
-  '@fontsource/la-belle-aurore': ^4.5.11
   '@fontsource/nanum-myeongjo': 4.5.9
+  '@fontsource/sacramento': ^4.5.9
   '@formspree/react': ^2.4.1
   '@portabletext/react': ^2.0.2
   '@sanity/eslint-config-studio': 2.0.1
@@ -44,8 +44,8 @@ dependencies:
   '@chakra-ui/react': 2.5.1_4u6c4cemsyeofa6epxvhadxxcy
   '@emotion/react': 11.10.6_pmekkgnqduwlme35zpnqhenc34
   '@emotion/styled': 11.10.6_oouaibmszuch5k64ms7uxp2aia
-  '@fontsource/la-belle-aurore': 4.5.11
   '@fontsource/nanum-myeongjo': 4.5.9
+  '@fontsource/sacramento': 4.5.9
   '@formspree/react': 2.4.1_biqbaboplfbrettd7655fr4n2y
   '@portabletext/react': 2.0.2_react@18.2.0
   '@sanity/image-url': 1.0.2
@@ -3131,12 +3131,12 @@ packages:
       react-dom: 18.2.0_react@18.2.0
     dev: false
 
-  /@fontsource/la-belle-aurore/4.5.11:
-    resolution: {integrity: sha512-tKg/Ia+p9E+Qx56aFQQROiO8bp1AtQBgZQ4uGIsJBLdkPYt2viLOn3NbrcfkCZT9v0N9NV7X3h9V91fiGHxT2A==}
-    dev: false
-
   /@fontsource/nanum-myeongjo/4.5.9:
     resolution: {integrity: sha512-+1sC61wwj0IKvyUL1RS36eOj4tdkwdP/FZgS1z66Ews8HxaHRR4TvZcrIRwLh6S0nJ4IENLBPdbCleO5U+Yupw==}
+    dev: false
+
+  /@fontsource/sacramento/4.5.9:
+    resolution: {integrity: sha512-S1PqihajYnRK3EG6SR/s2SGZbPNfSLQjUDhnJsSmz9NBjnIGUpLNsBXwa9PqrtAfyexs22JuGmgTup1mB2GMVg==}
     dev: false
 
   /@formspree/react/2.4.1_biqbaboplfbrettd7655fr4n2y:

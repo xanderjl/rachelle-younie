@@ -1,6 +1,7 @@
 import {
   AspectRatio,
   Box,
+  Flex,
   Heading,
   Image,
   Link,
@@ -13,6 +14,7 @@ import type {
   PortableTextComponents,
   PortableTextTypeComponentProps
 } from '@portabletext/react'
+import { PortableText } from '@portabletext/react'
 import NLink from 'next/link'
 import type { Image as SanityImage } from 'sanity'
 import { urlFor } from 'utils/urlFor'
@@ -26,6 +28,12 @@ type Ratio = '16:9' | '4:3' | '1:1'
 export interface Embed {
   url: string
   aspectRatio: Ratio
+}
+
+export interface ImageBlock {
+  image?: DescriptiveImage
+  imageAlignement: 'left' | 'right'
+  content: PortableTextComponents
 }
 
 export const components: PortableTextComponents = {
@@ -111,6 +119,18 @@ export const components: PortableTextComponents = {
             allowFullScreen
           />
         </AspectRatio>
+      )
+    },
+    imageBlock: ({ value }: PortableTextTypeComponentProps<ImageBlock>) => {
+      const { image, imageAlignement, content } = value
+      const src = image && urlFor(image).url()
+      const flexDir = imageAlignement === 'left' ? 'row' : 'row-reverse'
+
+      return (
+        <Flex flexDir={flexDir}>
+          <Image src={src} alt={image?.altText} px={3} pt={3} pb={5} />
+          <PortableText blocks={content} components={components} />
+        </Flex>
       )
     }
   }

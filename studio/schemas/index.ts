@@ -2,8 +2,10 @@ import type { SchemaTypeDefinition } from 'sanity'
 
 import { contentBlock } from './contentBlock'
 import { customNavItem } from './customNavItem'
+import { descriptiveImage } from './descriptiveImage'
 import { embed } from './embed'
 import { episode } from './episode'
+import { imageBlock } from './imageBlock'
 import { navigation } from './navigation'
 import { page } from './page'
 import { podcastEpisodes } from './podcastEpisodes'
@@ -20,8 +22,10 @@ import { writing } from './writing'
 export const schemaTypes: SchemaTypeDefinition[] = [
   contentBlock,
   customNavItem,
+  descriptiveImage,
   embed,
   episode,
+  imageBlock,
   navigation,
   page,
   podcastEpisodes,
