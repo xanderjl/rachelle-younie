@@ -9,6 +9,7 @@ import { imageBlock } from './imageBlock'
 import { navigation } from './navigation'
 import { page } from './page'
 import { podcastEpisodes } from './podcastEpisodes'
+import { poem } from './poem'
 import {
   sectionContent,
   sectionHero,
@@ -30,6 +31,7 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   navigation,
   page,
   podcastEpisodes,
+  poem,
   settings,
   sectionContent,
   sectionHero,
