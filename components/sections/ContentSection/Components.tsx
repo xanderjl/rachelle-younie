@@ -177,7 +177,10 @@ export const components: PortableTextComponents = {
       const flexDir = imageAlignment === 'left' ? 'row' : 'row-reverse'
 
       return (
-        <Flex flexDir={{ base: 'column', md: flexDir }} gap={gap}>
+        <Flex
+          flexDir={{ base: 'column', md: flexDir }}
+          gap={{ base: 4, md: gap }}
+        >
           <Image
             src={src}
             alt={image?.altText}
