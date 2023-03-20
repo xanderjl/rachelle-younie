@@ -1,8 +1,8 @@
 import { randomUUID } from 'crypto'
 import type { NextApiHandler } from 'next'
 import { createClient } from 'next-sanity'
-import { fetchPodcastData } from 'studio/hooks'
 import { apiVersion, dataset, projectId } from 'studio/sanity.client'
+import { fetchPodcastData } from 'utils/fetchPodcastData'
 
 const fetchPodcastEpisodes: NextApiHandler = async (_, res) => {
   try {
