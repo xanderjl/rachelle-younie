@@ -1,9 +1,11 @@
+import { RiQuillPenFill } from 'react-icons/ri'
 import type { SchemaTypeDefinition } from 'sanity'
 
 export const poem: SchemaTypeDefinition = {
   name: 'poem',
   title: 'Poem',
   type: 'document',
+  icon: RiQuillPenFill,
   fields: [
     {
       name: 'title',
@@ -21,7 +23,7 @@ export const poem: SchemaTypeDefinition = {
       name: 'copy',
       title: 'Copy',
       type: 'array',
-      of: [{ type: 'contentBlock' }],
+      of: [{ type: 'block' }],
       validation: rule => rule.required()
     }
   ]
