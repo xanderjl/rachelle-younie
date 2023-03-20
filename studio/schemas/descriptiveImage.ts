@@ -16,6 +16,11 @@ export const descriptiveImage: SchemaTypeDefinition = {
       }
     },
     {
+      name: 'maxWidth',
+      title: 'Max Width',
+      type: 'number'
+    },
+    {
       name: 'altText',
       title: 'Alt Text',
       type: 'string',

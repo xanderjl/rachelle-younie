@@ -29,6 +29,13 @@ export const imageBlock: SchemaTypeDefinition = {
       title: 'Content',
       type: 'contentBlock',
       validation: rule => rule.required()
+    },
+    {
+      name: 'gap',
+      title: 'Gap',
+      type: 'spacing',
+      validation: rule => rule.required(),
+      description: 'Gap between image and content in pixels.'
     }
   ]
 }

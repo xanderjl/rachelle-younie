@@ -16,15 +16,49 @@ import type {
 } from '@portabletext/react'
 import { PortableText } from '@portabletext/react'
 import NLink from 'next/link'
-import type { Image as SanityImage } from 'sanity'
+import type { Image as SanityImage, PortableTextBlock } from 'sanity'
 import { urlFor } from 'utils/urlFor'
 
 export interface DescriptiveImage {
   image?: SanityImage
   altText?: string
+  maxWidth?: number
 }
 
 type Ratio = '16:9' | '4:3' | '1:1'
+type Spacing =
+  | 0.5
+  | 1
+  | 1.5
+  | 2
+  | 2.5
+  | 3
+  | 3.5
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 12
+  | 14
+  | 16
+  | 20
+  | 24
+  | 28
+  | 32
+  | 36
+  | 40
+  | 44
+  | 48
+  | 52
+  | 56
+  | 60
+  | 64
+  | 72
+  | 80
+  | 96
 export interface Embed {
   url: string
   aspectRatio: Ratio
@@ -33,7 +67,8 @@ export interface Embed {
 export interface ImageBlock {
   image: Required<DescriptiveImage>
   imageAlignment: 'left' | 'right'
-  content: any
+  content: PortableTextBlock | PortableTextBlock[]
+  gap: Spacing
 }
 
 export const components: PortableTextComponents = {
@@ -92,10 +127,22 @@ export const components: PortableTextComponents = {
     descriptiveImage: ({
       value
     }: PortableTextTypeComponentProps<DescriptiveImage>) => {
-      const { image, altText } = value || {}
-      const src = image && urlFor(image).url()
+      const { image, altText, maxWidth } = value || {}
+      const src =
+        image && maxWidth
+          ? urlFor(image).maxWidth(maxWidth).url()
+          : image && urlFor(image).url()
 
-      return <Image src={src} alt={altText} px={3} pt={3} pb={5} />
+      return (
+        <Image
+          src={src}
+          alt={altText}
+          maxW={maxWidth}
+          objectFit='contain'
+          pt={3}
+          pb={5}
+        />
+      )
     },
     embed: ({ value }: PortableTextTypeComponentProps<Embed>) => {
       const { url, aspectRatio } = value || {}
@@ -122,17 +169,23 @@ export const components: PortableTextComponents = {
       )
     },
     imageBlock: ({ value }: PortableTextTypeComponentProps<ImageBlock>) => {
-      const { image, imageAlignment, content } = value
-      const src = urlFor(image.image).url()
+      const { image, imageAlignment, content, gap } = value
+      const src =
+        image && image.maxWidth
+          ? urlFor(image.image).maxWidth(image?.maxWidth).url()
+          : image && urlFor(image.image).url()
       const flexDir = imageAlignment === 'left' ? 'row' : 'row-reverse'
 
       return (
-        <Flex
-          flexDir={{ base: 'column', md: flexDir }}
-          gap={4}
-          alignItems={{ md: 'center' }}
-        >
-          <Image src={src} alt={image?.altText} px={3} pt={3} pb={5} />
+        <Flex flexDir={{ base: 'column', md: flexDir }} gap={gap}>
+          <Image
+            src={src}
+            alt={image?.altText}
+            maxW={image?.maxWidth}
+            objectFit='contain'
+            pt={3}
+            pb={5}
+          />
           <Flex flexDir='column'>
             <PortableText value={content} components={components} />
           </Flex>

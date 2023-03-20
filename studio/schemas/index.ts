@@ -17,6 +17,7 @@ import {
 } from './sections'
 import { sectionSelector } from './sectionSelector'
 import { settings } from './settings'
+import { spacing } from './spacing'
 import { writing } from './writing'
 
 export const schemaTypes: SchemaTypeDefinition[] = [
@@ -35,5 +36,6 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   sectionPodcastEpisodes,
   sectionWriting,
   sectionSelector,
+  spacing,
   writing
 ]
