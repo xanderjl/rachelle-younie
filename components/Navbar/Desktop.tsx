@@ -4,6 +4,8 @@ import { useInitialData } from 'hooks/data/useInitialData'
 import NLink from 'next/link'
 import type { FC } from 'react'
 
+import { linkStyles } from './linkStyles'
+
 export const Desktop: FC<BoxProps> = props => {
   const { data } = useInitialData()
   const { navigation } = data || {}
@@ -15,13 +17,13 @@ export const Desktop: FC<BoxProps> = props => {
       py={4}
       {...props}
     >
-      <Link as={NLink} href='/'>
+      <Link as={NLink} href='/' {...linkStyles}>
         Rachelle Younie
       </Link>
       <UnorderedList display='flex' gap={4} listStyleType='none'>
         {navigation?.map(({ slug, title }, i) => (
           <ListItem key={i}>
-            <Link as={NLink} href={slug}>
+            <Link as={NLink} href={slug} {...linkStyles}>
               {title}
             </Link>
           </ListItem>

@@ -19,6 +19,8 @@ import type { FC, SyntheticEvent } from 'react'
 import { useRef } from 'react'
 import { FiMenu } from 'react-icons/fi'
 
+import { linkStyles } from './linkStyles'
+
 export const Mobile: FC<BoxProps> = props => {
   const { data } = useInitialData()
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -42,7 +44,7 @@ export const Mobile: FC<BoxProps> = props => {
       py={2}
       {...props}
     >
-      <Link as={NLink} href='/'>
+      <Link as={NLink} href='/' {...linkStyles}>
         Rachelle Younie
       </Link>
       <Button as={FiMenu} variant='unstyled' boxSize={8} onClick={onOpen} />
@@ -69,6 +71,7 @@ export const Mobile: FC<BoxProps> = props => {
                   <Link
                     as={NLink}
                     href={slug}
+                    {...linkStyles}
                     onClick={e => handleClick(e, slug)}
                   >
                     {title}

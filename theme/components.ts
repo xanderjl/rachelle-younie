@@ -6,5 +6,14 @@ export const components: ThemeComponents = {
     baseStyle: {
       fontWeight: 200
     }
+  },
+  Link: {
+    baseStyle: {
+      color: 'olive.300',
+      textDecor: 'underline',
+      _hover: {
+        color: 'olive.600'
+      }
+    }
   }
 }
