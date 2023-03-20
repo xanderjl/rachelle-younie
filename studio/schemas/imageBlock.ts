@@ -8,7 +8,8 @@ export const imageBlock: SchemaTypeDefinition = {
     {
       name: 'image',
       title: 'Image',
-      type: 'descriptiveImage'
+      type: 'descriptiveImage',
+      validation: rule => rule.required()
     },
     {
       name: 'imageAlignment',
@@ -20,12 +21,14 @@ export const imageBlock: SchemaTypeDefinition = {
           { title: 'right', value: 'right' }
         ]
       },
-      initialValue: { title: 'left', value: 'left' }
+      initialValue: { title: 'left', value: 'left' },
+      validation: rule => rule.required()
     },
     {
       name: 'content',
       title: 'Content',
-      type: 'contentBlock'
+      type: 'contentBlock',
+      validation: rule => rule.required()
     }
   ]
 }

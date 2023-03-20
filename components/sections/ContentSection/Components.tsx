@@ -31,9 +31,9 @@ export interface Embed {
 }
 
 export interface ImageBlock {
-  image?: DescriptiveImage
-  imageAlignement: 'left' | 'right'
-  content: PortableTextComponents
+  image: Required<DescriptiveImage>
+  imageAlignment: 'left' | 'right'
+  content: any
 }
 
 export const components: PortableTextComponents = {
@@ -122,14 +122,20 @@ export const components: PortableTextComponents = {
       )
     },
     imageBlock: ({ value }: PortableTextTypeComponentProps<ImageBlock>) => {
-      const { image, imageAlignement, content } = value
-      const src = image && urlFor(image).url()
-      const flexDir = imageAlignement === 'left' ? 'row' : 'row-reverse'
+      const { image, imageAlignment, content } = value
+      const src = urlFor(image.image).url()
+      const flexDir = imageAlignment === 'left' ? 'row' : 'row-reverse'
 
       return (
-        <Flex flexDir={flexDir}>
+        <Flex
+          flexDir={{ base: 'column', md: flexDir }}
+          gap={4}
+          alignItems={{ md: 'center' }}
+        >
           <Image src={src} alt={image?.altText} px={3} pt={3} pb={5} />
-          <PortableText blocks={content} components={components} />
+          <Flex flexDir='column'>
+            <PortableText value={content} components={components} />
+          </Flex>
         </Flex>
       )
     }

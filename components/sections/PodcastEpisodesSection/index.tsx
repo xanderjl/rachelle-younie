@@ -1,5 +1,6 @@
 import type { FlexProps } from '@chakra-ui/react'
 import { Button, Flex } from '@chakra-ui/react'
+import { Section } from 'components/Section'
 import type { SectionPodcastEpisodes } from 'hooks/data/useGetPage'
 import { usePagination } from 'hooks/usePagination'
 import type { FC } from 'react'
@@ -23,11 +24,11 @@ export const PodcastEpisodesSection: FC<PodcastEpisodesSectionProps> = ({
   } = usePagination(episodes, 10)
 
   return (
-    <Flex direction='column' gap={6} {...rest}>
+    <Section display='flex' flexDir='column' gap={6} {...rest}>
       {slicedEpisodes?.map(episode => (
         <PodcastCard key={episode._key} episode={episode} />
       ))}
-      <Flex flex={1} maxW='70ch' justify='space-between' gap={6}>
+      <Flex flex={1} justify='space-between' gap={6}>
         <Button as={IoIosArrowBack} colorScheme='burntOrange' onClick={next} />
         <Button colorScheme='burntOrange' onClick={() => jump(2)}>
           FUCK
@@ -38,6 +39,6 @@ export const PodcastEpisodesSection: FC<PodcastEpisodesSectionProps> = ({
           onClick={prev}
         />
       </Flex>
-    </Flex>
+    </Section>
   )
 }

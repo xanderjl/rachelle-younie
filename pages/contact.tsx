@@ -1,7 +1,6 @@
 import type { BoxProps, TextareaProps } from '@chakra-ui/react'
 import {
   Button,
-  Container,
   Flex,
   FormControl,
   FormLabel,
@@ -11,6 +10,7 @@ import {
   Textarea
 } from '@chakra-ui/react'
 import { useForm, ValidationError } from '@formspree/react'
+import { Section } from 'components/Section'
 import type { NextPage } from 'next'
 import type { FC } from 'react'
 
@@ -26,7 +26,7 @@ const ContactPage: FC<NextPage> = () => {
   }
 
   return (
-    <Container maxW='container.sm' py={8}>
+    <Section>
       {state.succeeded ? (
         <Heading textAlign='center'>
           Thank you for your message! I&apos;ll get back to you as soon as I
@@ -87,7 +87,7 @@ const ContactPage: FC<NextPage> = () => {
           </Flex>
         </>
       )}
-    </Container>
+    </Section>
   )
 }
 export default ContactPage

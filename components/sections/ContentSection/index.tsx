@@ -1,5 +1,5 @@
-import { Box } from '@chakra-ui/react'
 import { PortableText } from '@portabletext/react'
+import { Section } from 'components/Section'
 import type { FC } from 'react'
 import type { PortableTextBlock } from 'sanity'
 
@@ -11,8 +11,8 @@ interface ContentSectionProps {
 
 export const ContentSection: FC<ContentSectionProps> = ({ value }) => {
   return (
-    <Box flex={1} py={3}>
+    <Section>
       <PortableText value={value} components={components} />
-    </Box>
+    </Section>
   )
 }

@@ -1,10 +1,11 @@
-import type { FlexProps } from '@chakra-ui/react'
-import { Button, Container, Flex, Heading, Link, Text } from '@chakra-ui/react'
+import type { ContainerProps } from '@chakra-ui/react'
+import { Button, Flex, Heading, Link, Text } from '@chakra-ui/react'
+import { Section } from 'components/Section'
 import type { SectionWriting } from 'hooks/data/useGetPage'
 import NLink from 'next/link'
 import type { FC } from 'react'
 
-export interface WritingSectionProps extends FlexProps {
+export interface WritingSectionProps extends ContainerProps {
   publications: SectionWriting['publications']
 }
 
@@ -13,18 +14,12 @@ export const WritingSection: FC<WritingSectionProps> = ({
   ...rest
 }) => {
   return (
-    <Flex flexDir='column' gap={6} {...rest}>
+    <Section display='flex' flexDir='column' gap={6} {...rest}>
       {publications?.map(pub => {
         const { _id, title, description, file, link, publication } = pub
 
         return (
-          <Container
-            key={_id}
-            display='flex'
-            flexDir='column'
-            gap={4}
-            maxW='75ch'
-          >
+          <Flex key={_id} flexDir='column' gap={4}>
             <Heading as='h2'>{title}</Heading>
             <Heading as='h3' size='md' fontFamily='body'>
               {publication}
@@ -37,9 +32,9 @@ export const WritingSection: FC<WritingSectionProps> = ({
             >
               <Button colorScheme='burntOrange'>Read More</Button>
             </Link>
-          </Container>
+          </Flex>
         )
       })}
-    </Flex>
+    </Section>
   )
 }
