@@ -20,6 +20,7 @@ specifiers:
   '@types/react-dom': ^18.0.11
   '@typescript-eslint/eslint-plugin': ^5.54.1
   '@typescript-eslint/parser': ^5.54.1
+  '@vercel/analytics': ^0.1.11
   babel-plugin-transform-vite-meta-env: ^1.0.3
   eslint: ^8.36.0
   eslint-config-next: ^13.2.4
@@ -52,6 +53,7 @@ dependencies:
   '@sanity/vision': 3.6.0_26idtpd4nozja4fdthxj3urb5y
   '@tanstack/react-query': 4.26.1_biqbaboplfbrettd7655fr4n2y
   '@tanstack/react-query-devtools': 4.26.1_brdhmlf72zuns3lsk66phyptty
+  '@vercel/analytics': 0.1.11_react@18.2.0
   framer-motion: 10.2.4_biqbaboplfbrettd7655fr4n2y
   next: 13.2.4_6m24vuloj5ihw4zc5lbsktc4fu
   next-sanity: 4.1.5_2mdyewxmzkikvebbefmojinr64
@@ -4465,6 +4467,14 @@ packages:
       - '@codemirror/language'
       - '@codemirror/lint'
       - '@codemirror/search'
+    dev: false
+
+  /@vercel/analytics/0.1.11_react@18.2.0:
+    resolution: {integrity: sha512-mj5CPR02y0BRs1tN3oZcBNAX9a8NxsIUl9vElDPcqxnMfP0RbRc9fI9Ud7+QDg/1Izvt5uMumsr+6YsmVHcyuw==}
+    peerDependencies:
+      react: ^16.8||^17||^18
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /@vitejs/plugin-react/3.1.0_vite@4.1.4:

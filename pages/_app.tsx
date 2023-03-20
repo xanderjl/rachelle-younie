@@ -12,6 +12,7 @@ import {
   QueryClientProvider
 } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { Analytics } from '@vercel/analytics/react'
 import Layout from 'components/Layout'
 import { getInitialData } from 'hooks/data/useInitialData'
 import type { AppContext, AppInitialProps, AppProps } from 'next/app'
@@ -48,6 +49,7 @@ const CustomApp = ({ Component, pageProps }: CustomAppProps) => {
             <Layout>
               <Component {...pageProps} />
             </Layout>
+            <Analytics />
           </ChakraProvider>
         )}
       </Hydrate>
