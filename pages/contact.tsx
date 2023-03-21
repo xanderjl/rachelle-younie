@@ -11,7 +11,7 @@ import {
 } from '@chakra-ui/react'
 import { useForm, ValidationError } from '@formspree/react'
 import { Section } from 'components/Section'
-import type { NextPage } from 'next'
+import type { GetStaticProps, NextPage } from 'next'
 import type { FC } from 'react'
 
 const ContactPage: FC<NextPage> = () => {
@@ -91,3 +91,5 @@ const ContactPage: FC<NextPage> = () => {
   )
 }
 export default ContactPage
+
+export const getStaticProps: GetStaticProps = () => ({ props: {} })
