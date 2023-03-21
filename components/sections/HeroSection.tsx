@@ -6,7 +6,7 @@ import type { FC } from 'react'
 import React from 'react'
 import { urlFor } from 'utils/urlFor'
 
-export type HeroSectionProps = ContainerProps & Hero
+export type HeroSectionProps = Omit<ContainerProps, 'backgroundImage'> & Hero
 export type CustomMinHeight = { [key: string]: BoxProps['minH'] }
 
 export const HeroSection: FC<HeroSectionProps> = ({
