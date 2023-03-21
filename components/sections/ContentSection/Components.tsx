@@ -17,7 +17,6 @@ import type {
 import { PortableText } from '@portabletext/react'
 import NLink from 'next/link'
 import type { Image as SanityImage, PortableTextBlock } from 'sanity'
-import { computeDimensions } from 'utils/computeDimensions'
 import { urlFor } from 'utils/urlFor'
 
 export interface DescriptiveImage {
@@ -131,17 +130,15 @@ export const components: PortableTextComponents = {
       const { image, altText, maxWidth } = value || {}
       const src =
         image && maxWidth
-          ? urlFor(image).maxWidth(maxWidth).url()
+          ? urlFor(image).width(maxWidth).url()
           : image && urlFor(image).url()
-      const { width } = (src && computeDimensions(src)) || {}
 
       return (
         <Image
+          flex={1}
           src={src}
           alt={altText}
           maxW={maxWidth}
-          width={maxWidth ?? width}
-          height='auto'
           objectFit='contain'
           pt={3}
           pb={5}
@@ -176,9 +173,8 @@ export const components: PortableTextComponents = {
       const { image, imageAlignment, content, gap } = value
       const src =
         image && image.maxWidth
-          ? urlFor(image.image).maxWidth(image?.maxWidth).url()
+          ? urlFor(image.image).width(image?.maxWidth).url()
           : image && urlFor(image.image).url()
-      const { width } = (src && computeDimensions(src)) || {}
       const flexDir = imageAlignment === 'left' ? 'row' : 'row-reverse'
 
       return (
@@ -189,9 +185,6 @@ export const components: PortableTextComponents = {
           <Image
             src={src}
             alt={image?.altText}
-            width={image?.maxWidth ?? width}
-            height='auto'
-            maxW={image?.maxWidth}
             objectFit='contain'
             pt={3}
             pb={5}

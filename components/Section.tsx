@@ -4,7 +4,13 @@ import type { FC } from 'react'
 
 export const Section: FC<ContainerProps> = ({ children, ...rest }) => {
   return (
-    <Container maxW='container.md' py={8} {...rest}>
+    <Container
+      display='flex'
+      flexDir='column'
+      maxW='container.md'
+      py={8}
+      {...rest}
+    >
       {children}
     </Container>
   )

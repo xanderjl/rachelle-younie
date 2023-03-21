@@ -10,6 +10,7 @@ specifiers:
   '@fontsource/sacramento': ^4.5.9
   '@formspree/react': ^2.4.1
   '@portabletext/react': ^2.0.2
+  '@sanity/asset-utils': ^1.3.0
   '@sanity/eslint-config-studio': 2.0.1
   '@sanity/image-url': ^1.0.1
   '@sanity/vision': ^3.7.0
@@ -49,6 +50,7 @@ dependencies:
   '@fontsource/sacramento': 4.5.9
   '@formspree/react': 2.4.1_biqbaboplfbrettd7655fr4n2y
   '@portabletext/react': 2.0.2_react@18.2.0
+  '@sanity/asset-utils': 1.3.0
   '@sanity/image-url': 1.0.2
   '@sanity/vision': 3.7.0_g2ucfslmlyls4cae7unqdxdxca
   '@tanstack/react-query': 4.28.0_biqbaboplfbrettd7655fr4n2y
