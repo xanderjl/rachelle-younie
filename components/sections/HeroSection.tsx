@@ -1,11 +1,13 @@
-import type { FlexProps } from '@chakra-ui/react'
-import { Flex, Heading } from '@chakra-ui/react'
+import type { BoxProps, ContainerProps } from '@chakra-ui/react'
+import { Box, Heading } from '@chakra-ui/react'
+import { Section } from 'components/Section'
 import type { Hero } from 'hooks/data/useGetPage'
 import type { FC } from 'react'
 import React from 'react'
 import { urlFor } from 'utils/urlFor'
 
-export type HeroSectionProps = Omit<FlexProps, 'backgroundImage'> & Hero
+export type HeroSectionProps = ContainerProps & Hero
+export type CustomMinHeight = { [key: string]: BoxProps['minH'] }
 
 export const HeroSection: FC<HeroSectionProps> = ({
   backgroundImage,
@@ -15,33 +17,38 @@ export const HeroSection: FC<HeroSectionProps> = ({
   ...rest
 }) => {
   const bgImg = backgroundImage ? urlFor(backgroundImage).url() : ''
-  const minH = {
+  const { x, y } = backgroundImage?.hotspot || {}
+  const backgroundPosition = x && y ? `${x * 100}% ${y * 100}%` : 'center'
+  const minH: CustomMinHeight = {
     sm: { base: '300px' },
     md: { base: '400px' },
-    lg: { base: '300px', md: '500px' }
+    lg: { base: '300px', md: 'calc(100vh - 62px)' }
   }
 
   return (
-    <Flex
-      flexDir='column'
-      gap={2}
-      py={8}
-      px={4}
-      color='white'
+    <Box
+      position='relative'
+      w='100vw'
+      left='50%'
+      right='50%'
+      ml='-50vw'
+      mr='-50vw'
+      minH={minH[size]}
       backgroundImage={bgImg}
       backgroundRepeat='no-repeat'
-      backgroundPosition='center'
-      minH={minH[size]}
-      {...rest}
+      backgroundPosition={backgroundPosition}
+      backgroundSize='cover'
     >
-      <Heading as='h1' size='2xl'>
-        {title}
-      </Heading>
-      {subtitle && (
-        <Heading as='h2' size='xl'>
-          {subtitle}
+      <Section flexDir='column' gap={2} py={8} px={4} color='white' {...rest}>
+        <Heading as='h1' size='2xl'>
+          {title}
         </Heading>
-      )}
-    </Flex>
+        {subtitle && (
+          <Heading as='h2' size='xl'>
+            {subtitle}
+          </Heading>
+        )}
+      </Section>
+    </Box>
   )
 }

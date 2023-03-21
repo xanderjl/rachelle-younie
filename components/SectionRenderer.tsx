@@ -22,7 +22,7 @@ export const SectionRenderer: FC<SectionRendererProps> = ({
   sections,
   ...rest
 }) => (
-  <Flex alignItems='stretch' py={12} direction='column' gap={6} {...rest}>
+  <Flex alignItems='stretch' direction='column' gap={6} {...rest}>
     {sections?.map(section => {
       const { _key, _type } = section
 
