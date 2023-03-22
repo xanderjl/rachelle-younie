@@ -7,3 +7,10 @@ const builder = imageUrlBuilder(client)
 
 export const urlFor = (src: SanityImageSource): ImageUrlBuilder =>
   builder.image(src)
+
+export const urlForDescriptiveImage = (
+  src: SanityImageSource,
+  maxWidth?: number
+): ImageUrlBuilder => {
+  return maxWidth ? builder.image(src).width(maxWidth) : builder.image(src)
+}

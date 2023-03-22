@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
+import type { DescriptiveImageProps } from 'components/PortableText/customComponents/DescriptiveImage'
 import { groq } from 'next-sanity'
 import type { Image, PortableTextBlock } from 'sanity'
 import { client } from 'studio/sanity.client'
@@ -33,12 +34,21 @@ export interface Hero {
   size: 'sm' | 'md' | 'lg'
 }
 
+export interface Poem {
+  _id: string
+  title: string
+  slug: string
+  scan: DescriptiveImageProps
+  copy: PortableTextBlock[]
+}
+
 export interface BaseSection {
   _key: string
   _type:
     | 'sectionContent'
     | 'sectionHero'
     | 'sectionPodcastEpisodes'
+    | 'sectionPoems'
     | 'sectionWriting'
 }
 
@@ -54,12 +64,17 @@ export interface SectionPodcastEpisodes extends BaseSection {
   episodes?: PodcastEpisode[]
 }
 
+export interface SectionPoems extends BaseSection {
+  poems?: Poem[]
+}
+
 export type SectionHero = BaseSection & Hero
 
 export type Section =
   | SectionContent
   | SectionWriting
   | SectionPodcastEpisodes
+  | SectionPoems
   | SectionHero
 
 export interface Page {
@@ -82,6 +97,13 @@ export const groqQuery = groq`
       _key,
       content
     },
+    _type == "sectionHero" => {
+      _key,
+      title,
+      subtitle,
+      backgroundImage,
+      size
+    },
     _type == "sectionPodcastEpisodes" => {
       _key,
       "episodes": episodes->.episodes[]{
@@ -94,6 +116,16 @@ export const groqQuery = groq`
         title
       }
     },
+    _type == "sectionPoems" => {
+      _key,
+      "poems": poems[]->{
+        _id,
+        title,
+        "slug": slug.current,
+        scan,
+        copy
+      }
+    },
     _type == "sectionWriting" => {
       _key,
       publications[]->{
@@ -104,13 +136,6 @@ export const groqQuery = groq`
         publication,
         title
       }
-    },
-    _type == "sectionHero" => {
-      _key,
-      title,
-      subtitle,
-      backgroundImage,
-      size
     }
   }
 }[0]

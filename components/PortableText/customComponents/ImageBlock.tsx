@@ -2,7 +2,7 @@ import { Flex, Image } from '@chakra-ui/react'
 import type { PortableTextTypeComponentProps } from '@portabletext/react'
 import { PortableText } from '@portabletext/react'
 import type { PortableTextBlock } from 'sanity'
-import { urlFor } from 'utils/urlFor'
+import { urlForDescriptiveImage } from 'utils/urlFor'
 
 import type { DescriptiveImageProps } from './DescriptiveImage'
 import type { Spacing } from './index'
@@ -19,10 +19,7 @@ export const ImageBlock = ({
   value
 }: PortableTextTypeComponentProps<ImageBlockProps>) => {
   const { image, imageAlignment, content, gap } = value
-  const src =
-    image && image.maxWidth
-      ? urlFor(image.image).width(image?.maxWidth).url()
-      : image && urlFor(image.image).url()
+  const src = image && urlForDescriptiveImage(image.image, image.maxWidth).url()
   const flexDir = imageAlignment === 'left' ? 'row' : 'row-reverse'
 
   return (

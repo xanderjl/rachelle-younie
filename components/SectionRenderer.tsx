@@ -5,6 +5,7 @@ import type {
   SectionContent,
   SectionHero,
   SectionPodcastEpisodes,
+  SectionPoems,
   SectionWriting
 } from 'hooks/data/useGetPage'
 import type { FC } from 'react'
@@ -12,6 +13,7 @@ import type { FC } from 'react'
 import { ContentSection } from './sections/ContentSection'
 import { HeroSection } from './sections/HeroSection'
 import { PodcastEpisodesSection } from './sections/PodcastEpisodesSection'
+import { PoemsSection } from './sections/PoemsSection'
 import { WritingSection } from './sections/WritingSection'
 
 export interface SectionRendererProps extends FlexProps {
@@ -51,6 +53,11 @@ export const SectionRenderer: FC<SectionRendererProps> = ({
         const { episodes } = section as SectionPodcastEpisodes
 
         return <PodcastEpisodesSection key={_key} episodes={episodes} />
+      }
+
+      if (_type === 'sectionPoems') {
+        const { poems } = section as SectionPoems
+        return <PoemsSection key={_key} poems={poems} />
       }
 
       if (_type === 'sectionWriting') {
