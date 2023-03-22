@@ -34,7 +34,9 @@ const ContactPage: FC<NextPage> = () => {
         </Heading>
       ) : (
         <>
-          <Heading>Get In Touch</Heading>
+          <Heading size='3xl' pb={{ base: 6, md: 10 }}>
+            Get In Touch
+          </Heading>
           <Flex
             as='form'
             display='flex'
@@ -61,7 +63,7 @@ const ContactPage: FC<NextPage> = () => {
               />
             </FormControl>
             <FormControl isRequired>
-              <FormLabel htmlFor='message'>Full Name</FormLabel>
+              <FormLabel htmlFor='message'>Message</FormLabel>
               <Textarea
                 name='message'
                 rows={10}
@@ -79,7 +81,7 @@ const ContactPage: FC<NextPage> = () => {
                 loadingText='Submitting...'
                 isLoading={state.submitting}
                 leftIcon={state.submitting ? <Spinner /> : undefined}
-                colorScheme='green'
+                colorScheme='burntOrange'
               >
                 Submit
               </Button>
