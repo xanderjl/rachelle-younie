@@ -18,25 +18,47 @@ export const PodcastEpisodesSection: FC<PodcastEpisodesSectionProps> = ({
 }) => {
   const {
     currentData: slicedEpisodes,
+    currentPage,
     next,
     prev,
-    jump
-  } = usePagination(episodes, 10)
+    jump,
+    numPages: length
+  } = usePagination(episodes, 5)
+
+  const pages = Array.from({ length }, (_, i) => i + 1)
 
   return (
     <Section display='flex' flexDir='column' gap={6} {...rest}>
       {slicedEpisodes?.map(episode => (
         <PodcastCard key={episode._key} episode={episode} />
       ))}
-      <Flex flex={1} justify='space-between' gap={6}>
-        <Button as={IoIosArrowBack} colorScheme='burntOrange' onClick={next} />
-        <Button colorScheme='burntOrange' onClick={() => jump(2)}>
-          FUCK
-        </Button>
+      <Flex flex={1} justify='space-between' gap={3}>
         <Button
-          as={IoIosArrowForward}
+          aria-label='Previous'
+          as={IoIosArrowBack}
+          p={3}
           colorScheme='burntOrange'
           onClick={prev}
+        />
+        <Flex gap={3}>
+          {pages.map(page => (
+            <Button
+              aria-label={`Page ${page}`}
+              key={page}
+              colorScheme='burntOrange'
+              isDisabled={currentPage === page}
+              onClick={() => jump(page)}
+            >
+              {page}
+            </Button>
+          ))}
+        </Flex>
+        <Button
+          as={IoIosArrowForward}
+          aria-label='Next'
+          p={3}
+          colorScheme='burntOrange'
+          onClick={next}
         />
       </Flex>
     </Section>

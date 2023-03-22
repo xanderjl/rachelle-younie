@@ -47,7 +47,7 @@ export const usePagination: Pagination = (arr = [], pageSize) => {
   const jump = (page: number) => {
     const pageNumber = Math.max(1, page)
 
-    setCurrentPage(currentPage => Math.min(pageNumber, numPages))
+    setCurrentPage(() => Math.min(pageNumber, numPages))
   }
 
   return {
