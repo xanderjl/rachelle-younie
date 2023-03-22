@@ -5,6 +5,7 @@ export const sectionPodcastEpisodes: SchemaTypeDefinition = {
   name: 'sectionPodcastEpisodes',
   title: 'Podcast Episodes Section',
   type: 'object',
+  icon: FaMicrophoneAlt,
   fields: [
     {
       name: 'episodes',
@@ -16,8 +17,7 @@ export const sectionPodcastEpisodes: SchemaTypeDefinition = {
   preview: {
     prepare: () => {
       return {
-        title: 'Podcast Episodes Section',
-        media: FaMicrophoneAlt
+        title: 'Podcast Episodes Section'
       }
     }
   }

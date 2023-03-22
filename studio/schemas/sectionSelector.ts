@@ -13,6 +13,7 @@ export const sectionSelector: SchemaTypeDefinition = {
         { type: 'sectionContent' },
         { type: 'sectionHero' },
         { type: 'sectionPodcastEpisodes' },
+        { type: 'sectionPoems' },
         { type: 'sectionWriting' }
       ]
     }

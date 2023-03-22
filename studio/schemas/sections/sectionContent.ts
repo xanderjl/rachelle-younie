@@ -5,6 +5,7 @@ export const sectionContent: SchemaTypeDefinition = {
   name: 'sectionContent',
   title: 'Content Section',
   type: 'object',
+  icon: BsPencilSquare,
   fields: [
     {
       name: 'content',
@@ -14,8 +15,7 @@ export const sectionContent: SchemaTypeDefinition = {
   preview: {
     prepare: () => {
       return {
-        title: 'Content Section',
-        media: BsPencilSquare
+        title: 'Content Section'
       }
     }
   }

@@ -1,10 +1,11 @@
-import { BsPencilSquare } from 'react-icons/bs'
+import { RiLayoutTop2Line } from 'react-icons/ri'
 import type { SchemaTypeDefinition } from 'sanity'
 
 export const sectionHero: SchemaTypeDefinition = {
   name: 'sectionHero',
   title: 'Hero Section',
   type: 'object',
+  icon: RiLayoutTop2Line,
   fields: [
     {
       name: 'title',
@@ -43,8 +44,7 @@ export const sectionHero: SchemaTypeDefinition = {
   preview: {
     prepare: () => {
       return {
-        title: 'Hero Section',
-        media: BsPencilSquare
+        title: 'Hero Section'
       }
     }
   }

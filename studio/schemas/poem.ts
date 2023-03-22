@@ -14,6 +14,15 @@ export const poem: SchemaTypeDefinition = {
       validation: rule => rule.required()
     },
     {
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      options: {
+        source: 'title'
+      },
+      validation: rule => rule.required()
+    },
+    {
       name: 'scan',
       title: 'Scan',
       type: 'descriptiveImage',
