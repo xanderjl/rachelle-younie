@@ -3,7 +3,7 @@ import { Section } from 'components/Section'
 import type { FC } from 'react'
 import type { PortableTextBlock } from 'sanity'
 
-import { components } from './Components'
+import { customComponents } from './customComponents'
 
 interface ContentSectionProps {
   value: PortableTextBlock
@@ -12,7 +12,7 @@ interface ContentSectionProps {
 export const ContentSection: FC<ContentSectionProps> = ({ value }) => {
   return (
     <Section>
-      <PortableText value={value} components={components} />
+      <PortableText value={value} components={customComponents} />
     </Section>
   )
 }
