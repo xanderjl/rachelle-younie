@@ -20,12 +20,21 @@
     "jsx": "preserve",
     "incremental": true,
     "paths": {
-      "theme/*": [
-        "theme/*"
+      "components/*": [
+        "components/*"
+      ],
+      "hooks/*": [
+        "hooks/*"
       ],
       "studio/*": [
         "studio/*"
-      ]
+      ],
+      "theme/*": [
+        "theme/*"
+      ],
+      "types/*": [
+        "types/*"
+      ],
     }
   },
   "include": [

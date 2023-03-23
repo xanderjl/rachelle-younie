@@ -4,6 +4,7 @@ import {
   AccordionIcon,
   AccordionItem,
   AccordionPanel,
+  AspectRatio,
   Box,
   Grid,
   GridItem,
@@ -12,10 +13,10 @@ import {
 } from '@chakra-ui/react'
 import { PortableText } from 'components/PortableText'
 import { Section } from 'components/Section'
-import type { SectionPoems } from 'hooks/data/useGetPage'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import type { FC } from 'react'
+import type { SectionPoems } from 'types/SanityPrimitives'
 import { urlForDescriptiveImage } from 'utils/urlFor'
 
 export interface PoemsSectionProps {
@@ -28,8 +29,8 @@ export const PoemsSection: FC<PoemsSectionProps> = ({ poems }) => {
   return (
     <Section>
       <Grid
-        gap={{ base: 2, md: 6 }}
-        templateColumns='repeat(auto-fill, minmax(25%, 1fr))'
+        gap={{ base: 6, sm: 8 }}
+        templateColumns={`repeat(auto-fill, minmax(212px, 1fr))`}
       >
         {poems?.map(poem => {
           const { _id, title, slug, scan, copy } = poem
@@ -41,7 +42,13 @@ export const PoemsSection: FC<PoemsSectionProps> = ({ poems }) => {
             <GridItem key={_id}>
               <Heading>{title}</Heading>
               <Link href={`${asPath}/${slug}`}>
-                <Image src={src} alt={title} />
+                <AspectRatio ratio={2 / 3}>
+                  <Image
+                    src={src}
+                    alt={scan.altText ?? `image of the poem: ${title}`}
+                    objectFit='cover'
+                  />
+                </AspectRatio>
               </Link>
               <Accordion allowToggle>
                 <AccordionItem>

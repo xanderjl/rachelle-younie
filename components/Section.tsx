@@ -1,17 +1,19 @@
 import type { ContainerProps } from '@chakra-ui/react'
-import { Container } from '@chakra-ui/react'
-import type { FC } from 'react'
+import { Container, forwardRef } from '@chakra-ui/react'
 
-export const Section: FC<ContainerProps> = ({ children, ...rest }) => {
-  return (
-    <Container
-      display='flex'
-      flexDir='column'
-      maxW='container.md'
-      py={8}
-      {...rest}
-    >
-      {children}
-    </Container>
-  )
-}
+export const Section = forwardRef<ContainerProps, 'div'>(
+  ({ children, ...rest }, ref) => {
+    return (
+      <Container
+        display='flex'
+        flexDir='column'
+        maxW='container.md'
+        py={8}
+        ref={ref}
+        {...rest}
+      >
+        {children}
+      </Container>
+    )
+  }
+)

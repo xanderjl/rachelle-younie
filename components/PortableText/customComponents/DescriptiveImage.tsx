@@ -1,13 +1,7 @@
 import { Image } from '@chakra-ui/react'
 import type { PortableTextTypeComponentProps } from '@portabletext/react'
-import type { Image as SanityImage } from 'sanity'
+import type { DescriptiveImage as DescriptiveImageProps } from 'types/SanityPrimitives'
 import { urlForDescriptiveImage } from 'utils/urlFor'
-
-export interface DescriptiveImageProps {
-  image?: SanityImage
-  altText?: string
-  maxWidth?: number
-}
 
 export const DescriptiveImage = ({
   value

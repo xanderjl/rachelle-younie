@@ -1,12 +1,6 @@
 import { AspectRatio, Box } from '@chakra-ui/react'
 import type { PortableTextTypeComponentProps } from '@portabletext/react'
-
-import type { Ratio } from './index'
-
-export interface EmbedProps {
-  url: string
-  aspectRatio: Ratio
-}
+import type { Embed as EmbedProps } from 'types/SanityPrimitives'
 
 export const Embed = ({
   value
