@@ -22,7 +22,9 @@ export const HeroSection: FC<HeroSectionProps> = ({
   const minH: CustomMinHeight = {
     sm: { base: '300px' },
     md: { base: '400px' },
-    lg: { base: '300px', md: 'calc(100vh - 62px)' }
+    lg: { base: '300px', md: '500px' },
+    half: { base: '300px', md: 'calc(100vh - 62px)' },
+    fullscreen: { base: '300px', md: 'calc(100vh - 62px)' }
   }
 
   return (

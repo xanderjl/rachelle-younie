@@ -52,7 +52,7 @@ export const Mobile: FC<BoxProps> = props => {
         placement='right'
         onClose={onClose}
         finalFocusRef={ref}
-        size='md'
+        size='sm'
       >
         <DrawerOverlay />
         <DrawerContent fontSize='xl'>

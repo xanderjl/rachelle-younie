@@ -28,6 +28,7 @@ export const WritingSection: FC<WritingSectionProps> = ({
             <Link
               as={NLink}
               href={file ?? link}
+              textDecoration='none'
               _hover={{ textDecoration: 'none' }}
             >
               <Button colorScheme='burntOrange'>Read More</Button>

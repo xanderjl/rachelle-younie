@@ -80,7 +80,7 @@ export interface Hero {
   title: string
   subtitle?: string
   backgroundImage?: Image
-  size: 'sm' | 'md' | 'lg'
+  size: 'sm' | 'md' | 'lg' | 'half' | 'fullscreen'
 }
 
 export interface Poem {

@@ -34,7 +34,9 @@ export const sectionHero: SchemaTypeDefinition = {
         list: [
           { title: 'sm', value: 'sm' },
           { title: 'md', value: 'md' },
-          { title: 'lg', value: 'lg' }
+          { title: 'lg', value: 'lg' },
+          { title: 'half', value: 'half' },
+          { title: 'fullscreen', value: 'fullscreen' }
         ]
       },
       initialValue: { title: 'md', value: 'md' },
