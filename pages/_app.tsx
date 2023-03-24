@@ -4,6 +4,7 @@ import '@fontsource/nanum-myeongjo/700.css'
 import '@fontsource/nanum-myeongjo/800.css'
 
 import { ChakraProvider } from '@chakra-ui/react'
+import type { AnalyticsProps } from '@vercel/analytics/react'
 import { Analytics } from '@vercel/analytics/react'
 import Layout from 'components/Layout'
 import type { InitialData } from 'hooks/data/useInitialData'
@@ -23,6 +24,14 @@ interface CustomProps {
 type CustomAppProps = AppProps & CustomProps
 type CustomInitialProps = CustomProps & AppInitialProps
 
+const beforeSendHandler: AnalyticsProps['beforeSend'] = e => {
+  if (e.url.includes('/editor')) {
+    return null
+  }
+
+  return e
+}
+
 const CustomApp = ({ Component, pageProps }: CustomAppProps) => {
   const router = useRouter()
   const isEditor = router.asPath.includes('/editor')
@@ -38,15 +47,7 @@ const CustomApp = ({ Component, pageProps }: CustomAppProps) => {
           <Layout>
             <Component {...pageProps} />
           </Layout>
-          <Analytics
-            beforeSend={e => {
-              if (e.url.includes('/editor')) {
-                return null
-              }
-
-              return e
-            }}
-          />
+          <Analytics beforeSend={beforeSendHandler} />
         </ChakraProvider>
       )}
     </SWRConfig>
