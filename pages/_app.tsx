@@ -38,6 +38,7 @@ const CustomApp = ({ Component, pageProps }: CustomAppProps) => {
 
   return (
     <SWRConfig value={{ fallback: pageProps.fallback }}>
+      <Analytics beforeSend={beforeSendHandler} />
       {isEditor ? (
         <ChakraProvider theme={theme}>
           <Component {...pageProps} />
@@ -47,7 +48,6 @@ const CustomApp = ({ Component, pageProps }: CustomAppProps) => {
           <Layout>
             <Component {...pageProps} />
           </Layout>
-          <Analytics beforeSend={beforeSendHandler} />
         </ChakraProvider>
       )}
     </SWRConfig>
