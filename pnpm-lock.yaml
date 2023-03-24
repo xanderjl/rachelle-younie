@@ -6,8 +6,8 @@ specifiers:
   '@chakra-ui/react': 2.5.2
   '@emotion/react': 11.10.6
   '@emotion/styled': 11.10.6
+  '@fontsource/dm-serif-display': ^4.5.10
   '@fontsource/nanum-myeongjo': 4.5.9
-  '@fontsource/sacramento': ^4.5.9
   '@formspree/react': ^2.4.1
   '@playwright/test': ^1.31.2
   '@portabletext/react': ^2.0.2
@@ -48,8 +48,8 @@ dependencies:
   '@chakra-ui/react': 2.5.2_swvn7aw537nzp5i3amtbyedzyq
   '@emotion/react': 11.10.6_pmekkgnqduwlme35zpnqhenc34
   '@emotion/styled': 11.10.6_oouaibmszuch5k64ms7uxp2aia
+  '@fontsource/dm-serif-display': 4.5.10
   '@fontsource/nanum-myeongjo': 4.5.9
-  '@fontsource/sacramento': 4.5.9
   '@formspree/react': 2.4.1_biqbaboplfbrettd7655fr4n2y
   '@portabletext/react': 2.0.2_react@18.2.0
   '@sanity/asset-utils': 1.3.0
@@ -3339,12 +3339,12 @@ packages:
       react-dom: 18.2.0_react@18.2.0
     dev: false
 
-  /@fontsource/nanum-myeongjo/4.5.9:
-    resolution: {integrity: sha512-+1sC61wwj0IKvyUL1RS36eOj4tdkwdP/FZgS1z66Ews8HxaHRR4TvZcrIRwLh6S0nJ4IENLBPdbCleO5U+Yupw==}
+  /@fontsource/dm-serif-display/4.5.10:
+    resolution: {integrity: sha512-YK21qvUvwRx/Z10rzxNM5cLIkNg8R17wWPqA9+sNS8uTLrIX7WfC8OMTMOJLwrNRu9EDVB1gVUso0LayJPRCOw==}
     dev: false
 
-  /@fontsource/sacramento/4.5.9:
-    resolution: {integrity: sha512-S1PqihajYnRK3EG6SR/s2SGZbPNfSLQjUDhnJsSmz9NBjnIGUpLNsBXwa9PqrtAfyexs22JuGmgTup1mB2GMVg==}
+  /@fontsource/nanum-myeongjo/4.5.9:
+    resolution: {integrity: sha512-+1sC61wwj0IKvyUL1RS36eOj4tdkwdP/FZgS1z66Ews8HxaHRR4TvZcrIRwLh6S0nJ4IENLBPdbCleO5U+Yupw==}
     dev: false
 
   /@formspree/react/2.4.1_biqbaboplfbrettd7655fr4n2y:

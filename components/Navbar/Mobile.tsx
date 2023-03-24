@@ -19,6 +19,7 @@ import type { FC, SyntheticEvent } from 'react'
 import { useRef } from 'react'
 import { FiMenu } from 'react-icons/fi'
 
+import { HomeLink } from './HomeLink'
 import { linkStyles } from './linkStyles'
 
 export const Mobile: FC<BoxProps> = props => {
@@ -44,9 +45,7 @@ export const Mobile: FC<BoxProps> = props => {
       py={2}
       {...props}
     >
-      <Link as={NLink} href='/' {...linkStyles}>
-        Rachelle Younie
-      </Link>
+      <HomeLink>Rachelle Younie</HomeLink>
       <Button as={FiMenu} variant='unstyled' boxSize={8} onClick={onOpen} />
       <Drawer
         isOpen={isOpen}

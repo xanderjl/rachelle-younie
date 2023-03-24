@@ -1,4 +1,5 @@
 import '@fontsource/sacramento/400.css'
+import '@fontsource/dm-serif-display/400.css'
 import '@fontsource/nanum-myeongjo/400.css'
 import '@fontsource/nanum-myeongjo/700.css'
 import '@fontsource/nanum-myeongjo/800.css'

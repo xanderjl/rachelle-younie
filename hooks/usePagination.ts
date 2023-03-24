@@ -26,6 +26,14 @@ export interface PaginationReturnType<T> {
   next: () => void
   prev: () => void
   jump: (page: number) => void
+  pageRange: (
+    page: number,
+    numPages: number,
+    buffer?: number
+  ) => {
+    start: number
+    end: number
+  }
   currentData: T[]
   currentPage: number
   numPages: number
@@ -50,10 +58,28 @@ export const usePagination: Pagination = (arr = [], pageSize) => {
     setCurrentPage(() => Math.min(pageNumber, numPages))
   }
 
+  const pageRange = (page: number, numPages: number, buffer = 2) => {
+    let start = page - buffer
+    let end = page + buffer
+
+    if (end > numPages) {
+      start -= end - numPages
+      end = numPages
+    }
+    if (start <= 0) {
+      end += (start - 1) * -1
+      start = 1
+    }
+    end = end > numPages ? numPages : end
+
+    return { start, end }
+  }
+
   return {
     next,
     prev,
     jump,
+    pageRange,
     currentData,
     currentPage,
     numPages
