@@ -14,7 +14,7 @@ export const WritingSection: FC<WritingSectionProps> = ({
   ...rest
 }) => {
   return (
-    <Section display='flex' flexDir='column' gap={6} {...rest}>
+    <Section display='flex' flexDir='column' gap={4} {...rest}>
       {publications?.map(pub => {
         const { _id, title, description, file, link, publication } = pub
 

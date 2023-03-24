@@ -4,7 +4,8 @@ export const components: ThemeComponents = {
   Button: {},
   Heading: {
     baseStyle: {
-      fontWeight: 200
+      fontWeight: 400,
+      lineHeight: '1'
     }
   },
   Link: {
