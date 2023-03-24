@@ -38,7 +38,15 @@ const CustomApp = ({ Component, pageProps }: CustomAppProps) => {
           <Layout>
             <Component {...pageProps} />
           </Layout>
-          <Analytics />
+          <Analytics
+            beforeSend={e => {
+              if (e.url.includes('/editor')) {
+                return null
+              }
+
+              return e
+            }}
+          />
         </ChakraProvider>
       )}
     </SWRConfig>
