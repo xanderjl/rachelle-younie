@@ -1,9 +1,9 @@
 import type { BoxProps, ContainerProps } from '@chakra-ui/react'
 import { Box, Heading } from '@chakra-ui/react'
 import { Section } from 'components/Section'
-import type { Hero } from 'hooks/data/useGetPage'
 import type { FC } from 'react'
 import React from 'react'
+import type { Hero } from 'types/SanityPrimitives'
 import { urlFor } from 'utils/urlFor'
 
 export type HeroSectionProps = Omit<ContainerProps, 'backgroundImage'> & Hero

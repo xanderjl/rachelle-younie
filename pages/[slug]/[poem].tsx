@@ -1,8 +1,7 @@
-import type { DehydratedState } from '@tanstack/react-query'
-import { dehydrate, QueryClient } from '@tanstack/react-query'
 import { Section } from 'components/Section'
+import type { PoemPage as PoemPageProps } from 'hooks/data/useGetPoemPage'
 import { getPoemPage } from 'hooks/data/useGetPoemPage'
-import { getPoemRoutes } from 'hooks/data/useGetPoems'
+import { getPoemRoutes } from 'hooks/data/useGetPoemRoutes'
 import type {
   GetStaticPaths,
   GetStaticProps,
@@ -11,6 +10,7 @@ import type {
 } from 'next'
 import { PreviewSuspense } from 'next-sanity/preview'
 import { lazy } from 'react'
+import { SWRConfig, useSWRConfig } from 'swr'
 
 const PreviewPoemPage = lazy(() =>
   import('components/previews/PreviewPoemPage').then(mod => ({
@@ -20,7 +20,9 @@ const PreviewPoemPage = lazy(() =>
 
 interface StaticProps {
   poem: string | string[] | undefined
-  dehydratedState?: DehydratedState
+  fallback: {
+    '/sanity/poemPage': PoemPageProps
+  }
   preview: boolean
 }
 
@@ -28,19 +30,31 @@ const PoemPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   poem,
   preview
 }) => {
+  const { fallback } = useSWRConfig()
+
   return preview ? (
     <PreviewSuspense fallback='Loading...'>
       <PreviewPoemPage poem={poem} />
     </PreviewSuspense>
   ) : (
-    <Section>beep</Section>
+    <SWRConfig value={{ fallback }}>
+      <Section>beep</Section>
+    </SWRConfig>
   )
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const poems = await getPoemRoutes()
-  const paths = poems.map(({ slug: poem }) => ({ params: { poem } }))
-  console.log({ paths })
+  const poemRoutes = await getPoemRoutes()
+  const paths = poemRoutes
+    .map(({ slug, poems }) =>
+      poems.map(({ poem }) => ({
+        params: {
+          slug,
+          poem
+        }
+      }))
+    )
+    .flat(1)
 
   return {
     paths,
@@ -53,19 +67,16 @@ export const getStaticProps: GetStaticProps<StaticProps> = async ({
   preview = false
 }) => {
   const { poem } = params || {}
-  const queryClient = new QueryClient()
-
-  if (preview) {
-    return { props: { poem, preview } }
-  }
-
-  await queryClient.prefetchQuery({
-    queryKey: ['poem', poem],
-    queryFn: () => getPoemPage(poem as string)
-  })
+  const poemPage = await getPoemPage(poem as string)
 
   return {
-    props: { poem, dehydratedState: dehydrate(queryClient), preview }
+    props: {
+      poem,
+      fallback: {
+        '/sanity/poemPage': poemPage
+      },
+      preview
+    }
   }
 }
 

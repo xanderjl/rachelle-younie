@@ -94,4 +94,8 @@ const ContactPage: FC<NextPage> = () => {
 }
 export default ContactPage
 
-export const getStaticProps: GetStaticProps = () => ({ props: {} })
+export const getStaticProps: GetStaticProps = () => ({
+  props: {
+    fallback: false
+  }
+})

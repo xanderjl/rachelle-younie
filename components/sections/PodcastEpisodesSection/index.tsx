@@ -1,10 +1,10 @@
 import type { FlexProps } from '@chakra-ui/react'
 import { Button, Flex } from '@chakra-ui/react'
 import { Section } from 'components/Section'
-import type { SectionPodcastEpisodes } from 'hooks/data/useGetPage'
 import { usePagination } from 'hooks/usePagination'
 import type { FC } from 'react'
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
+import type { SectionPodcastEpisodes } from 'types/SanityPrimitives'
 
 import PodcastCard from './PodcastCard'
 

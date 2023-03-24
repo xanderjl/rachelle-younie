@@ -1,7 +1,7 @@
-import { useQuery } from '@tanstack/react-query'
 import { groq } from 'next-sanity'
 import type { Image } from 'sanity'
 import { client } from 'studio/sanity.client'
+import useSWR from 'swr'
 
 export interface PodcastEpisode {
   title?: string
@@ -33,9 +33,4 @@ export const groqQuery = groq`*[_type == "podcastEpisodes"][0]`
 export const getPodcastData = async () => await client.fetch<Podcast>(groqQuery)
 
 export const usePodcastData = () =>
-  useQuery({
-    queryKey: ['podcast-data'],
-    queryFn: getPodcastData,
-    staleTime: Infinity,
-    cacheTime: Infinity
-  })
+  useSWR<Podcast>('/sanity/podcast', getPodcastData)

@@ -1,9 +1,9 @@
 import type { ContainerProps } from '@chakra-ui/react'
 import { Button, Flex, Heading, Link, Text } from '@chakra-ui/react'
 import { Section } from 'components/Section'
-import type { SectionWriting } from 'hooks/data/useGetPage'
 import NLink from 'next/link'
 import type { FC } from 'react'
+import type { SectionWriting } from 'types/SanityPrimitives'
 
 export interface WritingSectionProps extends ContainerProps {
   publications: SectionWriting['publications']

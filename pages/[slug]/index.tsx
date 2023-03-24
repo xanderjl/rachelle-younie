@@ -1,9 +1,8 @@
-import type { DehydratedState } from '@tanstack/react-query'
-import { dehydrate, QueryClient, useQuery } from '@tanstack/react-query'
 import { SectionRenderer } from 'components/SectionRenderer'
+import type { Page as PageProps } from 'hooks/data/useGetPage'
 import { getPage } from 'hooks/data/useGetPage'
 import { getPages } from 'hooks/data/useGetPages'
-import { useInitialData } from 'hooks/data/useInitialData'
+import { getInitialData } from 'hooks/data/useInitialData'
 import type {
   GetStaticPaths,
   GetStaticProps,
@@ -13,6 +12,7 @@ import type {
 import Head from 'next/head'
 import { PreviewSuspense } from 'next-sanity/preview'
 import { lazy } from 'react'
+import { SWRConfig, useSWRConfig } from 'swr'
 
 const PreviewPage = lazy(() =>
   import('components/previews/PreviewPage').then(mod => ({
@@ -22,7 +22,9 @@ const PreviewPage = lazy(() =>
 
 interface StaticProps {
   slug: string | string[] | undefined
-  dehydratedState?: DehydratedState
+  fallback: {
+    '/sanity/page': PageProps
+  }
   preview: boolean
 }
 
@@ -30,24 +32,28 @@ const Page: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   slug,
   preview
 }) => {
-  const { data: initialData } = useInitialData()
-  const { data } = useQuery(['page', slug], () => getPage(slug as string))
-  const { siteTitle } = initialData || {}
-  const { title, sections } = data || {}
+  const { fallback } = useSWRConfig()
 
-  return preview ? (
-    <PreviewSuspense fallback='Loading...'>
-      <PreviewPage slug={slug} />
-    </PreviewSuspense>
-  ) : (
-    <>
+  if (preview) {
+    return (
+      <PreviewSuspense fallback='Loading...'>
+        <PreviewPage slug={slug} />
+      </PreviewSuspense>
+    )
+  }
+
+  const { siteTitle } = fallback['/sanity/initialData']
+  const { title, sections } = fallback['/sanity/page']
+
+  return (
+    <SWRConfig value={{ fallback }}>
       <Head>
         {siteTitle && (
           <title>{`${siteTitle}${title ? ` | ${title}` : ''}`}</title>
         )}
       </Head>
       <SectionRenderer sections={sections} />
-    </>
+    </SWRConfig>
   )
 }
 
@@ -66,20 +72,27 @@ export const getStaticProps: GetStaticProps<StaticProps> = async ({
   preview = false
 }) => {
   const { slug } = params || {}
-  const queryClient = new QueryClient()
+  const page = await getPage(slug as string)
+  const initialData = await getInitialData()
+  const fallback = { '/sanity/page': page, '/sanity/initialData': initialData }
 
   if (preview) {
-    return { props: { slug, preview } }
+    return {
+      props: {
+        slug,
+        fallback,
+        preview
+      }
+    }
   }
 
-  await queryClient.prefetchQuery({
-    queryKey: ['page', slug],
-    queryFn: () => getPage(slug as string),
-    staleTime: Infinity,
-    cacheTime: Infinity
-  })
-
-  return { props: { slug, dehydratedState: dehydrate(queryClient), preview } }
+  return {
+    props: {
+      slug,
+      fallback,
+      preview
+    }
+  }
 }
 
 export default Page

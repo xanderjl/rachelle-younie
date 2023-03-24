@@ -1,6 +1,6 @@
-import { useQuery } from '@tanstack/react-query'
 import { groq } from 'next-sanity'
 import { client } from 'studio/sanity.client'
+import useSWR from 'swr'
 
 export interface Route {
   title: string
@@ -18,9 +18,4 @@ export const groqQuery = groq`
 
 export const getNavItems = async () => await client.fetch<Navigation>(groqQuery)
 export const useNavigation = () =>
-  useQuery({
-    queryKey: ['navigation'],
-    queryFn: getNavItems,
-    staleTime: Infinity,
-    cacheTime: Infinity
-  })
+  useSWR<Navigation>('/sanity/navigation', getNavItems)

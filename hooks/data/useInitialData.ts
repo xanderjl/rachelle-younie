@@ -1,7 +1,7 @@
-import { useQuery } from '@tanstack/react-query'
 import { groq } from 'next-sanity'
 import type { Image } from 'sanity'
 import { client } from 'studio/sanity.client'
+import useSWR from 'swr'
 
 import type { Navigation } from './useNavigation'
 
@@ -42,9 +42,4 @@ export const getInitialData = async () =>
   })
 
 export const useInitialData = () =>
-  useQuery({
-    queryKey: ['initial-data'],
-    queryFn: getInitialData,
-    staleTime: Infinity,
-    cacheTime: Infinity
-  })
+  useSWR<InitialData>('/sanity/initialData', getInitialData)

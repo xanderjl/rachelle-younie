@@ -1,6 +1,6 @@
-import { useQuery } from '@tanstack/react-query'
 import { groq } from 'next-sanity'
 import { client } from 'studio/sanity.client'
+import useSWR from 'swr'
 import type { Section } from 'types/SanityPrimitives'
 
 export interface Page {
@@ -71,9 +71,4 @@ export const getPage = async (slug: string) =>
   await client.fetch<Page>(groqQuery, { slug })
 
 export const useGetPage = (slug: string) =>
-  useQuery({
-    queryKey: ['page', slug],
-    queryFn: () => getPage(slug),
-    staleTime: Infinity,
-    cacheTime: Infinity
-  })
+  useSWR<Page>('/sanity/page', () => getPage(slug))

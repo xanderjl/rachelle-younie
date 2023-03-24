@@ -1,5 +1,4 @@
-import type {
-  FlexProps} from '@chakra-ui/react';
+import type { FlexProps } from '@chakra-ui/react'
 import {
   Accordion,
   AccordionButton,
@@ -10,9 +9,9 @@ import {
   Flex,
   Heading
 } from '@chakra-ui/react'
-import type { PodcastEpisode } from 'hooks/data/useGetPage'
-import type { FC } from 'react';
+import type { FC } from 'react'
 import React from 'react'
+import type { PodcastEpisode } from 'types/SanityPrimitives'
 
 import { Player } from './Player'
 
