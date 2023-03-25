@@ -2,10 +2,11 @@ import { SectionRenderer } from 'components/SectionRenderer'
 import type { Page } from 'hooks/data/useGetPage'
 import { getPage } from 'hooks/data/useGetPage'
 import type { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next'
-import Head from 'next/head'
 import { PreviewSuspense } from 'next-sanity/preview'
+import type { NextSeoProps } from 'next-seo'
+import { NextSeo } from 'next-seo'
 import { lazy } from 'react'
-import { SWRConfig, useSWRConfig } from 'swr'
+import { SWRConfig } from 'swr'
 
 const PreviewPage = lazy(() =>
   import('components/previews/PreviewPage').then(mod => ({
@@ -21,27 +22,30 @@ export interface StaticProps {
 }
 
 const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
+  fallback,
   preview
 }) => {
-  const { fallback } = useSWRConfig()
-  const { title, metaDescription, sections } =
-    (!preview && fallback['/sanity/page']) || {}
-  const { siteTitle } = (!preview && fallback['/sanity/initialData']) || {}
+  if (preview) {
+    return (
+      <PreviewSuspense fallback='Loading...'>
+        <PreviewPage />
+      </PreviewSuspense>
+    )
+  }
 
-  return preview ? (
-    <PreviewSuspense fallback='Loading...'>
-      <PreviewPage />
-    </PreviewSuspense>
-  ) : (
+  const {
+    title,
+    metaDescription: description,
+    sections
+  } = fallback['/sanity/page']
+  const seo: NextSeoProps = {
+    title,
+    description
+  }
+
+  return (
     <SWRConfig value={{ fallback }}>
-      <Head>
-        {siteTitle && (
-          <title>{`${siteTitle}${title ? ` | ${title}` : ''}`}</title>
-        )}
-        {metaDescription && (
-          <meta name='description' content={metaDescription} />
-        )}
-      </Head>
+      <NextSeo {...seo} />
       <SectionRenderer sections={sections} />
     </SWRConfig>
   )

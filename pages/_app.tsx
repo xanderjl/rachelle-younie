@@ -12,8 +12,11 @@ import { getInitialData } from 'hooks/data/useInitialData'
 import type { AppContext, AppInitialProps, AppProps } from 'next/app'
 import App from 'next/app'
 import { useRouter } from 'next/router'
+import type { NextSeoProps } from 'next-seo'
+import { DefaultSeo } from 'next-seo'
 import { SWRConfig } from 'swr'
 import { theme } from 'theme'
+import { urlFor } from 'utils/urlFor'
 
 interface CustomProps {
   fallback: {
@@ -22,7 +25,7 @@ interface CustomProps {
 }
 
 type CustomAppProps = AppProps & CustomProps
-type CustomInitialProps = CustomProps & AppInitialProps
+type CustomInitialProps = AppInitialProps & CustomProps
 
 const beforeSendHandler: AnalyticsProps['beforeSend'] = e => {
   if (e.url.includes('/editor')) {
@@ -32,12 +35,25 @@ const beforeSendHandler: AnalyticsProps['beforeSend'] = e => {
   return e
 }
 
-const CustomApp = ({ Component, pageProps }: CustomAppProps) => {
+const CustomApp = ({ Component, pageProps, fallback }: CustomAppProps) => {
+  const {
+    siteTitle,
+    favicon,
+    metaDescription: description
+  } = fallback['/sanity/initialData']
   const router = useRouter()
   const isEditor = router.asPath.includes('/editor')
+  const faviconHref = favicon && urlFor(favicon).url()
+
+  const seo: NextSeoProps = {
+    title: 'home',
+    titleTemplate: `${siteTitle} | %s`,
+    description,
+    additionalLinkTags: [{ rel: 'icon', href: faviconHref ?? '' }]
+  }
 
   return (
-    <SWRConfig value={{ fallback: pageProps.fallback }}>
+    <SWRConfig value={{ fallback }}>
       <Analytics beforeSend={beforeSendHandler} />
       {isEditor ? (
         <ChakraProvider theme={theme}>
@@ -45,6 +61,7 @@ const CustomApp = ({ Component, pageProps }: CustomAppProps) => {
         </ChakraProvider>
       ) : (
         <ChakraProvider theme={theme}>
+          <DefaultSeo {...seo} />
           <Layout>
             <Component {...pageProps} />
           </Layout>
@@ -57,11 +74,11 @@ const CustomApp = ({ Component, pageProps }: CustomAppProps) => {
 CustomApp.getInitialProps = async (
   context: AppContext
 ): Promise<CustomInitialProps> => {
-  const initalProps = await App.getInitialProps(context)
+  const ctx = await App.getInitialProps(context)
   const initialData = await getInitialData()
 
   return {
-    ...initalProps,
+    ...ctx,
     fallback: { '/sanity/initialData': initialData }
   }
 }
