@@ -28,7 +28,7 @@ const width = 1200
 const height = 627
 
 const font = fetch(
-  'https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap'
+  new URL('../../assets/fonts/DMSerifDisplay-Regular.ttf', import.meta.url)
 ).then(res => res.arrayBuffer())
 
 const dynamicOgImageHandler = async (req: NextRequest) => {
@@ -55,8 +55,6 @@ const dynamicOgImageHandler = async (req: NextRequest) => {
   const src = urlFor(image).width(1200).height(627).url()
   const fontData = await font
 
-  console.log({ fontData })
-
   return new ImageResponse(
     (
       <div
@@ -65,6 +63,7 @@ const dynamicOgImageHandler = async (req: NextRequest) => {
           height: '100%',
           display: 'flex',
           fontFamily: 'DM Serif Display',
+          padding: '4rem',
           color,
           alignItems,
           flexDirection,
@@ -78,10 +77,34 @@ const dynamicOgImageHandler = async (req: NextRequest) => {
           alt=''
           width={width}
           height={height}
-          style={{ position: 'absolute', top: 0, left: 0, zIndex: -1 }}
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            color
+          }}
         />
-        <div>{title}</div>
-        <div>{subtitle}</div>
+        <div
+          style={{
+            fontSize: '72px'
+          }}
+        >
+          {title}
+        </div>
+        <div
+          style={{
+            width: '100%',
+            borderTopWidth: '2px',
+            borderColor: color
+          }}
+        />
+        <div
+          style={{
+            fontSize: '48px'
+          }}
+        >
+          {subtitle}
+        </div>
       </div>
     ),
     {
