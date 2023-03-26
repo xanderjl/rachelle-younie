@@ -3,6 +3,12 @@ import type { NextRequest } from 'next/server'
 import { createClient, groq } from 'next-sanity'
 import type { Image } from 'sanity'
 import { apiVersion, dataset, projectId } from 'studio/sanity.client'
+import type {
+  AlignItems,
+  FlexDirection,
+  JustifyContent,
+  TextAlign
+} from 'types/SanityPrimitives'
 import { urlFor } from 'utils/urlFor'
 
 export const config = {
@@ -11,21 +17,19 @@ export const config = {
 
 export interface OgImage {
   color: string
-  alignItems: 'flex-start' | 'flex-end' | 'center' | 'stretch' | 'baseline'
-  flexDirection: 'row' | 'row-reverse' | 'column' | 'column-reverse'
-  justifyContent:
-    | 'flex-start'
-    | 'flex-end'
-    | 'center'
-    | 'space-between'
-    | 'space-around'
-    | 'space-evenly'
-  textAlign: 'left' | 'right' | 'center' | 'justify' | 'initial' | 'inherit'
+  alignItems: AlignItems
+  flexDirection: FlexDirection
+  justifyContent: JustifyContent
+  textAlign: TextAlign
   image: Image
 }
 
 const width = 1200
 const height = 627
+
+const font = fetch(
+  'https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap'
+).then(res => res.arrayBuffer())
 
 const dynamicOgImageHandler = async (req: NextRequest) => {
   const { searchParams } = req.nextUrl
@@ -49,6 +53,9 @@ const dynamicOgImageHandler = async (req: NextRequest) => {
     }
   } = await client.fetch<{ ogImage: OgImage }>(groqQuery)
   const src = urlFor(image).width(1200).height(627).url()
+  const fontData = await font
+
+  console.log({ fontData })
 
   return new ImageResponse(
     (
@@ -57,6 +64,7 @@ const dynamicOgImageHandler = async (req: NextRequest) => {
           width: '100%',
           height: '100%',
           display: 'flex',
+          fontFamily: 'DM Serif Display',
           color,
           alignItems,
           flexDirection,
@@ -78,7 +86,14 @@ const dynamicOgImageHandler = async (req: NextRequest) => {
     ),
     {
       width,
-      height
+      height,
+      fonts: [
+        {
+          name: 'DM Serif Display',
+          data: fontData,
+          style: 'normal'
+        }
+      ]
     }
   )
 }

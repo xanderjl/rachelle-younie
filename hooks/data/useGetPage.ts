@@ -28,7 +28,11 @@ export const groqQuery = groq`
       title,
       subtitle,
       backgroundImage,
-      size
+      size,
+      textAlign,
+      flexDirection,
+      justifyContent,
+      alignItems
     },
     _type == "sectionPodcastEpisodes" => {
       _key,

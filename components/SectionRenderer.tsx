@@ -35,18 +35,9 @@ export const SectionRenderer: FC<SectionRendererProps> = ({
       }
 
       if (_type === 'sectionHero') {
-        const { backgroundImage, size, subtitle, title } =
-          section as SectionHero
+        const { _key, ...rest } = section as SectionHero
 
-        return (
-          <HeroSection
-            key={_key}
-            backgroundImage={backgroundImage}
-            size={size}
-            subtitle={subtitle}
-            title={title}
-          />
-        )
+        return <HeroSection key={_key} {...rest} />
       }
 
       if (_type === 'sectionPodcastEpisodes') {

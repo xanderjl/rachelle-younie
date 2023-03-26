@@ -35,6 +35,27 @@ export type Spacing =
   | 80
   | 96
 
+export type FlexDirection = 'row' | 'row-reverse' | 'column' | 'column-reverse'
+
+export type AlignItems =
+  | 'flex-start'
+  | 'flex-end'
+  | 'center'
+  | 'space-between'
+  | 'space-around'
+  | 'space-evenly'
+  | 'stretch'
+
+export type JustifyContent =
+  | 'flex-start'
+  | 'flex-end'
+  | 'center'
+  | 'space-between'
+  | 'space-around'
+  | 'space-evenly'
+  | 'stretch'
+
+export type TextAlign = 'left' | 'center' | 'right' | 'justify'
 export interface Embed {
   url: string
   aspectRatio: Ratio
@@ -81,6 +102,10 @@ export interface Hero {
   subtitle?: string
   backgroundImage?: Image
   size: 'sm' | 'md' | 'lg' | 'half' | 'fullscreen'
+  textAlign: TextAlign
+  flexDirection: FlexDirection
+  justifyContent: JustifyContent
+  alignItems: AlignItems
 }
 
 export interface Poem {

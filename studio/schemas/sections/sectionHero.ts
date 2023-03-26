@@ -41,6 +41,26 @@ export const sectionHero: SchemaTypeDefinition = {
       },
       initialValue: { title: 'md', value: 'md' },
       validation: rule => rule.required()
+    },
+    {
+      name: 'textAlign',
+      type: 'textAlign',
+      validation: rule => rule.required()
+    },
+    {
+      name: 'flexDirection',
+      type: 'flexDirection',
+      validation: rule => rule.required()
+    },
+    {
+      name: 'justifyContent',
+      type: 'justifyContent',
+      validation: rule => rule.required()
+    },
+    {
+      name: 'alignItems',
+      type: 'alignItems',
+      validation: rule => rule.required()
     }
   ],
   preview: {

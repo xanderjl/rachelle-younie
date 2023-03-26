@@ -23,66 +23,22 @@ export const ogImage: SchemaTypeDefinition = {
     },
     {
       name: 'textAlign',
-      title: 'Text Alignment',
-      type: 'string',
-      options: {
-        list: [
-          { title: 'left', value: 'left' },
-          { title: 'center', value: 'center' },
-          { title: 'right', value: 'right' },
-          { title: 'justify', value: 'justify' }
-        ]
-      },
-      initialValue: { title: 'left', value: 'left' },
+      type: 'textAlign',
       validation: rule => rule.required()
     },
     {
       name: 'flexDirection',
-      title: 'Flex Direction',
-      type: 'string',
-      options: {
-        list: [
-          { title: 'row', value: 'row' },
-          { title: 'row-reverse', value: 'row-reverse' },
-          { title: 'column', value: 'column' },
-          { title: 'column-reverse', value: 'column-reverse' }
-        ]
-      },
-      initialValue: { title: 'column', value: 'column' },
+      type: 'flexDirection',
       validation: rule => rule.required()
     },
     {
       name: 'justifyContent',
-      title: 'Justify Content',
-      type: 'string',
-      options: {
-        list: [
-          { title: 'flex-start', value: 'flex-start' },
-          { title: 'center', value: 'center' },
-          { title: 'flex-end', value: 'flex-end' },
-          { title: 'space-between', value: 'space-between' },
-          { title: 'space-around', value: 'space-around' },
-          { title: 'space-evenly', value: 'space-evenly' },
-          { title: 'stretch', value: 'stretch' }
-        ]
-      },
+      type: 'justifyContent',
       validation: rule => rule.required()
     },
     {
       name: 'alignItems',
-      title: 'Align Items',
-      type: 'string',
-      options: {
-        list: [
-          { title: 'flex-start', value: 'flex-start' },
-          { title: 'center', value: 'center' },
-          { title: 'flex-end', value: 'flex-end' },
-          { title: 'space-between', value: 'space-between' },
-          { title: 'space-around', value: 'space-around' },
-          { title: 'space-evenly', value: 'space-evenly' },
-          { title: 'stretch', value: 'stretch' }
-        ]
-      },
+      type: 'alignItems',
       validation: rule => rule.required()
     }
   ]

@@ -41,7 +41,7 @@ export const HeroSection: FC<HeroSectionProps> = ({
       backgroundPosition={backgroundPosition}
       backgroundSize='cover'
     >
-      <Section flexDir='column' gap={2} py={8} px={4} color='white' {...rest}>
+      <Section minH='inherit' gap={2} py={8} px={4} color='white' {...rest}>
         <Heading as='h1' size='2xl'>
           {title}
         </Heading>
