@@ -3,6 +3,7 @@ import { FaMicrophoneAlt } from 'react-icons/fa'
 import { IoIosSettings } from 'react-icons/io'
 import type { StructureResolver } from 'sanity/desk'
 import Iframe from 'sanity-plugin-iframe-pane'
+import { createOgImageUrl } from 'utils/createOgImageUrl'
 
 const singletons = ['settings', 'navigation', 'podcastEpisodes', 'landingPage']
 
@@ -16,7 +17,21 @@ export const structure: StructureResolver = S =>
       S.listItem()
         .title('Settings')
         .icon(IoIosSettings)
-        .child(S.document().schemaType('settings').documentId('settings')),
+        .child(
+          S.document()
+            .schemaType('settings')
+            .documentId('settings')
+            .views([
+              S.view.form(),
+              S.view
+                .component(Iframe)
+                .options({
+                  url: (doc: any) =>
+                    createOgImageUrl(doc.siteTitle, 'Test Card').href
+                })
+                .title('OG Image Preview')
+            ])
+        ),
       S.listItem()
         .title('Podcast Episodes')
         .icon(FaMicrophoneAlt)

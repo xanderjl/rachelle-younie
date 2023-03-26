@@ -24,6 +24,11 @@ export const settings: SchemaTypeDefinition = {
       description:
         'This field is supposed to be a short blurb about you or the purpose of your site. Usually under 150 characters. It helps with ✨SEO✨',
       type: 'text'
+    },
+    {
+      name: 'ogImage',
+      title: 'Open Graph Image',
+      type: 'ogImage'
     }
   ],
   preview: {

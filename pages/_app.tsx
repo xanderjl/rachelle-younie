@@ -49,7 +49,13 @@ const CustomApp = ({ Component, pageProps, fallback }: CustomAppProps) => {
     title: 'home',
     titleTemplate: `${siteTitle} | %s`,
     description,
-    additionalLinkTags: [{ rel: 'icon', href: faviconHref ?? '' }]
+    additionalLinkTags: [{ rel: 'icon', href: faviconHref ?? '' }],
+    additionalMetaTags: [
+      {
+        name: 'viewport',
+        content: 'width=device-width, initial-scale=1'
+      }
+    ]
   }
 
   return (

@@ -7,6 +7,7 @@ import { embed } from './embed'
 import { episode } from './episode'
 import { imageBlock } from './imageBlock'
 import { navigation } from './navigation'
+import { ogImage } from './ogImage'
 import { page } from './page'
 import { podcastEpisodes } from './podcastEpisodes'
 import { poem } from './poem'
@@ -30,6 +31,7 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   episode,
   imageBlock,
   navigation,
+  ogImage,
   page,
   podcastEpisodes,
   poem,
