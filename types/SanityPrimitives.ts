@@ -100,6 +100,7 @@ export interface PodcastEpisode {
 export interface Hero {
   title: string
   subtitle?: string
+  color?: string
   backgroundImage?: Image
   size: 'sm' | 'md' | 'lg' | 'half' | 'fullscreen'
   textAlign: TextAlign

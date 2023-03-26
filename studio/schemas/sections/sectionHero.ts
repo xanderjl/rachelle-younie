@@ -43,6 +43,11 @@ export const sectionHero: SchemaTypeDefinition = {
       validation: rule => rule.required()
     },
     {
+      name: 'color',
+      title: 'Text Color',
+      type: 'string'
+    },
+    {
       name: 'textAlign',
       type: 'textAlign',
       validation: rule => rule.required()

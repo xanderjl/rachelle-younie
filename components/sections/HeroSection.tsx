@@ -1,4 +1,4 @@
-import type { BoxProps, ContainerProps } from '@chakra-ui/react'
+import type { BoxProps, ContainerProps, HeadingProps } from '@chakra-ui/react'
 import { Box, Heading } from '@chakra-ui/react'
 import { Section } from 'components/Section'
 import type { FC } from 'react'
@@ -8,12 +8,14 @@ import { urlFor } from 'utils/urlFor'
 
 export type HeroSectionProps = Omit<ContainerProps, 'backgroundImage'> & Hero
 export type CustomMinHeight = { [key: string]: BoxProps['minH'] }
+export type CustomFontSize = { [key: string]: HeadingProps['size'] }
 
 export const HeroSection: FC<HeroSectionProps> = ({
   backgroundImage,
   size,
   subtitle,
   title,
+  color,
   ...rest
 }) => {
   const bgImg = backgroundImage ? urlFor(backgroundImage).url() : ''
@@ -23,8 +25,22 @@ export const HeroSection: FC<HeroSectionProps> = ({
     sm: { base: '300px' },
     md: { base: '400px' },
     lg: { base: '300px', md: '500px' },
-    half: { base: '300px', md: 'calc(100vh - 62px)' },
-    fullscreen: { base: '300px', md: 'calc(100vh - 62px)' }
+    half: 'calc(50vh - 62px)',
+    fullscreen: 'calc(100vh - 62px)'
+  }
+  const h1Size: CustomFontSize = {
+    sm: 'lg',
+    md: 'xl',
+    lg: '2xl',
+    half: '3xl',
+    fullscreen: { base: '2xl', md: '4xl' }
+  }
+  const h2Size: CustomFontSize = {
+    sm: 'sm',
+    md: 'md',
+    lg: 'lg',
+    half: 'xl',
+    fullscreen: { base: 'lg', md: '2xl' }
   }
 
   return (
@@ -41,12 +57,19 @@ export const HeroSection: FC<HeroSectionProps> = ({
       backgroundPosition={backgroundPosition}
       backgroundSize='cover'
     >
-      <Section minH='inherit' gap={2} py={8} px={4} color='white' {...rest}>
-        <Heading as='h1' size='2xl'>
+      <Section
+        minH='inherit'
+        gap={2}
+        py={8}
+        px={4}
+        color={color ?? 'white'}
+        {...rest}
+      >
+        <Heading as='h1' size={h1Size[size]}>
           {title}
         </Heading>
         {subtitle && (
-          <Heading as='h2' size='xl'>
+          <Heading as='h2' size={h2Size[size]}>
             {subtitle}
           </Heading>
         )}
