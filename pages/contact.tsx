@@ -40,7 +40,7 @@ const ContactPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
 
   const { siteTitle } = fallback['/sanity/initialData']
   const title = 'contact'
-  const description = 'beeeeep'
+  const description = "Let's get in touch!"
   const url = createOgImageUrl(siteTitle ?? '', title).toString()
 
   const seo: NextSeoProps = {
