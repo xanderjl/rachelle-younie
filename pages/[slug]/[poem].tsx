@@ -91,12 +91,14 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const poemRoutes = await getPoemRoutes()
   const paths = poemRoutes
     .map(({ slug, poems }) =>
-      poems.map(({ poem }) => ({
-        params: {
-          slug,
-          poem
-        }
-      }))
+      poems
+        .filter(poem => !!poem)
+        .map(({ poem }) => ({
+          params: {
+            slug,
+            poem
+          }
+        }))
     )
     .flat(1)
 
