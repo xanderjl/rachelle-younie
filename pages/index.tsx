@@ -59,9 +59,16 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
         {
           url,
           width: 1200,
-          height: 627
+          height: 627,
+          alt: title,
+          type: 'image/png'
         }
       ]
+    },
+    twitter: {
+      handle: '@rachelleyounie',
+      site: baseUrl,
+      cardType: 'summary_large_image'
     }
   }
 
