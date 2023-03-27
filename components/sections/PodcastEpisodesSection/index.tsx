@@ -29,7 +29,7 @@ export const PodcastEpisodesSection: FC<PodcastEpisodesSectionProps> = ({
   const pages = Array.from({ length }, (_, i) => i + 1)
   const first = pages[0]
   const last = pages.length
-  const { start, end } = pageRange(currentPage, length, 2)
+  const { start, end } = pageRange(currentPage, length, 1)
   const middle = pages.slice(start, end)
 
   return (

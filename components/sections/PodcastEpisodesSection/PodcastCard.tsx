@@ -27,7 +27,6 @@ const PodcastCard: FC<PodcastCardProps> = ({ episode, ...rest }) => {
       <Flex
         flex={1}
         direction='column'
-        maxW='70ch'
         p={6}
         gap={4}
         borderWidth={1}
