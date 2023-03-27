@@ -20,11 +20,11 @@ export const ImageBlock = ({
         src={src}
         alt={image?.altText}
         objectFit='contain'
-        maxW='50%'
+        maxW={{ md: '50%' }}
         pt={3}
         pb={5}
       />
-      <Flex flex={1} maxW='50%' flexDir='column'>
+      <Flex flex={1} maxW={{ md: '50%' }} flexDir='column'>
         <PortableText value={content} components={customComponents} />
       </Flex>
     </Flex>
