@@ -18,6 +18,7 @@ export const PoemsSection: FC<PoemsSectionProps> = ({ poems }) => {
       <Grid
         gap={{ base: 6, sm: 8 }}
         templateColumns={`repeat(auto-fill, minmax(212px, 1fr))`}
+        gridAutoRows='auto'
       >
         {poems?.map(poem => {
           const { _id, title, slug, scan } = poem
@@ -26,8 +27,14 @@ export const PoemsSection: FC<PoemsSectionProps> = ({ poems }) => {
             urlForDescriptiveImage(scan.image, scan.maxWidth).url()
 
           return (
-            <GridItem key={_id}>
-              <Heading>{title}</Heading>
+            <GridItem
+              key={_id}
+              display='flex'
+              flexDir='column'
+              justifyContent='space-between'
+              gap={2}
+            >
+              <Heading size='md'>{title}</Heading>
               <Link href={`${asPath}/${slug}`}>
                 <AspectRatio ratio={2 / 3}>
                   <Image
