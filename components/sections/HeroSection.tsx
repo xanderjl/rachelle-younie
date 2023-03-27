@@ -12,6 +12,7 @@ export type CustomFontSize = { [key: string]: HeadingProps['size'] }
 
 export const HeroSection: FC<HeroSectionProps> = ({
   backgroundImage,
+  backgroundColor,
   size,
   subtitle,
   title,
@@ -57,23 +58,25 @@ export const HeroSection: FC<HeroSectionProps> = ({
       backgroundPosition={backgroundPosition}
       backgroundSize='cover'
     >
-      <Section
-        minH='inherit'
-        gap={2}
-        py={8}
-        px={4}
-        color={color ?? 'white'}
-        {...rest}
-      >
-        <Heading as='h1' size={h1Size[size]}>
-          {title}
-        </Heading>
-        {subtitle && (
-          <Heading as='h2' size={h2Size[size]}>
-            {subtitle}
+      <Box w='100%' minH='inherit' backgroundColor={backgroundColor}>
+        <Section
+          minH='inherit'
+          gap={2}
+          py={8}
+          px={4}
+          color={color ?? 'white'}
+          {...rest}
+        >
+          <Heading as='h1' size={h1Size[size]}>
+            {title}
           </Heading>
-        )}
-      </Section>
+          {subtitle && (
+            <Heading as='h2' size={h2Size[size]}>
+              {subtitle}
+            </Heading>
+          )}
+        </Section>
+      </Box>
     </Box>
   )
 }

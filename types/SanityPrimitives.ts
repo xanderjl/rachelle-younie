@@ -101,6 +101,18 @@ export interface Hero {
   title: string
   subtitle?: string
   color?: string
+  backgroundColor?:
+    | 'none'
+    | '10%'
+    | '20%'
+    | '30%'
+    | '40%'
+    | '50%'
+    | '60%'
+    | '70%'
+    | '80%'
+    | '90%'
+    | '100%'
   backgroundImage?: Image
   size: 'sm' | 'md' | 'lg' | 'half' | 'fullscreen'
   textAlign: TextAlign

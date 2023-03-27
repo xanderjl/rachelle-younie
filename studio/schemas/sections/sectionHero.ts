@@ -48,6 +48,27 @@ export const sectionHero: SchemaTypeDefinition = {
       type: 'string'
     },
     {
+      name: 'backgroundColor',
+      title: 'Darken Image',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'none', value: 'transparent' },
+          { title: '10%', value: 'blackAlpha.50' },
+          { title: '20%', value: 'blackAlpha.100' },
+          { title: '30%', value: 'blackAlpha.200' },
+          { title: '40%', value: 'blackAlpha.300' },
+          { title: '50%', value: 'blackAlpha.400' },
+          { title: '60%', value: 'blackAlpha.500' },
+          { title: '70%', value: 'blackAlpha.600' },
+          { title: '80%', value: 'blackAlpha.700' },
+          { title: '90%', value: 'blackAlpha.800' },
+          { title: '100%', value: 'blackAlpha.900' }
+        ]
+      },
+      initialValue: { title: 'none', value: 'transparent' }
+    },
+    {
       name: 'textAlign',
       type: 'textAlign',
       validation: rule => rule.required()
