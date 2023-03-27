@@ -15,8 +15,16 @@ export const ImageBlock = ({
 
   return (
     <Flex flexDir={{ base: 'column', md: flexDir }} gap={{ base: 4, md: gap }}>
-      <Image src={src} alt={image?.altText} objectFit='contain' pt={3} pb={5} />
-      <Flex flexDir='column'>
+      <Image
+        flex={1}
+        src={src}
+        alt={image?.altText}
+        objectFit='contain'
+        maxW='50%'
+        pt={3}
+        pb={5}
+      />
+      <Flex flex={1} maxW='50%' flexDir='column'>
         <PortableText value={content} components={customComponents} />
       </Flex>
     </Flex>
