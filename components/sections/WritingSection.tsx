@@ -20,7 +20,9 @@ export const WritingSection: FC<WritingSectionProps> = ({
 
         return (
           <Flex key={_id} flexDir='column' gap={4}>
-            <Heading as='h2'>{title}</Heading>
+            <Heading as='h2' size='lg'>
+              {title}
+            </Heading>
             <Heading as='h3' size='md' fontFamily='body'>
               {publication}
             </Heading>

@@ -27,8 +27,17 @@ export interface OgImage {
 const width = 1200
 const height = 627
 
-const font = fetch(
-  new URL('../../assets/fonts/DMSerifDisplay-Regular.ttf', import.meta.url)
+const dmSerifDisplay = fetch(
+  new URL(
+    '../../assets/fonts/DMSerifDisplay/DMSerifDisplay-Regular.ttf',
+    import.meta.url
+  )
+).then(res => res.arrayBuffer())
+const sacramento = fetch(
+  new URL(
+    '../../assets/fonts/Sacramento/Sacramento-Regular.ttf',
+    import.meta.url
+  )
 ).then(res => res.arrayBuffer())
 
 const dynamicOgImageHandler = async (req: NextRequest) => {
@@ -53,7 +62,8 @@ const dynamicOgImageHandler = async (req: NextRequest) => {
     }
   } = await client.fetch<{ ogImage: OgImage }>(groqQuery)
   const src = urlFor(image).width(1200).height(627).url()
-  const fontData = await font
+  const dmSerifDisplayData = await dmSerifDisplay
+  const sacramentoData = await sacramento
 
   return new ImageResponse(
     (
@@ -62,7 +72,7 @@ const dynamicOgImageHandler = async (req: NextRequest) => {
           width: '100%',
           height: '100%',
           display: 'flex',
-          fontFamily: 'DM Serif Display',
+
           padding: '4rem',
           color,
           alignItems,
@@ -86,7 +96,8 @@ const dynamicOgImageHandler = async (req: NextRequest) => {
         />
         <div
           style={{
-            fontSize: '72px'
+            fontFamily: 'Sacramento',
+            fontSize: '96px'
           }}
         >
           {title}
@@ -100,6 +111,7 @@ const dynamicOgImageHandler = async (req: NextRequest) => {
         />
         <div
           style={{
+            fontFamily: 'DM Serif Display',
             fontSize: '48px'
           }}
         >
@@ -113,7 +125,12 @@ const dynamicOgImageHandler = async (req: NextRequest) => {
       fonts: [
         {
           name: 'DM Serif Display',
-          data: fontData,
+          data: dmSerifDisplayData,
+          style: 'normal'
+        },
+        {
+          name: 'Sacramento',
+          data: sacramentoData,
           style: 'normal'
         }
       ]

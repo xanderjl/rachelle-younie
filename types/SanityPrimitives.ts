@@ -101,7 +101,8 @@ export interface Hero {
   title: string
   subtitle?: string
   color?: string
-  backgroundColor?:
+  backgroundColor?: string
+  overlay?:
     | 'none'
     | '10%'
     | '20%'

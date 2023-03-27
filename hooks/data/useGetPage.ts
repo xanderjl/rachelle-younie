@@ -29,6 +29,7 @@ export const groqQuery = groq`
       subtitle,
       backgroundImage,
       backgroundColor,
+      overlay,
       color,
       size,
       textAlign,

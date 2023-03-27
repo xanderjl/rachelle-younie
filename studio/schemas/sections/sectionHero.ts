@@ -49,6 +49,11 @@ export const sectionHero: SchemaTypeDefinition = {
     },
     {
       name: 'backgroundColor',
+      title: 'Background Color',
+      type: 'string'
+    },
+    {
+      name: 'overlay',
       title: 'Darken Image',
       type: 'string',
       options: {
