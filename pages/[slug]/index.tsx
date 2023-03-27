@@ -90,7 +90,9 @@ const Page: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const pages = await getPages()
-  const paths = pages.map(({ slug }) => ({ params: { slug } }))
+  const paths = pages
+    .filter(page => !!page)
+    .map(({ slug }) => ({ params: { slug } }))
 
   return {
     paths,
