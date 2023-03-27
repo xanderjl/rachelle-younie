@@ -9,3 +9,12 @@ export const createOgImageUrl = (title: string, subtitle: string): URL => {
 
   return url
 }
+
+export const createPoemOgImageUrl = (poem: string): URL => {
+  const apiRoute = '/api/poem-og-image'
+  const url = new URL(`${baseUrl}${apiRoute}`)
+
+  url.searchParams.append('poem', poem)
+
+  return url
+}

@@ -1,17 +1,4 @@
-import {
-  Accordion,
-  AccordionButton,
-  AccordionIcon,
-  AccordionItem,
-  AccordionPanel,
-  AspectRatio,
-  Box,
-  Grid,
-  GridItem,
-  Heading,
-  Image
-} from '@chakra-ui/react'
-import { PortableText } from 'components/PortableText'
+import { AspectRatio, Grid, GridItem, Heading, Image } from '@chakra-ui/react'
 import { Section } from 'components/Section'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -33,7 +20,7 @@ export const PoemsSection: FC<PoemsSectionProps> = ({ poems }) => {
         templateColumns={`repeat(auto-fill, minmax(212px, 1fr))`}
       >
         {poems?.map(poem => {
-          const { _id, title, slug, scan, copy } = poem
+          const { _id, title, slug, scan } = poem
           const src =
             scan.image &&
             urlForDescriptiveImage(scan.image, scan.maxWidth).url()
@@ -50,21 +37,6 @@ export const PoemsSection: FC<PoemsSectionProps> = ({ poems }) => {
                   />
                 </AspectRatio>
               </Link>
-              <Accordion allowToggle>
-                <AccordionItem>
-                  <Heading>
-                    <AccordionButton>
-                      <Box as='span' flex={1} textAlign='left'>
-                        {title}
-                      </Box>
-                      <AccordionIcon />
-                    </AccordionButton>
-                    <AccordionPanel>
-                      <PortableText value={copy} />
-                    </AccordionPanel>
-                  </Heading>
-                </AccordionItem>
-              </Accordion>
             </GridItem>
           )
         })}
