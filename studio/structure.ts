@@ -3,12 +3,10 @@ import { FaMicrophoneAlt } from 'react-icons/fa'
 import { IoIosSettings } from 'react-icons/io'
 import type { StructureResolver } from 'sanity/desk'
 import Iframe from 'sanity-plugin-iframe-pane'
+import baseUrl from 'utils/baseUrl'
 import { createOgImageUrl } from 'utils/createOgImageUrl'
 
 const singletons = ['settings', 'navigation', 'podcastEpisodes', 'landingPage']
-
-const baseUrl =
-  process.env.NEXT_PUBLIC_URL ?? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
 
 export const structure: StructureResolver = S =>
   S.list()
