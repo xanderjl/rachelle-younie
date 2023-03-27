@@ -16,8 +16,8 @@ export const PoemsSection: FC<PoemsSectionProps> = ({ poems }) => {
   return (
     <Section>
       <Grid
-        gap={{ base: 6, sm: 8 }}
-        templateColumns={`repeat(auto-fill, minmax(212px, 1fr))`}
+        gap={8}
+        templateColumns={`repeat(auto-fit, minmax(212px, 1fr))`}
         gridAutoRows='auto'
       >
         {poems?.map(poem => {
