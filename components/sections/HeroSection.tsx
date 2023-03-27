@@ -26,7 +26,7 @@ export const HeroSection: FC<HeroSectionProps> = ({
     sm: { base: '300px' },
     md: { base: '400px' },
     lg: { base: '300px', md: '500px' },
-    half: 'calc(50vh - 62px)',
+    half: '50vh',
     fullscreen: 'calc(100vh - 62px)'
   }
   const h1Size: CustomFontSize = {
@@ -37,11 +37,11 @@ export const HeroSection: FC<HeroSectionProps> = ({
     fullscreen: { base: '2xl', md: '4xl' }
   }
   const h2Size: CustomFontSize = {
-    sm: 'sm',
-    md: 'md',
-    lg: 'lg',
-    half: 'xl',
-    fullscreen: { base: 'lg', md: '2xl' }
+    sm: 'xs',
+    md: 'sm',
+    lg: 'md',
+    half: 'lg',
+    fullscreen: { base: 'sm', md: 'xl' }
   }
 
   return (
@@ -67,7 +67,7 @@ export const HeroSection: FC<HeroSectionProps> = ({
           color={color ?? 'white'}
           {...rest}
         >
-          <Heading as='h1' size={h1Size[size]}>
+          <Heading as='h1' fontFamily='accent' size={h1Size[size]}>
             {title}
           </Heading>
           {subtitle && (
