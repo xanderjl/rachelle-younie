@@ -1,4 +1,4 @@
-import { Image } from '@chakra-ui/react'
+import { Flex, Image } from '@chakra-ui/react'
 import type { PortableTextTypeComponentProps } from '@portabletext/react'
 import type { DescriptiveImage as DescriptiveImageProps } from 'types/SanityPrimitives'
 import { urlForDescriptiveImage } from 'utils/urlFor'
@@ -10,14 +10,16 @@ export const DescriptiveImage = ({
   const src = image && urlForDescriptiveImage(image, maxWidth).url()
 
   return (
-    <Image
-      flex={1}
-      src={src}
-      alt={altText}
-      maxW={maxWidth}
-      objectFit='contain'
-      pt={3}
-      pb={5}
-    />
+    <Flex justifyContent='center'>
+      <Image
+        flex={1}
+        src={src}
+        alt={altText}
+        maxW={maxWidth}
+        objectFit='contain'
+        pt={3}
+        pb={5}
+      />
+    </Flex>
   )
 }

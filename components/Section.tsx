@@ -8,7 +8,8 @@ export const Section = forwardRef<ContainerProps, 'div'>(
         display='flex'
         flexDir='column'
         maxW='container.md'
-        py={8}
+        py={2}
+        _first={{ pt: 12 }}
         ref={ref}
         {...rest}
       >

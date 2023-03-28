@@ -35,7 +35,7 @@ const PodcastCard: FC<PodcastCardProps> = ({ episode, ...rest }) => {
         borderRadius='md'
         {...rest}
       >
-        <Heading>{title}</Heading>
+        <Heading size='lg'>{title}</Heading>
         <Player data={enclosure} />
         <Accordion allowToggle>
           <AccordionItem
