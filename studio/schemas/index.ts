@@ -22,10 +22,12 @@ import {
   sectionHero,
   sectionPodcastEpisodes,
   sectionPoems,
+  sectionSocials,
   sectionWriting
 } from './sections'
 import { sectionSelector } from './sectionSelector'
 import { settings } from './settings'
+import { social } from './social'
 import { spacing } from './spacing'
 import { writing } from './writing'
 
@@ -51,6 +53,8 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   sectionPoems,
   sectionWriting,
   sectionSelector,
+  sectionSocials,
+  social,
   spacing,
   textAlign,
   writing

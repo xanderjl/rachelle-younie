@@ -14,7 +14,8 @@ export const sectionSelector: SchemaTypeDefinition = {
         { type: 'sectionHero' },
         { type: 'sectionPodcastEpisodes' },
         { type: 'sectionPoems' },
-        { type: 'sectionWriting' }
+        { type: 'sectionWriting' },
+        { type: 'sectionSocials' }
       ]
     }
   ]
