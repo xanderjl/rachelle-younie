@@ -7,6 +7,7 @@ import type {
   SectionHero,
   SectionPodcastEpisodes,
   SectionPoems,
+  SectionSocials,
   SectionWriting
 } from 'types/SanityPrimitives'
 
@@ -14,6 +15,7 @@ import { ContentSection } from './sections/ContentSection'
 import { HeroSection } from './sections/HeroSection'
 import { PodcastEpisodesSection } from './sections/PodcastEpisodesSection'
 import { PoemsSection } from './sections/PoemsSection'
+import { SocialsSection } from './sections/SocialsSection'
 import { WritingSection } from './sections/WritingSection'
 
 export interface SectionRendererProps extends FlexProps {
@@ -48,7 +50,14 @@ export const SectionRenderer: FC<SectionRendererProps> = ({
 
       if (_type === 'sectionPoems') {
         const { poems } = section as SectionPoems
+
         return <PoemsSection key={_key} poems={poems} />
+      }
+
+      if (_type === 'sectionSocials') {
+        const { socials } = section as SectionSocials
+
+        return <SocialsSection key={_key} socials={socials} />
       }
 
       if (_type === 'sectionWriting') {
