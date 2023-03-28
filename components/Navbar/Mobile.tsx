@@ -69,7 +69,7 @@ export const Mobile: FC<BoxProps> = props => {
                 <ListItem key={i}>
                   <Link
                     as={NLink}
-                    href={slug}
+                    href={`/${slug}`}
                     {...linkStyles}
                     onClick={e => handleClick(e, slug)}
                   >

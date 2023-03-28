@@ -22,7 +22,7 @@ export const Desktop: FC<BoxProps> = props => {
       <UnorderedList display='flex' gap={4} listStyleType='none'>
         {navigation?.map(({ slug, title }, i) => (
           <ListItem key={i}>
-            <Link as={NLink} href={slug} {...linkStyles}>
+            <Link as={NLink} href={`/${slug}`} {...linkStyles}>
               {title}
             </Link>
           </ListItem>
