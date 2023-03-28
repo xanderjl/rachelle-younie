@@ -77,8 +77,8 @@ const ContactPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
           </Heading>
         ) : (
           <>
-            <Heading size='3xl' pb={{ base: 6, md: 10 }}>
-              Get In Touch
+            <Heading size='2xl' pb={{ base: 4, md: 8 }}>
+              Get in Touch
             </Heading>
             <Flex
               as='form'
