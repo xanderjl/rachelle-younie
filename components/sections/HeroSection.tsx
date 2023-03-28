@@ -32,15 +32,15 @@ export const HeroSection: FC<HeroSectionProps> = ({
   }
   const h1Size: CustomFontSize = {
     sm: 'lg',
-    md: 'xl',
-    lg: '2xl',
-    half: '3xl',
+    md: '3xl',
+    lg: '4xl',
+    half: { base: '2xl', md: '4xl' },
     fullscreen: { base: '2xl', md: '4xl' }
   }
   const h2Size: CustomFontSize = {
     sm: 'xs',
-    md: 'sm',
-    lg: 'md',
+    md: 'md',
+    lg: 'lg',
     half: 'lg',
     fullscreen: { base: 'sm', md: 'xl' }
   }
