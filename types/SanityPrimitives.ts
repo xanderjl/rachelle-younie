@@ -130,6 +130,13 @@ export interface Poem {
   copy: PortableTextBlock[]
 }
 
+export interface Social {
+  _id: string
+  title: string
+  url: string
+  icon: Image
+}
+
 export interface BaseSection {
   _key: string
   _type:
@@ -137,6 +144,7 @@ export interface BaseSection {
     | 'sectionHero'
     | 'sectionPodcastEpisodes'
     | 'sectionPoems'
+    | 'sectionSocials'
     | 'sectionWriting'
 }
 
@@ -156,11 +164,16 @@ export interface SectionPoems extends BaseSection {
   poems?: Poem[]
 }
 
+export interface SectionSocials extends BaseSection {
+  socials: Social[]
+}
+
 export type SectionHero = BaseSection & Hero
 
 export type Section =
   | SectionContent
-  | SectionWriting
+  | SectionHero
   | SectionPodcastEpisodes
   | SectionPoems
-  | SectionHero
+  | SectionSocials
+  | SectionWriting

@@ -59,6 +59,15 @@ export const groqQuery = groq`
         copy
       }
     },
+    _type == "sectionSocials" => {
+      _key,
+      "socials": socials[]->{
+        _id,
+        title,
+        url,
+        icon
+      }
+    },
     _type == "sectionWriting" => {
       _key,
       publications[]->{

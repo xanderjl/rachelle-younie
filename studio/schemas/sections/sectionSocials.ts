@@ -11,7 +11,8 @@ export const sectionSocials: SchemaTypeDefinition = {
       name: 'socials',
       title: 'Socials',
       type: 'array',
-      of: [{ type: 'reference', to: { type: 'social' } }]
+      of: [{ type: 'reference', to: { type: 'social' } }],
+      validation: rule => rule.required()
     }
   ],
   preview: {
