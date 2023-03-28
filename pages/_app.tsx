@@ -28,12 +28,12 @@ interface CustomProps {
 type CustomAppProps = AppProps & CustomProps
 type CustomInitialProps = AppInitialProps & CustomProps
 
-const beforeSendHandler: AnalyticsProps['beforeSend'] = e => {
-  if (e.url.includes('/editor')) {
+const beforeSendHandler: AnalyticsProps['beforeSend'] = event => {
+  if (event.url.includes('/editor')) {
     return null
   }
 
-  return e
+  return event
 }
 
 const CustomApp = ({ Component, pageProps, fallback }: CustomAppProps) => {
