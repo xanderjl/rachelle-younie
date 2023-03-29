@@ -29,6 +29,8 @@ export interface StaticProps {
   token: string
 }
 
+const slug = 'home'
+
 const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   fallback,
   preview,
@@ -49,7 +51,7 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
     sections
   } = fallback['/sanity/page']
   const { siteTitle } = fallback['/sanity/initialData']
-  const url = createOgImageUrl(siteTitle ?? '', title, 'home', token).toString()
+  const url = createOgImageUrl(siteTitle ?? '', title, slug, token).toString()
   const seo: NextSeoProps = {
     title,
     description,
@@ -89,7 +91,7 @@ export const getStaticProps: GetStaticProps<StaticProps> = async ({
   const page = await getPage('home')
   const initialData = await getInitialData()
   const hmac = createHmac('sha256', process.env.NEXT_SHA_KEY)
-  hmac.update(JSON.stringify({ slug: 'home' }))
+  hmac.update(JSON.stringify({ slug }))
   const token = hmac.digest('hex')
 
   const fallback = {

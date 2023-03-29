@@ -11,6 +11,7 @@ import {
 } from '@chakra-ui/react'
 import { useForm, ValidationError } from '@formspree/react'
 import { Section } from 'components/Section'
+import { createHmac } from 'crypto'
 import type { InitialData } from 'hooks/data/useInitialData'
 import { getInitialData } from 'hooks/data/useInitialData'
 import type { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next'
@@ -23,10 +24,14 @@ export interface StaticProps {
   fallback: {
     '/sanity/initialData': InitialData
   }
+  token: string
 }
 
+const slug = 'contact'
+
 const ContactPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
-  fallback
+  fallback,
+  token
 }) => {
   const [state, handleSubmit] = useForm(process.env.NEXT_PUBLIC_FORMSPREE_KEY)
 
@@ -41,7 +46,7 @@ const ContactPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   const { siteTitle } = fallback['/sanity/initialData']
   const title = 'contact'
   const description = "Let's get in touch!"
-  const url = createOgImageUrl(siteTitle ?? '', title).toString()
+  const url = createOgImageUrl(siteTitle ?? '', title, slug, token).toString()
 
   const seo: NextSeoProps = {
     title,
@@ -139,12 +144,17 @@ const ContactPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
 export default ContactPage
 
 export const getStaticProps: GetStaticProps<StaticProps> = async () => {
+  const hmac = createHmac('sha256', process.env.NEXT_SHA_KEY)
+  hmac.update(JSON.stringify({ slug }))
+  const token = hmac.digest('hex')
+
   const initialData = await getInitialData()
   const fallback = { '/sanity/initialData': initialData }
 
   return {
     props: {
-      fallback
+      fallback,
+      token
     }
   }
 }

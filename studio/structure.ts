@@ -1,3 +1,4 @@
+import { createHmac } from 'crypto'
 import { AiFillHome, AiOutlineLink } from 'react-icons/ai'
 import { FaMicrophoneAlt } from 'react-icons/fa'
 import { IoIosSettings } from 'react-icons/io'
@@ -24,8 +25,17 @@ export const structure: StructureResolver = S =>
               S.view
                 .component(Iframe)
                 .options({
-                  url: (doc: any) =>
-                    createOgImageUrl(doc.siteTitle, 'Test Card').href
+                  url: (doc: any) => {
+                    const hmac = createHmac('sha256', process.env.NEXT_SHA_KEY)
+                    hmac.update(JSON.stringify({ slug: 'home' }))
+                    const token = hmac.digest('hex')
+                    return createOgImageUrl(
+                      doc.siteTitle,
+                      'Test Card',
+                      'home',
+                      token
+                    ).href
+                  }
                 })
                 .title('OG Image Preview')
             ])
