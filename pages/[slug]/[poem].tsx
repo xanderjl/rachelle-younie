@@ -1,6 +1,7 @@
 import { Box, Heading, Image } from '@chakra-ui/react'
 import { PortableText } from 'components/PortableText'
 import { Section } from 'components/Section'
+import { createHmac } from 'crypto'
 import type { PoemPage as PoemPageProps } from 'hooks/data/useGetPoemPage'
 import { getPoemPage } from 'hooks/data/useGetPoemPage'
 import { getPoemRoutes } from 'hooks/data/useGetPoemRoutes'
@@ -31,12 +32,14 @@ interface StaticProps {
     '/sanity/poemPage': PoemPageProps
   }
   preview: boolean
+  token: string
 }
 
 const PoemPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   poem,
   fallback,
-  preview
+  preview,
+  token
 }) => {
   if (preview) {
     return (
@@ -49,7 +52,7 @@ const PoemPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   const { title, copy, scan, slug } = fallback['/sanity/poemPage']
 
   const src = scan?.image ? urlForDescriptiveImage(scan.image).url() : ''
-  const url = createPoemOgImageUrl(slug).toString()
+  const url = createPoemOgImageUrl(poem as string, token).toString()
 
   const seo: NextSeoProps = {
     title,
@@ -114,6 +117,9 @@ export const getStaticProps: GetStaticProps<StaticProps> = async ({
 }) => {
   const { poem } = params || {}
   const poemPage = await getPoemPage(poem as string)
+  const hmac = createHmac('sha256', process.env.NEXT_SHA_KEY)
+  hmac.update(JSON.stringify({ poem }))
+  const token = hmac.digest('hex')
 
   return {
     props: {
@@ -121,7 +127,8 @@ export const getStaticProps: GetStaticProps<StaticProps> = async ({
       fallback: {
         '/sanity/poemPage': poemPage
       },
-      preview
+      preview,
+      token
     }
   }
 }

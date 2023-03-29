@@ -1,4 +1,5 @@
 import { SectionRenderer } from 'components/SectionRenderer'
+import { createHmac } from 'crypto'
 import type { Page } from 'hooks/data/useGetPage'
 import { getPage } from 'hooks/data/useGetPage'
 import type { InitialData } from 'hooks/data/useInitialData'
@@ -25,11 +26,13 @@ export interface StaticProps {
     '/sanity/initialData': InitialData
   }
   preview: boolean
+  token: string
 }
 
 const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   fallback,
-  preview
+  preview,
+  token
 }) => {
   const { asPath } = useRouter()
   if (preview) {
@@ -46,7 +49,7 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
     sections
   } = fallback['/sanity/page']
   const { siteTitle } = fallback['/sanity/initialData']
-  const url = createOgImageUrl(siteTitle ?? '', title).toString()
+  const url = createOgImageUrl(siteTitle ?? '', title, 'home', token).toString()
   const seo: NextSeoProps = {
     title,
     description,
@@ -85,6 +88,10 @@ export const getStaticProps: GetStaticProps<StaticProps> = async ({
 }) => {
   const page = await getPage('home')
   const initialData = await getInitialData()
+  const hmac = createHmac('sha256', process.env.NEXT_SHA_KEY)
+  hmac.update(JSON.stringify({ slug: 'home' }))
+  const token = hmac.digest('hex')
+
   const fallback = {
     '/sanity/page': page,
     '/sanity/initialData': initialData
@@ -93,7 +100,8 @@ export const getStaticProps: GetStaticProps<StaticProps> = async ({
   return {
     props: {
       fallback,
-      preview
+      preview,
+      token
     }
   }
 }
