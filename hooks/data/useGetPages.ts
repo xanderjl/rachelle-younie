@@ -14,4 +14,4 @@ export const groqQuery = groq`
 
 export const getPages = async () => await client.fetch<Page[]>(groqQuery)
 
-export const useGetPages = () => useSWR<Page[]>('/sanity/pages', getPages)
+export const useGetPages = () => useSWR<Page[]>('/sanity/pages')

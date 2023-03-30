@@ -19,5 +19,4 @@ export const groqQuery = groq`
 export const getPoemRoutes = async () =>
   await client.fetch<PoemRoute[]>(groqQuery)
 
-export const useGetPoemRoutes = () =>
-  useSWR<PoemRoute[]>('/sanity/poemRoutes', getPoemRoutes)
+export const useGetPoemRoutes = () => useSWR<PoemRoute[]>('/sanity/poemRoutes')

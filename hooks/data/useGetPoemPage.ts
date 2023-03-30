@@ -25,5 +25,4 @@ export const groqQuery = groq`
 export const getPoemPage = async (poem: string) =>
   await client.fetch(groqQuery, { poem })
 
-export const useGetPoemPage = (poem: string) =>
-  useSWR<PoemPage>('/sanity/poemPage', () => getPoemPage(poem))
+export const useGetPoemPage = () => useSWR<PoemPage>('/sanity/poemPage')

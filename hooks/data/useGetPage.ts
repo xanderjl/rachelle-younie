@@ -86,5 +86,4 @@ export const groqQuery = groq`
 export const getPage = async (slug: string) =>
   await client.fetch<Page>(groqQuery, { slug })
 
-export const useGetPage = (slug: string) =>
-  useSWR<Page>('/sanity/page', () => getPage(slug))
+export const useGetPage = () => useSWR<Page>('/sanity/page')

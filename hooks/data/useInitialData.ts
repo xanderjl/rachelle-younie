@@ -2,6 +2,7 @@ import { groq } from 'next-sanity'
 import type { Image } from 'sanity'
 import { client } from 'studio/sanity.client'
 import useSWR from 'swr'
+import type { Social } from 'types/SanityPrimitives'
 
 import type { Navigation } from './useNavigation'
 
@@ -10,6 +11,7 @@ export interface InitialData {
   metaDescription?: string
   favicon?: Image
   navigation?: Navigation
+  socials?: Social[]
 }
 
 export const groqQuery = groq`
@@ -25,8 +27,14 @@ export const groqQuery = groq`
     _type == "reference" => @->{
       title,
       "slug": slug.current
+    }
+  },
+  "socials": *[_type == "social"]{
+    _id,
+    title,
+    url,
+    icon
   }
-}
 }[0]
 `
 
@@ -41,5 +49,4 @@ export const getInitialData = async () =>
     }
   })
 
-export const useInitialData = () =>
-  useSWR<InitialData>('/sanity/initialData', getInitialData)
+export const useInitialData = () => useSWR<InitialData>('/sanity/initialData')
