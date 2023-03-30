@@ -1,13 +1,11 @@
 import type { ContainerProps } from '@chakra-ui/react'
-import { Container, Flex, Image, Text } from '@chakra-ui/react'
-import { useInitialData } from 'hooks/data/useInitialData'
-import Link from 'next/link'
+import { Container, Text } from '@chakra-ui/react'
+// import { useInitialData } from 'hooks/data/useInitialData'
 import type { FC } from 'react'
-import { urlFor } from 'utils/urlFor'
 
 export const Footer: FC<ContainerProps> = props => {
-  const { data } = useInitialData()
-  const { navigation, socials } = data || {}
+  // const { data } = useInitialData()
+  // const { navigation, socials } = data || {}
   const year = new Date().getFullYear()
 
   return (
@@ -21,7 +19,7 @@ export const Footer: FC<ContainerProps> = props => {
       py={3}
       {...props}
     >
-      <Flex direction='column'>
+      {/* <Flex direction='column'>
         {navigation?.map(({ slug, title }) => (
           <Link key={slug} href={`/${slug}`}>
             {title}
@@ -37,7 +35,7 @@ export const Footer: FC<ContainerProps> = props => {
             </a>
           )
         })}
-      </Flex>
+      </Flex> */}
       <Text as='span'>&copy; Copyright {year}, Rachelle Younie</Text>
     </Container>
   )
