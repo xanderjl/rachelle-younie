@@ -22,6 +22,21 @@ export interface SectionRendererProps extends FlexProps {
   sections?: Section[]
 }
 
+const isSectionContent = (section: Section): section is SectionContent =>
+  section._type === 'sectionContent'
+const isSectionHero = (section: Section): section is SectionHero =>
+  section._type === 'sectionHero'
+const isSectionPodcastEpisodes = (
+  section: Section
+): section is SectionPodcastEpisodes =>
+  section._type === 'sectionPodcastEpisodes'
+const isSectionPoems = (section: Section): section is SectionPoems =>
+  section._type === 'sectionPoems'
+const isSectionSocials = (section: Section): section is SectionSocials =>
+  section._type === 'sectionSocials'
+const isSectionWriting = (section: Section): section is SectionWriting =>
+  section._type === 'sectionWriting'
+
 export const SectionRenderer: FC<SectionRendererProps> = ({
   sections,
   ...rest
@@ -30,38 +45,38 @@ export const SectionRenderer: FC<SectionRendererProps> = ({
     {sections?.map(section => {
       const { _key, _type } = section
 
-      if (_type === 'sectionContent') {
-        const { content } = section as SectionContent
+      if (isSectionContent(section)) {
+        const { content } = section
 
         return <ContentSection key={_key} value={content} />
       }
 
-      if (_type === 'sectionHero') {
-        const { _key, ...rest } = section as SectionHero
+      if (isSectionHero(section)) {
+        const { _key, ...rest } = section
 
         return <HeroSection key={_key} {...rest} />
       }
 
-      if (_type === 'sectionPodcastEpisodes') {
-        const { episodes } = section as SectionPodcastEpisodes
+      if (isSectionPodcastEpisodes(section)) {
+        const { episodes } = section
 
         return <PodcastEpisodesSection key={_key} episodes={episodes} />
       }
 
-      if (_type === 'sectionPoems') {
-        const { poems } = section as SectionPoems
+      if (isSectionPoems(section)) {
+        const { poems } = section
 
         return <PoemsSection key={_key} poems={poems} />
       }
 
-      if (_type === 'sectionSocials') {
-        const { socials } = section as SectionSocials
+      if (isSectionSocials(section)) {
+        const { socials } = section
 
         return <SocialsSection key={_key} socials={socials} />
       }
 
-      if (_type === 'sectionWriting') {
-        const { publications } = section as SectionWriting
+      if (isSectionWriting(section)) {
+        const { publications } = section
 
         return <WritingSection key={_key} publications={publications} />
       }
