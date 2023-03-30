@@ -29,7 +29,7 @@ type CustomAppProps = AppProps & CustomProps
 type CustomInitialProps = AppInitialProps & CustomProps
 
 const beforeSendHandler: AnalyticsProps['beforeSend'] = event => {
-  if (event.url.includes('/editor')) {
+  if (event.url.includes('/editor') || event.url.includes('preview')) {
     return null
   }
 
