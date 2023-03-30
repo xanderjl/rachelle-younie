@@ -13,6 +13,9 @@
   },
   "dependencies": {
     "@chakra-ui/react": "2.5.4",
+    "@chakra-ui/react-use-size": "^2.0.10",
+    "@chakra-ui/styled-system": "^2.7.0",
+    "@chakra-ui/theme-tools": "^2.0.16",
     "@emotion/react": "11.10.6",
     "@emotion/styled": "11.10.6",
     "@fontsource/dm-serif-display": "^4.5.10",
