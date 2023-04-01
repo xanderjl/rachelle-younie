@@ -12,10 +12,9 @@ export const DescriptiveImage = ({
   return (
     <Flex justifyContent='center'>
       <Image
-        flex={1}
         src={src}
         alt={altText}
-        maxW={maxWidth}
+        maxW={{ md: maxWidth }}
         objectFit='contain'
         pt={3}
         pb={5}
