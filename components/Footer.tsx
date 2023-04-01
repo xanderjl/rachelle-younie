@@ -49,7 +49,7 @@ export const Footer: FC<ContainerProps> = props => {
                     'brightness(0) saturate(100%) invert(30%) sepia(30%) saturate(1126%) hue-rotate(10deg) brightness(99%) contrast(89%)'
                 }}
               >
-                <Image src={src} alt={title} boxSize={6} />
+                <Image src={src} alt={title} boxSize={5} />
               </Link>
             )
           })}
