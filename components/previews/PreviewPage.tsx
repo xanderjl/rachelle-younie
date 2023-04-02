@@ -16,6 +16,8 @@ export interface PreviewPageProps {
 export const PreviewPage: FC<PreviewPageProps> = ({ slug }) => {
   const { route } = useRouter()
   const conditionalSlug = route === '/' ? 'home' : slug
+  const conditionalHref =
+    route === '/' ? `/api/exit-preview` : `/api/exit-preview?slug=${slug}`
   const previewInitialData = usePreview(null, initialQuery)
   const previewData = usePreview(null, pageQuery, {
     slug: conditionalSlug as string
@@ -30,7 +32,7 @@ export const PreviewPage: FC<PreviewPageProps> = ({ slug }) => {
       </Head>
       <Button
         as={Link}
-        href={`/api/exit-preview?slug=${slug}`}
+        href={conditionalHref}
         pos='absolute'
         bottom={3}
         right={3}
