@@ -33,7 +33,7 @@ export const Mobile: FC<BoxProps> = props => {
   const handleClick = (e: SyntheticEvent, slug: string) => {
     e.preventDefault()
 
-    push(slug)
+    push(`/${slug}`)
     onClose()
   }
 
