@@ -21,6 +21,7 @@ const generateSiteMap = (allUrls: string[]) => {
 
 function SiteMap() {
   // getServerSideProps will do the heavy lifting
+  return null
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ res }) => {
@@ -38,7 +39,7 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   // We generate the XML sitemap with the posts data
   const sitemap = generateSiteMap(deduped)
 
-  res.setHeader('Content-Type', 'application/xml')
+  res.setHeader('Content-Type', 'text/xml')
   // we send the XML to the browser
   res.write(sitemap)
   res.end()

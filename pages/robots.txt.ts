@@ -21,6 +21,7 @@ Disallow: /
   const generateProdRobots = () => {
     const robots = `User-agent: *
 Allow: /
+Disallow: /editor
 Sitemap: ${sitemapUrl}
 `
 
