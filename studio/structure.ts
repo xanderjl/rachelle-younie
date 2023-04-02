@@ -64,15 +64,13 @@ export const structure: StructureResolver = S =>
               S.view
                 .component(Iframe)
                 .options({
-                  url: (doc: any) =>
-                    doc?.slug?.current
-                      ? `${baseUrl}/api/preview?slug=${doc.slug.current}`
-                      : `${baseUrl}/api/preview`
+                  url: () => `${baseUrl}/api/preview`
                 })
                 .title('Preview')
             ])
         ),
       ...S.documentTypeListItems().filter(
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         listItem => !singletons.includes(listItem.getId()!)
       )
     ])

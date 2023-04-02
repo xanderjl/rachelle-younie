@@ -3,6 +3,7 @@ import { groqQuery as pageQuery } from 'hooks/data/useGetPage'
 import { groqQuery as initialQuery } from 'hooks/data/useInitialData'
 import Head from 'next/head'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import type { FC } from 'react'
 import { usePreview } from 'studio/sanity.preview'
 
@@ -13,8 +14,12 @@ export interface PreviewPageProps {
 }
 
 export const PreviewPage: FC<PreviewPageProps> = ({ slug }) => {
+  const { route } = useRouter()
+  const conditionalSlug = route === '/' ? 'home' : slug
   const previewInitialData = usePreview(null, initialQuery)
-  const previewData = usePreview(null, pageQuery, { slug: slug as string })
+  const previewData = usePreview(null, pageQuery, {
+    slug: conditionalSlug as string
+  })
   const { siteTitle } = previewInitialData || {}
   const { title, sections } = previewData || {}
 
