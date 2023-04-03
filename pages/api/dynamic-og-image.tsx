@@ -69,8 +69,6 @@ const dynamicOgImageHandler = async (req: NextRequest) => {
     )
   )
 
-  console.log({ slug, token, verifyToken })
-
   if (token !== verifyToken) {
     return new Response('Invalid token.', { status: 401 })
   }
@@ -92,7 +90,7 @@ const dynamicOgImageHandler = async (req: NextRequest) => {
       textAlign
     }
   } = await client.fetch<{ ogImage: OgImage }>(groqQuery)
-  const src = urlFor(image).width(1200).height(627).url()
+  const src = urlFor(image).format('png').width(1200).height(627).url()
   const dmSerifDisplayData = await dmSerifDisplay
   const sacramentoData = await sacramento
 

@@ -51,7 +51,9 @@ const handler = async (req: NextRequest) => {
     token: process.env.NEXT_SANITY_API_TOKEN
   })
   const { scan } = await client.fetch<Poem>(groqQuery, { poem })
-  const src = scan.image ? urlFor(scan.image).width(1200).height(627).url() : ''
+  const src = scan.image
+    ? urlFor(scan.image).format('png').width(1200).height(627).url()
+    : ''
 
   return new ImageResponse(
     (
