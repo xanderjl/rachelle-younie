@@ -6,11 +6,13 @@ import { client } from 'studio/sanity.client'
 const builder = imageUrlBuilder(client)
 
 export const urlFor = (src: SanityImageSource): ImageUrlBuilder =>
-  builder.image(src)
+  builder.image(src).format('webp')
 
 export const urlForDescriptiveImage = (
   src: SanityImageSource,
   maxWidth?: number
 ): ImageUrlBuilder => {
-  return maxWidth ? builder.image(src).width(maxWidth) : builder.image(src)
+  return maxWidth
+    ? builder.image(src).format('webp').width(maxWidth)
+    : builder.image(src).format('webp')
 }
