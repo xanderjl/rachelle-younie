@@ -21,7 +21,7 @@ export const Footer: FC<ContainerProps> = props => {
       alignItems='center'
       maxW='container.lg'
       py={{ base: 4, md: 8 }}
-      gap={gap}
+      gap={gap + 4}
       {...props}
     >
       <Flex gap={gap} flexWrap='wrap' pb={2}>
@@ -37,7 +37,7 @@ export const Footer: FC<ContainerProps> = props => {
         </Text>
         <Flex gap={gap}>
           {socials?.map(({ _id, icon, title, url }) => {
-            const src = urlFor(icon).url()
+            const src = urlFor(icon).width(80).url()
 
             return (
               <Link
@@ -49,7 +49,13 @@ export const Footer: FC<ContainerProps> = props => {
                     'brightness(0) saturate(100%) invert(30%) sepia(30%) saturate(1126%) hue-rotate(10deg) brightness(99%) contrast(89%)'
                 }}
               >
-                <Image src={src} alt={title} boxSize={5} />
+                <Image
+                  src={src}
+                  alt={title}
+                  boxSize={8}
+                  objectFit='contain'
+                  objectPosition='center'
+                />
               </Link>
             )
           })}
