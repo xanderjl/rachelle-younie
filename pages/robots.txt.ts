@@ -21,10 +21,10 @@ Disallow: /
   const generateProdRobots = () => {
     const robots = `
 User-agent: *
-Disallow: /editor
+Allow: /
 
 User-agent: *
-Allow: /
+Disallow: /editor
 
 Sitemap: ${sitemapUrl}
 `
