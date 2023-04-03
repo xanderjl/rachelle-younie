@@ -19,9 +19,13 @@ Disallow: /
   }
 
   const generateProdRobots = () => {
-    const robots = `User-agent: *
-Allow: /
+    const robots = `
+User-agent: *
 Disallow: /editor
+
+User-agent: *
+Allow: /
+
 Sitemap: ${sitemapUrl}
 `
 
