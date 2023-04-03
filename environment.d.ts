@@ -1,5 +1,6 @@
 declare namespace NodeJS {
   interface ProcessEnv {
+    ANALYZE: 'true' | 'false'
     NODE_ENV: 'development' | 'production' | 'test'
     VERCEL_ENV: 'production' | 'preview' | 'development'
     VERCEL_URL: string
