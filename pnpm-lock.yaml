@@ -93,9 +93,6 @@ devDependencies:
   '@sanity/eslint-config-studio':
     specifier: 2.0.1
     version: 2.0.1(eslint@8.37.0)(typescript@5.0.3)
-  '@types/gtag.js':
-    specifier: ^0.0.12
-    version: 0.0.12
   '@types/node':
     specifier: ^18.15.10
     version: 18.15.11
@@ -4446,10 +4443,6 @@ packages:
       '@types/minimatch': 5.1.2
       '@types/node': 18.15.11
     dev: false
-
-  /@types/gtag.js@0.0.12:
-    resolution: {integrity: sha512-YQV9bUsemkzG81Ea295/nF/5GijnD2Af7QhEofh7xu+kvCN6RdodgNwwGWXB5GMI3NoyvQo0odNctoH/qLMIpg==}
-    dev: true
 
   /@types/hast@2.3.4:
     resolution: {integrity: sha512-wLEm0QvaoawEDoTRwzTXp4b4jpwiJDvR5KMnFnVodm3scufTlBOWRD6N1OBf9TZMhjlNsSfcO5V+7AF4+Vy+9g==}
