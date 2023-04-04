@@ -8,12 +8,14 @@ import { ChakraProvider } from '@chakra-ui/react'
 import Layout from 'components/Layout'
 import type { InitialData } from 'hooks/data/useInitialData'
 import { getInitialData } from 'hooks/data/useInitialData'
+import { pageview } from 'lib/gtag'
 import type { AppContext, AppInitialProps, AppProps } from 'next/app'
 import App from 'next/app'
 import { useRouter } from 'next/router'
 import Script from 'next/script'
 import type { NextSeoProps } from 'next-seo'
 import { DefaultSeo } from 'next-seo'
+import { useEffect } from 'react'
 import { SWRConfig } from 'swr'
 import { theme } from 'theme'
 import { urlFor } from 'utils/urlFor'
@@ -49,6 +51,18 @@ const CustomApp = ({ Component, pageProps, fallback }: CustomAppProps) => {
       }
     ]
   }
+
+  useEffect(() => {
+    const handleRouteChange = (url: string) => {
+      pageview(url)
+    }
+
+    router.events.on('routeChangeComplete', handleRouteChange)
+
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange)
+    }
+  }, [router.events])
 
   return (
     <SWRConfig value={{ fallback }}>

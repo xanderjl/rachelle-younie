@@ -26,6 +26,9 @@
       "hooks/*": [
         "hooks/*"
       ],
+      "lib/*": [
+        "lib/*"
+      ],
       "studio/*": [
         "studio/*"
       ],
