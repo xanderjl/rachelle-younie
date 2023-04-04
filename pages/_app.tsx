@@ -5,14 +5,13 @@ import '@fontsource/nanum-myeongjo/700.css'
 import '@fontsource/nanum-myeongjo/800.css'
 
 import { ChakraProvider } from '@chakra-ui/react'
-import type { AnalyticsProps } from '@vercel/analytics/react'
-import { Analytics } from '@vercel/analytics/react'
 import Layout from 'components/Layout'
 import type { InitialData } from 'hooks/data/useInitialData'
 import { getInitialData } from 'hooks/data/useInitialData'
 import type { AppContext, AppInitialProps, AppProps } from 'next/app'
 import App from 'next/app'
 import { useRouter } from 'next/router'
+import Script from 'next/script'
 import type { NextSeoProps } from 'next-seo'
 import { DefaultSeo } from 'next-seo'
 import { SWRConfig } from 'swr'
@@ -27,14 +26,6 @@ interface CustomProps {
 
 type CustomAppProps = AppProps & CustomProps
 type CustomInitialProps = AppInitialProps & CustomProps
-
-const beforeSendHandler: AnalyticsProps['beforeSend'] = event => {
-  if (event.url.includes('/editor') || event.url.includes('preview')) {
-    return null
-  }
-
-  return event
-}
 
 const CustomApp = ({ Component, pageProps, fallback }: CustomAppProps) => {
   const {
@@ -61,7 +52,6 @@ const CustomApp = ({ Component, pageProps, fallback }: CustomAppProps) => {
 
   return (
     <SWRConfig value={{ fallback }}>
-      <Analytics beforeSend={beforeSendHandler} />
       {isEditor ? (
         <ChakraProvider theme={theme}>
           <Component {...pageProps} />
@@ -70,6 +60,19 @@ const CustomApp = ({ Component, pageProps, fallback }: CustomAppProps) => {
         <ChakraProvider theme={theme}>
           <DefaultSeo {...seo} />
           <Layout>
+            <Script
+              async
+              src='https://www.googletagmanager.com/gtag/js?id=G-KDWTR5GL1J'
+            />
+            <Script id='google-analytics' strategy='afterInteractive'>
+              {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+
+              gtag('config', 'G-KDWTR5GL1J');
+              `}
+            </Script>
             <Component {...pageProps} />
           </Layout>
         </ChakraProvider>
