@@ -62,15 +62,14 @@ const CustomApp = ({ Component, pageProps, fallback }: CustomAppProps) => {
           <Layout>
             <Script
               async
-              src='https://www.googletagmanager.com/gtag/js?id=G-KDWTR5GL1J'
+              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_MEASUREMENT_ID}`}
             />
             <Script id='google-analytics' strategy='afterInteractive'>
               {`
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-
-              gtag('config', 'G-KDWTR5GL1J');
+              gtag('config', ${process.env.NEXT_PUBLIC_MEASUREMENT_ID}});
               `}
             </Script>
             <Component {...pageProps} />
