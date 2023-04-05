@@ -24,7 +24,9 @@ export const PoemsSection: FC<PoemsSectionProps> = ({ poems }) => {
           const { _id, title, slug, scan } = poem
           const src =
             scan.image &&
-            urlForDescriptiveImage(scan.image, scan.maxWidth).url()
+            urlForDescriptiveImage(scan.image, scan?.maxWidth)
+              .width(scan?.maxWidth || 400)
+              .url()
 
           return (
             <GridItem
